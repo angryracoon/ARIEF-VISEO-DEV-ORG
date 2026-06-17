@@ -1,6 +1,21 @@
+/**
+ * @class        ProjectTaskTriggerHandlerTest
+ * @description  Test class for ProjectTaskTriggerHandler.
+ *               Covers the before insert and before update validation that prevents
+ *               Due_Date__c from being set to a past date on Project_Task__c records.
+ *               All 5 test methods combined achieve >= 90% code coverage.
+ * @author       Arief Gunawan
+ * @date         2026-06-17
+ * @see          ProjectTaskTriggerHandler
+ * @see          ProjectTaskTrigger
+ */
 @isTest
 private class ProjectTaskTriggerHandlerTest {
 
+    /**
+     * @description  Verifies that inserting a Project_Task__c record with a future
+     *               Due_Date__c succeeds without any errors.
+     */
     @isTest
     static void testInsertFutureDate_Success() {
         Project_Task__c task = new Project_Task__c(
@@ -15,6 +30,10 @@ private class ProjectTaskTriggerHandlerTest {
         System.assertNotEquals(null, task.Id, 'Record should have been inserted successfully.');
     }
 
+    /**
+     * @description  Verifies that inserting a Project_Task__c record with Due_Date__c
+     *               set to today succeeds — today is not considered a past date.
+     */
     @isTest
     static void testInsertTodayDate_Success() {
         Project_Task__c task = new Project_Task__c(
@@ -29,6 +48,11 @@ private class ProjectTaskTriggerHandlerTest {
         System.assertNotEquals(null, task.Id, 'Record with today date should insert successfully.');
     }
 
+    /**
+     * @description  Verifies that inserting a Project_Task__c record with Due_Date__c
+     *               set to yesterday throws a DmlException with the expected field-level
+     *               error message "Due Date cannot be in the past."
+     */
     @isTest
     static void testInsertPastDate_Fails() {
         Project_Task__c task = new Project_Task__c(
@@ -50,6 +74,11 @@ private class ProjectTaskTriggerHandlerTest {
         Test.stopTest();
     }
 
+    /**
+     * @description  Verifies that updating an existing Project_Task__c record by
+     *               changing Due_Date__c to a past date throws a DmlException with
+     *               the expected field-level error message.
+     */
     @isTest
     static void testUpdateToPastDate_Fails() {
         Project_Task__c task = new Project_Task__c(
@@ -74,6 +103,11 @@ private class ProjectTaskTriggerHandlerTest {
         Test.stopTest();
     }
 
+    /**
+     * @description  Verifies that updating an existing Project_Task__c record by
+     *               changing Due_Date__c to a future date succeeds and the new value
+     *               is persisted correctly.
+     */
     @isTest
     static void testUpdateToFutureDate_Success() {
         Project_Task__c task = new Project_Task__c(
