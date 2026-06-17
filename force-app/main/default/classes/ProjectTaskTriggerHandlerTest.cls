@@ -243,4 +243,45 @@ private class ProjectTaskTriggerHandlerTest {
             'Task with a valid Reminder_Date__c before Due_Date__c should insert without errors.'
         );
     }
+
+    /**
+     * @description  Verifies that Completed_Date__c is stamped with today's date when a
+     *               Project_Task__c record is inserted with Status__c already set to 'Completed'.
+     */
+    @isTest
+    static void testCompletedDatePopulatedOnInsert() {
+        Project_Task__c task = new Project_Task__c(
+            Task_Name__c = 'Insert Completed Task',
+            Status__c = 'Completed',
+            Due_Date__c = Date.today().addDays(10)
+        );
+        Test.startTest();
+        insert task;
+        Test.stopTest();
+        task = [SELECT Completed_Date__c FROM Project_Task__c WHERE Id = :task.Id];
+        Assert.areEqual(Date.today(), task.Completed_Date__c, 'Completed_Date__c should be stamped on insert when Status is Completed');
+    }
+
+    /**
+     * @description  Verifies that Completed_Date__c remains null when a Project_Task__c
+     *               record transitions between two non-Completed statuses on update.
+     */
+    @isTest
+    static void testCompletedDateUnchangedOnNonCompletedStatusUpdate() {
+        Project_Task__c task = new Project_Task__c(
+            Task_Name__c = 'Non-Completed Status Update',
+            Status__c = 'Not Started',
+            Due_Date__c = Date.today().addDays(10)
+        );
+        insert task;
+        task = [SELECT Completed_Date__c FROM Project_Task__c WHERE Id = :task.Id];
+        Assert.isNull(task.Completed_Date__c, 'Completed_Date__c should be null after inserting with non-Completed status');
+
+        task.Status__c = 'In Progress';
+        Test.startTest();
+        update task;
+        Test.stopTest();
+        task = [SELECT Completed_Date__c FROM Project_Task__c WHERE Id = :task.Id];
+        Assert.isNull(task.Completed_Date__c, 'Completed_Date__c should remain null when transitioning between non-Completed statuses');
+    }
 }
