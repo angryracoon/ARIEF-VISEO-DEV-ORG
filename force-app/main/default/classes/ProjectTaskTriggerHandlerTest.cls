@@ -6,7 +6,7 @@
  *               the automatic management of Completed_Date__c on Status__c transitions,
  *               and the validation rule that prevents Reminder_Date__c from being set
  *               after Due_Date__c.
- *               All 9 test methods combined achieve >= 95% code coverage.
+ *               All 11 test methods combined achieve >= 95% code coverage.
  * @author       Arief Gunawan
  * @date         2026-06-17
  * @see          ProjectTaskTriggerHandler
