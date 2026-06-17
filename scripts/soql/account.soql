@@ -1,0 +1,2 @@
+// Use .soql files to store SOQL queries.
+SELECT Id, Name FROM Account
