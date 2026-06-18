@@ -1,1 +1,1 @@
-feature/2026-06-18-project-task-enhancement
+feature/2026-06-18-the-7-deadly-agents-app
