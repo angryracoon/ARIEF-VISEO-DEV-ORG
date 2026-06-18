@@ -8,6 +8,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Task_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -57,13 +61,13 @@
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
@@ -73,6 +77,5 @@
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
-    <showSendToExternalStorageButton>false</showSendToExternalStorageButton>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
 </Layout>

@@ -10,5 +10,4 @@
     <tabs>standard-Account</tabs>
     <tabs>Project_Task__c</tabs>
     <uiType>Lightning</uiType>
-    <workspaceType>Standard</workspaceType>
 </CustomApplication>
