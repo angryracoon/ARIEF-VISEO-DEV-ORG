@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reminder_Not_After_Due_Date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(Reminder_Date__c)), NOT(ISBLANK(Due_Date__c)), Reminder_Date__c &gt; Due_Date__c)</errorConditionFormula>
+    <errorDisplayField>Reminder_Date__c</errorDisplayField>
+    <errorMessage>Reminder Date cannot be after Due Date.</errorMessage>
+</ValidationRule>
