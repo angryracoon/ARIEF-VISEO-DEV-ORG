@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Project_Task__c_RW_PS</fullName>
+    <fullName>ProjectTask_RW_PS</fullName>
     <label>Project Task Read Write</label>
     <hasActivationRequired>false</hasActivationRequired>
     <fieldPermissions>

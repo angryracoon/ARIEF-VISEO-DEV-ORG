@@ -23,9 +23,9 @@
 | Custom field | Project_Task__c.Reminder_Date__c | Date — optional user-managed reminder date |
 | Custom field | Project_Task__c.Completed_Date__c | Date — optional, system-maintained by trigger on Status__c transition |
 | Validation rule | Reminder_Not_After_Due_Date | Blocks save when Reminder_Date__c is after Due_Date__c |
-| Permission set | Project_Task__c_RO_PS | Object Read; field Read on all six Project_Task__c fields |
-| Permission set | Project_Task__c_RW_PS | Object Create/Read/Edit; field Read+Edit on all six fields |
-| Permission set | Project_Task__c_DELETE_PS | Object Read+Delete; field Read+Edit on all six fields |
+| Permission set | ProjectTask_RO_PS | Object Read; field Read on all six Project_Task__c fields |
+| Permission set | ProjectTask_RW_PS | Object Create/Read/Edit; field Read+Edit on all six fields |
+| Permission set | ProjectTask_DELETE_PS | Object Read+Delete; field Read+Edit on all six fields |
 
 ### Development (code)
 
@@ -133,9 +133,9 @@ The trigger file itself was not modified.
 
 ## Permission sets
 
-All three permission sets are net-new (the permissionsets/ directory was empty before this enhancement). Assign them cumulatively: a user who needs delete access should receive both Project_Task__c_RW_PS and Project_Task__c_DELETE_PS, as the DELETE permission set does not independently grant Create/Edit without its own field and object permissions.
+All three permission sets are net-new (the permissionsets/ directory was empty before this enhancement). Assign them cumulatively: a user who needs delete access should receive both ProjectTask_RW_PS and ProjectTask_DELETE_PS, as the DELETE permission set does not independently grant Create/Edit without its own field and object permissions.
 
-### Project_Task__c_RO_PS — Project Task Read Only
+### ProjectTask_RO_PS — Project Task Read Only
 
 | Property | Value |
 |----------|-------|
@@ -145,7 +145,7 @@ All three permission sets are net-new (the permissionsets/ directory was empty b
 
 Grants read access to the object and read-only field visibility for: Task_Name__c, Status__c, Priority__c, Due_Date__c, Reminder_Date__c, Completed_Date__c. Users with only this permission set cannot create, edit, or delete records.
 
-### Project_Task__c_RW_PS — Project Task Read Write
+### ProjectTask_RW_PS — Project Task Read Write
 
 | Property | Value |
 |----------|-------|
@@ -155,7 +155,7 @@ Grants read access to the object and read-only field visibility for: Task_Name__
 
 Grants full read/write access to the object and all six fields. Delete is not included. Users with this permission set can create tasks and modify any field value, including Reminder_Date__c and Completed_Date__c, subject to the validation rule and trigger logic.
 
-### Project_Task__c_DELETE_PS — Project Task Delete
+### ProjectTask_DELETE_PS — Project Task Delete
 
 | Property | Value |
 |----------|-------|
@@ -163,7 +163,7 @@ Grants full read/write access to the object and all six fields. Delete is not in
 | Object permission | Create, Read, Edit, Delete |
 | Field coverage | All six fields (read + edit) |
 
-Grants full CRUD including delete. Intended for administrators or senior users who need to permanently remove task records. Field permissions mirror Project_Task__c_RW_PS.
+Grants full CRUD including delete. Intended for administrators or senior users who need to permanently remove task records. Field permissions mirror ProjectTask_RW_PS.
 
 ---
 
@@ -233,9 +233,9 @@ force-app/main/default/objects/Project_Task__c/validationRules/Reminder_Not_Afte
 Deploy all three permission sets last, after the fields are in place, so field permission entries resolve correctly.
 
 ```
-force-app/main/default/permissionsets/Project_Task__c_RO_PS.permissionset-meta.xml
-force-app/main/default/permissionsets/Project_Task__c_RW_PS.permissionset-meta.xml
-force-app/main/default/permissionsets/Project_Task__c_DELETE_PS.permissionset-meta.xml
+force-app/main/default/permissionsets/ProjectTask_RO_PS.permissionset-meta.xml
+force-app/main/default/permissionsets/ProjectTask_RW_PS.permissionset-meta.xml
+force-app/main/default/permissionsets/ProjectTask_DELETE_PS.permissionset-meta.xml
 ```
 
 The Salesforce DevOps agent (`salesforce-devops`) handles full deployment from main after the PR is merged and should deploy all components as one package, respecting the dependency order above.
@@ -251,9 +251,9 @@ The Salesforce DevOps agent (`salesforce-devops`) handles full deployment from m
 | Validation rule | `force-app/main/default/objects/Project_Task__c/validationRules/Reminder_Not_After_Due_Date.validationRule-meta.xml` |
 | Trigger handler class | `force-app/main/default/classes/ProjectTaskTriggerHandler.cls` |
 | Test class | `force-app/main/default/classes/ProjectTaskTriggerHandlerTest.cls` |
-| Permission set — RO | `force-app/main/default/permissionsets/Project_Task__c_RO_PS.permissionset-meta.xml` |
-| Permission set — RW | `force-app/main/default/permissionsets/Project_Task__c_RW_PS.permissionset-meta.xml` |
-| Permission set — DELETE | `force-app/main/default/permissionsets/Project_Task__c_DELETE_PS.permissionset-meta.xml` |
+| Permission set — RO | `force-app/main/default/permissionsets/ProjectTask_RO_PS.permissionset-meta.xml` |
+| Permission set — RW | `force-app/main/default/permissionsets/ProjectTask_RW_PS.permissionset-meta.xml` |
+| Permission set — DELETE | `force-app/main/default/permissionsets/ProjectTask_DELETE_PS.permissionset-meta.xml` |
 
 ---
 
