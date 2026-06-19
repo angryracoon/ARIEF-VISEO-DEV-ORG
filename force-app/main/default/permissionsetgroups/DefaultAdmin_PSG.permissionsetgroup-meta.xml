@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Default Admin Permission Set Group combining RW and DELETE access for Project Tasks</description>
+    <description>Default Admin Permission Set Group combining RW and DELETE access for Project Tasks and Project Management</description>
     <label>DefaultAdmin PSG</label>
     <permissionSets>ProjectTask_RW_PS</permissionSets>
     <permissionSets>ProjectTask_DELETE_PS</permissionSets>
+    <permissionSets>ProjectManagement_RW_PS</permissionSets>
+    <permissionSets>ProjectManagement_DELETE_PS</permissionSets>
 </PermissionSetGroup>
