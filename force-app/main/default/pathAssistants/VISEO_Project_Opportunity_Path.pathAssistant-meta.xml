@@ -5,47 +5,47 @@
     <fieldName>StageName</fieldName>
     <masterLabel>VISEO Project Opportunity Path</masterLabel>
     <pathAssistantSteps>
-        <fieldNames>Project_Scope__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Capture the initial project scope and requirements.&lt;/p&gt;</info>
         <picklistValueName>Discovery</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Project_Description__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Gather detailed requirements from stakeholders.&lt;/p&gt;</info>
         <picklistValueName>Requirement Gathering</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Start_Date__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Document all requirements into formal specification.&lt;/p&gt;</info>
         <picklistValueName>Requirement Documentation</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Delivery_Methodology__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Finalize user stories and acceptance criteria.&lt;/p&gt;</info>
         <picklistValueName>User Story Finalization</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Planned_Mandays__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Development is underway. Monitor sprint progress.&lt;/p&gt;</info>
         <picklistValueName>In Development</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Project_Health__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Quality assurance testing in progress.&lt;/p&gt;</info>
         <picklistValueName>QA</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Planned_Go_Live_Date__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;User acceptance testing with client stakeholders.&lt;/p&gt;</info>
         <picklistValueName>UAT</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Actual_Go_Live_Date__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Solution is live. Confirm go-live date.&lt;/p&gt;</info>
         <picklistValueName>Live</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Actual_Mandays__c</fieldNames>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Application Management Services phase. Record actual mandays.&lt;/p&gt;</info>
         <picklistValueName>AMS</picklistValueName>
     </pathAssistantSteps>

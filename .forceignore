@@ -19,10 +19,9 @@ node_modules/
 # BusinessProcess is not in the SDR registry -- embedded in Opportunity.object-meta.xml instead.
 force-app/main/default/businessProcesses/
 
-# FlexiPages excluded: componentInstances element invalid in API 65.0 SOAP validator for this org.
+# FlexiPages excluded: componentInstances element invalid in API 65.0 for this org.
 # Activate record pages manually in Lightning App Builder after deployment.
 **/flexipages/
 
-# PathAssistant excluded: picklistMasterId is an org-specific ID not available at dev time.
-# The Path component will appear once StageName values exist in the org.
-**/pathAssistants/
+# PathAssistant excluded: activate paths manually in Lightning App Builder after deployment.
+# **/pathAssistants/
