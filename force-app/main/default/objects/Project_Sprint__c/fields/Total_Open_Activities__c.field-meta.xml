@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Open_Activities__c</fullName>
+    <label>Total Open Activities</label>
+    <summarizedField></summarizedField>
+    <summaryFilterItems>
+        <field>Project_Activity__c.Activity_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Project_Activity__c.Activity_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Project_Activity__c.Project_Sprint__c</summaryForeignKey>
+    <summaryOperation>COUNT</summaryOperation>
+    <type>Summary</type>
+</CustomField>
