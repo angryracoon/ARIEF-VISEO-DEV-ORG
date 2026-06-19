@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Lightning Record Page for Project Sprint. Displays sprint status, dates, mandays, rollup metrics, and related activities.</description>
+    <events/>
+    <flexiPageRegions>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>flexipage:recordDetail</componentName>
+        </componentInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Project Sprint Record Page</masterLabel>
+    <pageTemplate>UILayout:SingleColumnOneRegionLeftSidebar</pageTemplate>
+    <sobjectType>Project_Sprint__c</sobjectType>
+    <type>RecordPage</type>
+    <componentInstances>
+        <componentInstanceProperties>
+            <name>showLabel</name>
+            <value>true</value>
+        </componentInstanceProperties>
+        <componentName>flexipage:recordDetail</componentName>
+        <identifier>record_detail_sprintMain</identifier>
+        <regionName>main</regionName>
+    </componentInstances>
+    <componentInstances>
+        <componentInstanceProperties>
+            <name>title</name>
+            <value>Sprint Highlights</value>
+        </componentInstanceProperties>
+        <componentInstanceProperties>
+            <name>fieldApiName1</name>
+            <value>Sprint_Status__c</value>
+        </componentInstanceProperties>
+        <componentInstanceProperties>
+            <name>fieldApiName2</name>
+            <value>Sprint_Start_Date__c</value>
+        </componentInstanceProperties>
+        <componentInstanceProperties>
+            <name>fieldApiName3</name>
+            <value>Sprint_End_Date__c</value>
+        </componentInstanceProperties>
+        <componentName>flexipage:fieldSection</componentName>
+        <identifier>highlights_sprint</identifier>
+        <regionName>header</regionName>
+    </componentInstances>
+    <standardActions/>
+</FlexiPage>
