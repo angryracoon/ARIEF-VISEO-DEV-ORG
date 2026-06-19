@@ -10,6 +10,5 @@ NOT(Current_Stage_Sign_Off_Complete__c) &amp;&amp;
   ISPICKVAL(PRIORVALUE(StageName), &quot;Requirement Documentation&quot;) ||
   ISPICKVAL(PRIORVALUE(StageName), &quot;User Story Finalization&quot;)
 )</errorConditionFormula>
-    <errorDisplayField></errorDisplayField>
     <errorMessage>Please complete and approve the sign-off document for the current stage before advancing.</errorMessage>
 </ValidationRule>
