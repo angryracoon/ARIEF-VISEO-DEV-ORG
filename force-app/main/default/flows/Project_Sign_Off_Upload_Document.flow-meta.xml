@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <description>Screen Flow to upload a sign-off document, confirm approval, and update Project Sign Off and Opportunity records.</description>
+    <description>Screen Flow to confirm sign-off approval and update Project Sign Off and Opportunity records. Upload the sign-off document to the record Files section before running this flow.</description>
     <interviewLabel>Upload Sign-Off Document {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Upload Sign-Off Document</label>
     <processMetadataValues>
@@ -69,7 +69,7 @@
     </recordLookups>
     <screens>
         <name>Screen_Upload_Document</name>
-        <label>Upload Sign-Off Document</label>
+        <label>Confirm Document Uploaded</label>
         <locationX>264</locationX>
         <locationY>408</locationY>
         <allowBack>false</allowBack>
@@ -80,21 +80,19 @@
         </connector>
         <fields>
             <name>Upload_Header</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Upload Sign-Off Document&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Stage: {!varSignOff.Stage__c} | Status: {!varSignOff.Sign_Off_Status__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off: Stage {!varSignOff.Stage__c}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Current status: {!varSignOff.Sign_Off_Status__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>File_Upload</name>
-            <fieldType>FileUpload</fieldType>
-            <isRequired>true</isRequired>
-            <label>Upload Sign-Off Document</label>
-            <relatedRecordId>{!recordId}</relatedRecordId>
+            <name>File_Upload_Instructions</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Document Upload Instructions&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Please upload your sign-off document to the &lt;strong&gt;Files&lt;/strong&gt; section of this Project Sign Off record &lt;em&gt;before&lt;/em&gt; proceeding. Use the Files related list on the record page to attach your document.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
             <name>Confirm_Upload_Checkbox</name>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
-            <label>I have uploaded the required sign-off document</label>
+            <label>I confirm I have uploaded the required sign-off document to the Files section</label>
             <dataType>Boolean</dataType>
         </fields>
         <showFooter>true</showFooter>
@@ -113,7 +111,7 @@
         </connector>
         <fields>
             <name>Confirm_Approval_Header</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;By confirming, you approve the sign-off for this stage.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;By confirming, you approve the sign-off for this stage. This will allow the Opportunity to advance to the next stage.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
