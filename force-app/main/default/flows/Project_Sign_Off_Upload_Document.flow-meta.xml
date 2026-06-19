@@ -90,10 +90,10 @@
         </fields>
         <fields>
             <name>Confirm_Upload_Checkbox</name>
+            <dataType>Boolean</dataType>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <label>I confirm I have uploaded the required sign-off document to the Files section</label>
-            <dataType>Boolean</dataType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -116,10 +116,10 @@
         </fields>
         <fields>
             <name>Confirm_Approval_Checkbox</name>
+            <dataType>Boolean</dataType>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <label>I confirm I approve this sign-off</label>
-            <dataType>Boolean</dataType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
