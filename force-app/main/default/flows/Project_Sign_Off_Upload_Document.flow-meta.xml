@@ -89,7 +89,11 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <label>I confirm I have uploaded the required sign-off document to the Files section</label>
+            <name>Confirm_Upload_Checkbox_Label</name>
+            <fieldText>&lt;p&gt;I confirm I have uploaded the required sign-off document to the Files section.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Confirm_Upload_Checkbox</name>
             <dataType>Boolean</dataType>
             <fieldType>InputField</fieldType>
@@ -115,7 +119,11 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <label>I confirm I approve this sign-off</label>
+            <name>Confirm_Approval_Checkbox_Label</name>
+            <fieldText>&lt;p&gt;I confirm I approve this sign-off.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Confirm_Approval_Checkbox</name>
             <dataType>Boolean</dataType>
             <fieldType>InputField</fieldType>
