@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>StageName</fullName>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Discovery</fullName>
+                    <default>false</default>
+                    <label>Discovery</label>
+                </value>
+                <value>
+                    <fullName>Requirement Gathering</fullName>
+                    <default>false</default>
+                    <label>Requirement Gathering</label>
+                </value>
+                <value>
+                    <fullName>Requirement Documentation</fullName>
+                    <default>false</default>
+                    <label>Requirement Documentation</label>
+                </value>
+                <value>
+                    <fullName>User Story Finalization</fullName>
+                    <default>false</default>
+                    <label>User Story Finalization</label>
+                </value>
+                <value>
+                    <fullName>In Development</fullName>
+                    <default>false</default>
+                    <label>In Development</label>
+                </value>
+                <value>
+                    <fullName>QA</fullName>
+                    <default>false</default>
+                    <label>QA</label>
+                </value>
+                <value>
+                    <fullName>UAT</fullName>
+                    <default>false</default>
+                    <label>UAT</label>
+                </value>
+                <value>
+                    <fullName>Live</fullName>
+                    <default>false</default>
+                    <label>Live</label>
+                </value>
+                <value>
+                    <fullName>AMS</fullName>
+                    <default>false</default>
+                    <label>AMS</label>
+                </value>
+                <value>
+                    <fullName>Prospecting</fullName>
+                    <default>true</default>
+                    <label>Prospecting</label>
+                </value>
+                <value>
+                    <fullName>Qualification</fullName>
+                    <default>false</default>
+                    <label>Qualification</label>
+                </value>
+                <value>
+                    <fullName>Needs Analysis</fullName>
+                    <default>false</default>
+                    <label>Needs Analysis</label>
+                </value>
+                <value>
+                    <fullName>Value Proposition</fullName>
+                    <default>false</default>
+                    <label>Value Proposition</label>
+                </value>
+                <value>
+                    <fullName>Id. Decision Makers</fullName>
+                    <default>false</default>
+                    <label>Id. Decision Makers</label>
+                </value>
+                <value>
+                    <fullName>Perception Analysis</fullName>
+                    <default>false</default>
+                    <label>Perception Analysis</label>
+                </value>
+                <value>
+                    <fullName>Proposal/Price Quote</fullName>
+                    <default>false</default>
+                    <label>Proposal/Price Quote</label>
+                </value>
+                <value>
+                    <fullName>Negotiation/Review</fullName>
+                    <default>false</default>
+                    <label>Negotiation/Review</label>
+                </value>
+                <value>
+                    <fullName>Closed Won</fullName>
+                    <default>false</default>
+                    <label>Closed Won</label>
+                </value>
+                <value>
+                    <fullName>Closed Lost</fullName>
+                    <default>false</default>
+                    <label>Closed Lost</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <recordTypes>
+        <fullName>VISEO_Project_Opportunity</fullName>
+        <active>true</active>
+        <label>VISEO Project Opportunity</label>
+        <picklistValues>
+            <picklist>StageName</picklist>
+            <values>
+                <fullName>Discovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requirement Gathering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requirement Documentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User Story Finalization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AMS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+</CustomObject>
