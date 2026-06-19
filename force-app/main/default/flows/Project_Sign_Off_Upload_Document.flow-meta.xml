@@ -6,11 +6,15 @@
     <label>Upload Sign-Off Document</label>
     <processMetadataValues>
         <name>BuilderType</name>
-        <value><stringValue>LightningFlowBuilder</stringValue></value>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
     </processMetadataValues>
     <processMetadataValues>
         <name>CanvasMode</name>
-        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
@@ -19,12 +23,16 @@
         <locationX>264</locationX>
         <locationY>168</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector><targetReference>Get_Parent_Opportunity</targetReference></connector>
+        <connector>
+            <targetReference>Get_Parent_Opportunity</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
-            <value><elementReference>recordId</elementReference></value>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Project_Sign_Off__c</object>
@@ -41,12 +49,16 @@
         <locationX>264</locationX>
         <locationY>288</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector><targetReference>Screen_Upload_Document</targetReference></connector>
+        <connector>
+            <targetReference>Screen_Upload_Document</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
-            <value><elementReference>varSignOff.Opportunity__c</elementReference></value>
+            <value>
+                <elementReference>varSignOff.Opportunity__c</elementReference>
+            </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Opportunity</object>
@@ -63,7 +75,9 @@
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
-        <connector><targetReference>Screen_Confirm_Approval</targetReference></connector>
+        <connector>
+            <targetReference>Screen_Confirm_Approval</targetReference>
+        </connector>
         <fields>
             <name>Upload_Header</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Upload Sign-Off Document&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Stage: {!varSignOff.Stage__c} | Status: {!varSignOff.Sign_Off_Status__c}&lt;/p&gt;</fieldText>
@@ -71,7 +85,6 @@
         </fields>
         <fields>
             <name>File_Upload</name>
-            <extensionsAllowed>pdf,doc,docx,png,jpg</extensionsAllowed>
             <fieldType>FileUpload</fieldType>
             <isRequired>true</isRequired>
             <label>Upload Sign-Off Document</label>
@@ -95,7 +108,9 @@
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
-        <connector><targetReference>Update_Sign_Off_Approved</targetReference></connector>
+        <connector>
+            <targetReference>Update_Sign_Off_Approved</targetReference>
+        </connector>
         <fields>
             <name>Confirm_Approval_Header</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;By confirming, you approve the sign-off for this stage.&lt;/p&gt;</fieldText>
@@ -116,24 +131,34 @@
         <label>Update Sign Off Approved</label>
         <locationX>264</locationX>
         <locationY>648</locationY>
-        <connector><targetReference>Update_Opportunity_Sign_Off_Complete</targetReference></connector>
+        <connector>
+            <targetReference>Update_Opportunity_Sign_Off_Complete</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
-            <value><elementReference>recordId</elementReference></value>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
         </filters>
         <inputAssignments>
             <field>Sign_Off_Status__c</field>
-            <value><stringValue>Approved</stringValue></value>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>Approved_By__c</field>
-            <value><elementReference>$User.Id</elementReference></value>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>Approval_Date__c</field>
-            <value><elementReference>$Flow.CurrentDate</elementReference></value>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
         </inputAssignments>
         <object>Project_Sign_Off__c</object>
     </recordUpdates>
@@ -146,18 +171,24 @@
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
-            <value><elementReference>varOpportunity.Id</elementReference></value>
+            <value>
+                <elementReference>varOpportunity.Id</elementReference>
+            </value>
         </filters>
         <inputAssignments>
             <field>Current_Stage_Sign_Off_Complete__c</field>
-            <value><booleanValue>true</booleanValue></value>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
         </inputAssignments>
         <object>Opportunity</object>
     </recordUpdates>
     <start>
         <locationX>140</locationX>
         <locationY>48</locationY>
-        <connector><targetReference>Get_Sign_Off_Record</targetReference></connector>
+        <connector>
+            <targetReference>Get_Sign_Off_Record</targetReference>
+        </connector>
     </start>
     <status>Active</status>
     <variables>

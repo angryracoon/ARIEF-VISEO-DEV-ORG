@@ -1,55 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Lightning Record Page for Project Activity. Displays activity type, status, assigned to, reviewer, dates, mandays, activity updates, and chatter feed.</description>
-    <events/>
-    <flexiPageRegions>
-        <name>header</name>
-        <type>Region</type>
-    </flexiPageRegions>
+    <description>Lightning Record Page for Project Activity — activity type, status, assignee, reviewer, dates, mandays, updates, and Chatter feed.</description>
+    <masterLabel>Project Activity Record Page</masterLabel>
+    <pageTemplate>UILayout:RecordDetail</pageTemplate>
+    <sobjectType>Project_Activity__c</sobjectType>
+    <type>RecordPage</type>
     <flexiPageRegions>
         <componentInstances>
             <componentName>flexipage:recordDetail</componentName>
+            <identifier>record_detail_activity</identifier>
         </componentInstances>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Project Activity Record Page</masterLabel>
-    <pageTemplate>UILayout:SingleColumnOneRegionLeftSidebar</pageTemplate>
-    <sobjectType>Project_Activity__c</sobjectType>
-    <type>RecordPage</type>
-    <componentInstances>
-        <componentInstanceProperties>
-            <name>showLabel</name>
-            <value>true</value>
-        </componentInstanceProperties>
-        <componentName>flexipage:recordDetail</componentName>
-        <identifier>record_detail_activityMain</identifier>
-        <regionName>main</regionName>
-    </componentInstances>
-    <componentInstances>
-        <componentInstanceProperties>
-            <name>title</name>
-            <value>Activity Highlights</value>
-        </componentInstanceProperties>
-        <componentInstanceProperties>
-            <name>fieldApiName1</name>
-            <value>Activity_Type__c</value>
-        </componentInstanceProperties>
-        <componentInstanceProperties>
-            <name>fieldApiName2</name>
-            <value>Activity_Status__c</value>
-        </componentInstanceProperties>
-        <componentInstanceProperties>
-            <name>fieldApiName3</name>
-            <value>Assigned_To__c</value>
-        </componentInstanceProperties>
-        <componentInstanceProperties>
-            <name>fieldApiName4</name>
-            <value>Reviewer__c</value>
-        </componentInstanceProperties>
-        <componentName>flexipage:fieldSection</componentName>
-        <identifier>highlights_activity</identifier>
-        <regionName>header</regionName>
-    </componentInstances>
-    <standardActions/>
 </FlexiPage>
