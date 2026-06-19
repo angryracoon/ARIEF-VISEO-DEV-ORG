@@ -23,5 +23,5 @@ force-app/main/default/businessProcesses/
 # Activate record pages manually in Lightning App Builder after deployment.
 **/flexipages/
 
-# PathAssistant excluded: activate paths manually in Lightning App Builder after deployment.
-# **/pathAssistants/
+# PathAssistant excluded: picklistMasterId is an org-internal ID; deploy manually after main deployment.
+**/pathAssistants/

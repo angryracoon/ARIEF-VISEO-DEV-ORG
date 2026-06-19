@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <description>Screen Flow to confirm sign-off approval and update Project Sign Off and Opportunity records. Upload the sign-off document to the record Files section before running this flow.</description>
+    <description>Screen Flow to upload a sign-off document, confirm approval, and update Project Sign Off and Opportunity records.</description>
     <interviewLabel>Upload Sign-Off Document {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Upload Sign-Off Document</label>
     <processMetadataValues>
@@ -69,7 +69,7 @@
     </recordLookups>
     <screens>
         <name>Screen_Upload_Document</name>
-        <label>Confirm Document Uploaded</label>
+        <label>Upload Sign-Off Document</label>
         <locationX>264</locationX>
         <locationY>408</locationY>
         <allowBack>false</allowBack>
@@ -80,7 +80,7 @@
         </connector>
         <fields>
             <name>Upload_Header</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off: Stage {!varSignOff.Stage__c}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Current status: {!varSignOff.Sign_Off_Status__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Upload Sign-Off Document&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Stage: {!varSignOff.Stage__c} | Status: {!varSignOff.Sign_Off_Status__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -89,11 +89,11 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>Confirm_Upload_Checkbox</name>
             <dataType>Boolean</dataType>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <label>I confirm I have uploaded the required sign-off document to the Files section</label>
+            <name>Confirm_Upload_Checkbox</name>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -111,15 +111,15 @@
         </connector>
         <fields>
             <name>Confirm_Approval_Header</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;By confirming, you approve the sign-off for this stage. This will allow the Opportunity to advance to the next stage.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Approve Sign-Off&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;By confirming, you approve the sign-off for this stage.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>Confirm_Approval_Checkbox</name>
             <dataType>Boolean</dataType>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <label>I confirm I approve this sign-off</label>
+            <name>Confirm_Approval_Checkbox</name>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
