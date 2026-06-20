@@ -1,36 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Lightning Record Page for Project Opportunity — project health, methodology, dates, rollup metrics, and related sprints and sign offs.</description>
-    <masterLabel>Opportunity Project Record Page</masterLabel>
-    <sobjectType>Opportunity</sobjectType>
-    <template>
-        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
-    </template>
-    <type>RecordPage</type>
+    <description>Lightning Record Page for Project Opportunity — path, highlights, field details, rollup metrics, and related sprints, sign offs, and team members.</description>
+    <flexiPageRegions><name>header</name><type>Region</type></flexiPageRegions>
     <flexiPageRegions>
-        <name>header</name>
-        <type>Region</type>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>hideUpdateButton</name><value>false</value></componentInstanceProperties>
+                <componentInstanceProperties><name>variant</name><value>linear</value></componentInstanceProperties>
+                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
+                <identifier>pathAssistant_subheader</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>subheader</name><type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>hideUpdateButton</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>variant</name>
-                    <value>linear</value>
-                </componentInstanceProperties>
-                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
-                <identifier>runtime_sales_pathassistant_pathAssistant</identifier>
+                <componentInstanceProperties><name>maxColumns</name><value>2</value></componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>column_main_left</identifier>
+                <regionFormat>LEFT_12</regionFormat><regionName>left</regionName>
             </componentInstance>
         </itemInstances>
-        <name>subheader</name>
-        <type>Region</type>
+        <itemInstances>
+            <componentInstance>
+                <componentName>flexipage:column</componentName>
+                <identifier>column_main_right</identifier>
+                <regionFormat>RIGHT_12</regionFormat><regionName>right</regionName>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name><type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>main</name>
-        <type>Region</type>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>showTitle</name><value>true</value></componentInstanceProperties>
+                <componentInstanceProperties><name>useHeading</name><value>false</value></componentInstanceProperties>
+                <componentName>force:highlightsPanel</componentName>
+                <identifier>highlightsPanel_main</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>title</name><value>Project Details</value></componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>fieldSection_details</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>left</name><type>Region</type>
     </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>title</name><value>Activity Metrics</value></componentInstanceProperties>
+                <componentInstanceProperties><name>fields</name><value>Total_Sprints__c,Total_Planned_Mandays__c,Total_Actual_Mandays__c</value></componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>fieldSection_metrics</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>relatedListLabel</name><value>Project Sprints</value></componentInstanceProperties>
+                <componentInstanceProperties><name>relatedList</name><value>Project_Sprints__r</value></componentInstanceProperties>
+                <componentName>force:relatedList</componentName>
+                <identifier>relatedList_sprints</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>relatedListLabel</name><value>Project Sign Offs</value></componentInstanceProperties>
+                <componentInstanceProperties><name>relatedList</name><value>Project_Sign_Offs__r</value></componentInstanceProperties>
+                <componentName>force:relatedList</componentName>
+                <identifier>relatedList_signoffs</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>relatedListLabel</name><value>Opportunity Team Members</value></componentInstanceProperties>
+                <componentInstanceProperties><name>relatedList</name><value>OpportunityTeamMembers</value></componentInstanceProperties>
+                <componentName>force:relatedList</componentName>
+                <identifier>relatedList_teamMembers</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>right</name><type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Opportunity Project Record Page</masterLabel>
+    <sobjectType>Opportunity</sobjectType>
+    <template><name>flexipage:recordHomeWithSubheaderTemplateDesktop</name></template>
+    <type>RecordPage</type>
 </FlexiPage>

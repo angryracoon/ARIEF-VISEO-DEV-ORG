@@ -1,36 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Lightning Record Page for Project Sprint — sprint status, dates, mandays, rollup metrics, and related activities.</description>
-    <masterLabel>Project Sprint Record Page</masterLabel>
-    <sobjectType>Project_Sprint__c</sobjectType>
-    <template>
-        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
-    </template>
-    <type>RecordPage</type>
+    <description>Lightning Record Page for Project Sprint — highlights, sprint details, activity metrics, and related Project Activities.</description>
+    <flexiPageRegions><name>header</name><type>Region</type></flexiPageRegions>
     <flexiPageRegions>
-        <name>header</name>
-        <type>Region</type>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>showTitle</name><value>true</value></componentInstanceProperties>
+                <componentInstanceProperties><name>useHeading</name><value>false</value></componentInstanceProperties>
+                <componentName>force:highlightsPanel</componentName>
+                <identifier>highlightsPanel_subheader</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>subheader</name><type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>hideUpdateButton</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>variant</name>
-                    <value>linear</value>
-                </componentInstanceProperties>
-                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
-                <identifier>runtime_sales_pathassistant_pathAssistant</identifier>
+                <componentInstanceProperties><name>maxColumns</name><value>2</value></componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>column_main_left</identifier>
+                <regionFormat>LEFT_12</regionFormat><regionName>left</regionName>
             </componentInstance>
         </itemInstances>
-        <name>subheader</name>
-        <type>Region</type>
+        <itemInstances>
+            <componentInstance>
+                <componentName>flexipage:column</componentName>
+                <identifier>column_main_right</identifier>
+                <regionFormat>RIGHT_12</regionFormat><regionName>right</regionName>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name><type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>main</name>
-        <type>Region</type>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>title</name><value>Sprint Details</value></componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>fieldSection_details</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>relatedListLabel</name><value>Project Activities</value></componentInstanceProperties>
+                <componentInstanceProperties><name>relatedList</name><value>Project_Activities__r</value></componentInstanceProperties>
+                <componentName>force:relatedList</componentName>
+                <identifier>relatedList_activities</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>left</name><type>Region</type>
     </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties><name>title</name><value>Activity Metrics</value></componentInstanceProperties>
+                <componentInstanceProperties><name>fields</name><value>Total_Activities__c,Total_Completed_Activities__c,Total_Open_Activities__c</value></componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>fieldSection_metrics</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>right</name><type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Project Sprint Record Page</masterLabel>
+    <sobjectType>Project_Sprint__c</sobjectType>
+    <template><name>flexipage:recordHomeWithSubheaderTemplateDesktop</name></template>
+    <type>RecordPage</type>
 </FlexiPage>

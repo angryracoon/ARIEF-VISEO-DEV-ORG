@@ -12,7 +12,13 @@
         <operation>notEqual</operation>
         <value>Cancelled</value>
     </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Project_Activity__c.Activity_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </summaryFilterItems>
     <summaryForeignKey>Project_Activity__c.Project_Sprint__c</summaryForeignKey>
-    <summaryOperation>COUNT</summaryOperation>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
     <type>Summary</type>
 </CustomField>
