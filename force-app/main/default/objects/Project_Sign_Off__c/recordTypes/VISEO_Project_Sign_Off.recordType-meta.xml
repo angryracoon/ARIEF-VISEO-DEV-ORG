@@ -3,4 +3,38 @@
     <fullName>VISEO_Project_Sign_Off</fullName>
     <active>true</active>
     <label>VISEO Project Sign Off</label>
+    <picklistValues>
+        <picklist>Sign_Off_Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stage__c</picklist>
+        <values>
+            <fullName>Discovery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Requirement Documentation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Requirement Gathering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User Story Finalization</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>

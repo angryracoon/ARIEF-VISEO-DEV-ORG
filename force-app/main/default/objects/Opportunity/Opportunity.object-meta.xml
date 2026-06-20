@@ -140,59 +140,11 @@
         <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
-    <businessProcesses>
-        <fullName>VISEO_Sales_Process</fullName>
-        <description>Sales process for VISEO Project Opportunities</description>
-        <isActive>true</isActive>
-        <values>
-            <fullName>Discovery</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Requirement Gathering</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Requirement Documentation</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>User Story Finalization</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Development</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>QA</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>UAT</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Live</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>AMS</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Closed Won</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Closed Lost</fullName>
-            <default>false</default>
-        </values>
-    </businessProcesses>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <searchLayouts>
         <customTabListAdditionalFields>OPPORTUNITY.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>

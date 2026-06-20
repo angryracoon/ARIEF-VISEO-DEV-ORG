@@ -3,6 +3,8 @@
     <fullName>Activity_Updates__c</fullName>
     <label>Activity Updates</label>
     <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
     <type>LongTextArea</type>
     <visibleLines>4</visibleLines>
 </CustomField>

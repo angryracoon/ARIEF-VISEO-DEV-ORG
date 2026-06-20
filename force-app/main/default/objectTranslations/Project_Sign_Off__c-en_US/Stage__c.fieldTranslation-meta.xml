@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Stage --></label>
+    <name>Stage__c</name>
+    <picklistValues>
+        <masterLabel>Discovery</masterLabel>
+        <translation><!-- Discovery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Requirement Documentation</masterLabel>
+        <translation><!-- Requirement Documentation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Requirement Gathering</masterLabel>
+        <translation><!-- Requirement Gathering --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Story Finalization</masterLabel>
+        <translation><!-- User Story Finalization --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

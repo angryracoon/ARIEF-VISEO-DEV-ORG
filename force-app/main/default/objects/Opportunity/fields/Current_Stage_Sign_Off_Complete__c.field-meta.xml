@@ -3,5 +3,7 @@
     <fullName>Current_Stage_Sign_Off_Complete__c</fullName>
     <defaultValue>false</defaultValue>
     <label>Current Stage Sign Off Complete</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>

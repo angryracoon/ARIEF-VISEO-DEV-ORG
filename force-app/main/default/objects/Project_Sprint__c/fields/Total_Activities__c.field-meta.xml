@@ -3,6 +3,7 @@
     <fullName>Total_Activities__c</fullName>
     <label>Total Activities</label>
     <summaryForeignKey>Project_Activity__c.Project_Sprint__c</summaryForeignKey>
-    <summaryOperation>COUNT</summaryOperation>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
     <type>Summary</type>
 </CustomField>

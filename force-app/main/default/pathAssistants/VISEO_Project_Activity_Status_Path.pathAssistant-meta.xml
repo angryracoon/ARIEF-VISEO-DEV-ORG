@@ -5,9 +5,19 @@
     <fieldName>Activity_Status__c</fieldName>
     <masterLabel>VISEO Project Activity Status Path</masterLabel>
     <pathAssistantSteps>
-        <fieldNames>Estimated_Mandays__c</fieldNames>
-        <info>&lt;p&gt;Assign the activity, set estimated mandays, and planned completion date.&lt;/p&gt;</info>
-        <picklistValueName>Not Started</picklistValueName>
+        <fieldNames>Activity_Updates__c</fieldNames>
+        <info>&lt;p&gt;Activity is blocked. Document the blocker in Activity Updates.&lt;/p&gt;</info>
+        <picklistValueName>Blocked</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Activity_Updates__c</fieldNames>
+        <info>&lt;p&gt;Activity was cancelled. Document the reason in Activity Updates.&lt;/p&gt;</info>
+        <picklistValueName>Cancelled</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Actual_Mandays__c</fieldNames>
+        <info>&lt;p&gt;Activity completed. Record actual mandays and actual completion date.&lt;/p&gt;</info>
+        <picklistValueName>Completed</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>Assigned_To__c</fieldNames>
@@ -20,19 +30,9 @@
         <picklistValueName>In Review</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <fieldNames>Actual_Mandays__c</fieldNames>
-        <info>&lt;p&gt;Activity completed. Record actual mandays and actual completion date.&lt;/p&gt;</info>
-        <picklistValueName>Completed</picklistValueName>
+        <fieldNames>Estimated_Mandays__c</fieldNames>
+        <info>&lt;p&gt;Assign the activity, set estimated mandays, and planned completion date.&lt;/p&gt;</info>
+        <picklistValueName>Not Started</picklistValueName>
     </pathAssistantSteps>
-    <pathAssistantSteps>
-        <fieldNames>Activity_Updates__c</fieldNames>
-        <info>&lt;p&gt;Activity is blocked. Document the blocker in Activity Updates.&lt;/p&gt;</info>
-        <picklistValueName>Blocked</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
-        <fieldNames>Activity_Updates__c</fieldNames>
-        <info>&lt;p&gt;Activity was cancelled. Document the reason in Activity Updates.&lt;/p&gt;</info>
-        <picklistValueName>Cancelled</picklistValueName>
-    </pathAssistantSteps>
-    <recordTypeName>Default</recordTypeName>
+    <recordTypeName>VISEO_Project_Activity</recordTypeName>
 </PathAssistant>
