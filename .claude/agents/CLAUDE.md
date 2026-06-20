@@ -39,7 +39,7 @@ Design (creates branch)
 
 Default routing:
 
-1. Declarative-only: `design → admin → code-review → documentation → devops`
+1. Declarative-only: `design → admin → documentation → devops`
 2. Code-related: `design → admin → developer → unit-testing → code-review → documentation → devops`
 
 ---

@@ -1,6 +1,8 @@
 {
   "permissions": {
     "allow": [
+      "Write",
+      "Edit",
       "Bash(claude mcp *)",
       "Bash(sf *)",
       "Bash(git *)",
@@ -9,7 +11,7 @@
       "Bash(echo *)",
       "Bash(pwd)",
       "Bash(find *)",
-      "Bash(mkdir -p agent-output)",
+      "Bash(mkdir *)",
       "mcp__salesforce__soqlQuery",
       "mcp__arief-github__create_branch",
       "mcp__arief-github__list_pull_requests",
