@@ -3,7 +3,6 @@
     <sorted>false</sorted>
     <standardValue>
         <fullName>Discovery</fullName>
-        <active>true</active>
         <default>false</default>
         <label>Discovery</label>
         <closed>false</closed>
@@ -13,7 +12,6 @@
     </standardValue>
     <standardValue>
         <fullName>Requirement Gathering</fullName>
-        <active>true</active>
         <default>false</default>
         <label>Requirement Gathering</label>
         <closed>false</closed>
@@ -23,7 +21,6 @@
     </standardValue>
     <standardValue>
         <fullName>Requirement Documentation</fullName>
-        <active>true</active>
         <default>false</default>
         <label>Requirement Documentation</label>
         <closed>false</closed>
@@ -33,7 +30,6 @@
     </standardValue>
     <standardValue>
         <fullName>User Story Finalization</fullName>
-        <active>true</active>
         <default>false</default>
         <label>User Story Finalization</label>
         <closed>false</closed>
@@ -43,7 +39,6 @@
     </standardValue>
     <standardValue>
         <fullName>In Development</fullName>
-        <active>true</active>
         <default>false</default>
         <label>In Development</label>
         <closed>false</closed>
@@ -53,7 +48,6 @@
     </standardValue>
     <standardValue>
         <fullName>QA</fullName>
-        <active>true</active>
         <default>false</default>
         <label>QA</label>
         <closed>false</closed>
@@ -63,7 +57,6 @@
     </standardValue>
     <standardValue>
         <fullName>UAT</fullName>
-        <active>true</active>
         <default>false</default>
         <label>UAT</label>
         <closed>false</closed>
@@ -73,7 +66,6 @@
     </standardValue>
     <standardValue>
         <fullName>Live</fullName>
-        <active>true</active>
         <default>false</default>
         <label>Live</label>
         <closed>true</closed>
@@ -83,112 +75,11 @@
     </standardValue>
     <standardValue>
         <fullName>AMS</fullName>
-        <active>true</active>
         <default>false</default>
         <label>AMS</label>
         <closed>true</closed>
         <forecastCategory>Closed</forecastCategory>
         <probability>100</probability>
         <won>true</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Closed Won</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Closed Won</label>
-        <closed>true</closed>
-        <forecastCategory>Closed</forecastCategory>
-        <probability>100</probability>
-        <won>true</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Closed Lost</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Closed Lost</label>
-        <closed>true</closed>
-        <forecastCategory>Omitted</forecastCategory>
-        <probability>0</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Prospecting</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Prospecting</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>10</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Qualification</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Qualification</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>10</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Needs Analysis</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Needs Analysis</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>20</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Value Proposition</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Value Proposition</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>50</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Id. Decision Makers</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Id. Decision Makers</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>60</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Perception Analysis</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Perception Analysis</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>70</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Proposal/Price Quote</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Proposal/Price Quote</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>75</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Negotiation/Review</fullName>
-        <active>false</active>
-        <default>false</default>
-        <label>Negotiation/Review</label>
-        <closed>false</closed>
-        <forecastCategory>Pipeline</forecastCategory>
-        <probability>90</probability>
-        <won>false</won>
     </standardValue>
 </StandardValueSet>
