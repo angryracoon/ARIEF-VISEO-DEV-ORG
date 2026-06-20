@@ -35,7 +35,10 @@
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
-    <!-- Sign Off Information: Opportunity + Stage || Sign_Off_Status -->
+    <flexiPageRegions>
+        <name>subheader</name>
+        <type>Region</type>
+    </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -98,7 +101,6 @@
         <name>Facet-d3e4f5a6-b7c8-9012-d3e4-f5a6b7c80003</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Approval: Approved By || Approval Date -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -151,22 +153,7 @@
         <name>Facet-d3e4f5a6-b7c8-9012-d3e4-f5a6b7c80006</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Detail tab body: flow first, then field sections -->
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>flowApiName</name>
-                    <value>Project_Sign_Off_Upload_Document</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>flowInputVariables</name>
-                    <value>[{&quot;name&quot;:&quot;recordId&quot;,&quot;type&quot;:&quot;String&quot;,&quot;value&quot;:&quot;{!recordId}&quot;}]</value>
-                </componentInstanceProperties>
-                <componentName>runtime_platform_flow:flowHostingContainer</componentName>
-                <identifier>runtime_platform_flow_flowHostingContainer</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -206,7 +193,6 @@
         <name>Facet-d3e4f5a6-b7c8-9012-d3e4-f5a6b7c80007</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Related lists tab -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -229,7 +215,6 @@
         <name>Facet-d3e4f5a6-b7c8-9012-d3e4-f5a6b7c80008</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Tabs -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -291,8 +276,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>forceChatter:recordFeedContainer</componentName>
-                <identifier>forceChatter_recordFeedContainer</identifier>
+                <componentInstanceProperties>
+                    <name>flowArguments</name>
+                    <value>[{&quot;label&quot;:&quot;recordId&quot;,&quot;dataType&quot;:&quot;String&quot;,&quot;supportsRecordId&quot;:true,&quot;value&quot;:&quot;{!Record.Id}&quot;}]</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowName</name>
+                    <value>Project_Sign_Off_Upload_Document</value>
+                </componentInstanceProperties>
+                <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>

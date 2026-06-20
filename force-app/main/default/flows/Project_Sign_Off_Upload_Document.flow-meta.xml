@@ -200,44 +200,21 @@
             </styleProperties>
         </fields>
         <fields>
-            <name>File_Upload_Instructions</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Document Upload Instructions&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Please upload your sign-off document to the &lt;strong&gt;Files&lt;/strong&gt; section of this Project Sign Off record &lt;em&gt;before&lt;/em&gt; proceeding. Use the Files related list on the record page to attach your document.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
-        </fields>
-        <fields>
-            <name>Confirm_Upload_Checkbox_Label</name>
-            <fieldText>&lt;p&gt;I confirm I have uploaded the required sign-off document to the Files section.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
-        </fields>
-        <fields>
-            <name>Confirm_Upload_Checkbox</name>
-            <dataType>Boolean</dataType>
-            <fieldType>InputField</fieldType>
-            <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
+            <name>File_Upload_Component</name>
+            <extensionName>forceContent:fileUpload</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Upload Sign-Off Document</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>recordId</elementReference>
+                </value>
+            </inputParameters>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
