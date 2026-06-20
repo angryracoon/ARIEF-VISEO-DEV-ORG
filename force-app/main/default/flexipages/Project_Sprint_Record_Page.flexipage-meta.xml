@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Lightning Record Page for Project Sprint — sprint status, dates, mandays, rollup metrics, and related activities.</description>
-    <masterLabel>Project Sprint Record Page</masterLabel>
-    <sobjectType>Project_Sprint__c</sobjectType>
-    <template>
-        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
-    </template>
-    <type>RecordPage</type>
+    <description>Lightning Record Page for Project Sprint. Displays sprint highlights and record details.</description>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:highlightsPanel</componentName>
+                <identifier>highlightsPanel_header</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>hideUpdateButton</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>variant</name>
-                    <value>linear</value>
-                </componentInstanceProperties>
-                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
-                <identifier>runtime_sales_pathassistant_pathAssistant</identifier>
+                <componentName>force:detailPanel</componentName>
+                <identifier>detailPanel_main</identifier>
             </componentInstance>
         </itemInstances>
-        <name>subheader</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
+    <masterLabel>Project Sprint Record Page</masterLabel>
+    <sobjectType>Project_Sprint__c</sobjectType>
+    <template>
+        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
+    </template>
+    <type>RecordPage</type>
 </FlexiPage>

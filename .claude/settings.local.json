@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Write",
+      "Edit",
+      "Bash(claude mcp *)",
+      "Bash(sf *)",
+      "Bash(git *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(pwd)",
+      "Bash(find *)",
+      "Bash(mkdir *)",
+      "mcp__salesforce__soqlQuery",
+      "mcp__arief-github__create_branch",
+      "mcp__arief-github__list_pull_requests",
+      "mcp__arief-github__get_pull_request",
+      "mcp__arief-github__get_file_contents",
+      "mcp__arief-github__push_files",
+      "mcp__arief-github__create_pull_request",
+      "mcp__arief-dev-org__get_username",
+      "mcp__arief-dev-org__deploy_metadata",
+      "mcp__arief-dev-org__run_apex_test",
+      "mcp__arief-dev-org__list_metadata",
+      "mcp__arief-dev-org__read_metadata"
+    ]
+  }
+}

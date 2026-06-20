@@ -3,9 +3,10 @@
     <fullName>Activity_Status__c</fullName>
     <label>Activity Status</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value><fullName>Not Started</fullName><default>true</default><label>Not Started</label></value>
@@ -14,6 +15,7 @@
             <value><fullName>Completed</fullName><default>false</default><label>Completed</label></value>
             <value><fullName>Blocked</fullName><default>false</default><label>Blocked</label></value>
             <value><fullName>Cancelled</fullName><default>false</default><label>Cancelled</label></value>
+            <value><fullName>Closed</fullName><default>false</default><label>Closed</label></value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

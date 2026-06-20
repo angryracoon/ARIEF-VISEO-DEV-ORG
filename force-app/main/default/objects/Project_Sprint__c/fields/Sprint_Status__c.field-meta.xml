@@ -3,15 +3,16 @@
     <fullName>Sprint_Status__c</fullName>
     <label>Sprint Status</label>
     <required>false</required>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value><fullName>Planning</fullName><default>true</default><label>Planning</label></value>
             <value><fullName>In Progress</fullName><default>false</default><label>In Progress</label></value>
             <value><fullName>Complete</fullName><default>false</default><label>Complete</label></value>
             <value><fullName>Cancelled</fullName><default>false</default><label>Cancelled</label></value>
+            <value><fullName>Closed</fullName><default>false</default><label>Closed</label></value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
