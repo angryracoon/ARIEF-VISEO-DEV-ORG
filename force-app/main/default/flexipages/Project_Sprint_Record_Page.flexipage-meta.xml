@@ -5,4 +5,8 @@
     <pageTemplate>UILayout:RecordDetail</pageTemplate>
     <sobjectType>Project_Sprint__c</sobjectType>
     <type>RecordPage</type>
+    <flexiPageRegions>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
 </FlexiPage>
