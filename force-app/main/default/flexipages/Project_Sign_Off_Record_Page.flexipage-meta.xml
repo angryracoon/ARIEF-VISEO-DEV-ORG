@@ -1,68 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Lightning Record Page for Project Sign Off — highlights, approval details, Upload Sign-Off Document flow action, and Files component.</description>
-    <flexiPageRegions><name>header</name><type>Region</type></flexiPageRegions>
+    <description>Lightning Record Page for Project Sign Off. Displays sign off highlights and record details.</description>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties><name>showTitle</name><value>true</value></componentInstanceProperties>
-                <componentInstanceProperties><name>useHeading</name><value>false</value></componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
-                <identifier>highlightsPanel_subheader</identifier>
+                <identifier>highlightsPanel_header</identifier>
             </componentInstance>
         </itemInstances>
-        <name>subheader</name><type>Region</type>
+        <name>header</name>
+        <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties><name>maxColumns</name><value>2</value></componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>column_main_left</identifier>
-                <regionFormat>LEFT_12</regionFormat><regionName>left</regionName>
+                <componentName>force:detailPanel</componentName>
+                <identifier>detailPanel_main</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>flexipage:column</componentName>
-                <identifier>column_main_right</identifier>
-                <regionFormat>RIGHT_12</regionFormat><regionName>right</regionName>
-            </componentInstance>
-        </itemInstances>
-        <name>main</name><type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties><name>title</name><value>Sign Off Details</value></componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>fieldSection_details</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties><name>flowApiName</name><value>Project_Sign_Off_Upload_Document</value></componentInstanceProperties>
-                <componentInstanceProperties><name>label</name><value>Upload Sign-Off Document</value></componentInstanceProperties>
-                <componentInstanceProperties><name>inputVariables</name><value>[{"name":"recordId","type":"String","value":"{!recordId}"}]</value></componentInstanceProperties>
-                <componentName>flowruntime:flowRuntimeForFlexiPage</componentName>
-                <identifier>flowAction_uploadDocument</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>left</name><type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties><name>relatedListLabel</name><value>Files</value></componentInstanceProperties>
-                <componentInstanceProperties><name>relatedList</name><value>AttachedContentDocuments</value></componentInstanceProperties>
-                <componentName>force:relatedList</componentName>
-                <identifier>relatedList_files</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>right</name><type>Region</type>
+        <name>main</name>
+        <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Project Sign Off Record Page</masterLabel>
     <sobjectType>Project_Sign_Off__c</sobjectType>
-    <template><name>flexipage:recordHomeWithSubheaderTemplateDesktop</name></template>
+    <template>
+        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
+    </template>
     <type>RecordPage</type>
 </FlexiPage>
