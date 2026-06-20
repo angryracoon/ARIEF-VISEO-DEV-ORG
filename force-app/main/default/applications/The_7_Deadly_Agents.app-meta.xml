@@ -7,6 +7,42 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>The 7 Deadly Agents</label>
     <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Project_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.VISEO_Project_Opportunity</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Project_Sprint_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Project_Sprint__c</pageOrSobjectType>
+        <recordType>Project_Sprint__c.VISEO_Project_Sprint</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Project_Activity_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Project_Activity__c</pageOrSobjectType>
+        <recordType>Project_Activity__c.VISEO_Project_Activity</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Project_Sign_Off_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Project_Sign_Off__c</pageOrSobjectType>
+        <recordType>Project_Sign_Off__c.VISEO_Project_Sign_Off</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-Account</tabs>
     <tabs>Project_Task__c</tabs>
     <tabs>standard-Opportunity</tabs>
