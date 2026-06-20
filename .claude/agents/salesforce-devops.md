@@ -35,25 +35,42 @@ git diff origin/main...HEAD --stat
 
 Show the user a compact summary of what will go into the PR.
 
-### Step P2 — Pre-PR validation (mandatory)
+### Step P2 — Pre-PR validation (delta only — mandatory)
 
-Check whether `.cls` or `.trigger` files are in the diff:
+Derive the delta — the files committed to this feature branch vs main:
 
 ```bash
-# No .cls or .trigger changes:
+git diff origin/main...HEAD --name-only | grep "^force-app/"
+```
+
+Generate a manifest from ONLY those files:
+
+```bash
+sf project generate manifest \
+  --source-dir <space-separated list of delta paths from above> \
+  --output-dir /tmp/delta-manifest \
+  --name delta-package
+```
+
+Check whether `.cls` or `.trigger` are in the delta, then validate:
+
+```bash
+# No .cls or .trigger in delta:
 sf project deploy validate \
   --target-org "ARIEF VISEO DEV ORG" \
-  --source-dir force-app/main/default \
+  --manifest /tmp/delta-manifest/delta-package.xml \
   --test-level NoTestRun \
   --wait 60
 
-# Any .cls or .trigger changes:
+# Any .cls or .trigger in delta:
 sf project deploy validate \
   --target-org "ARIEF VISEO DEV ORG" \
-  --source-dir force-app/main/default \
+  --manifest /tmp/delta-manifest/delta-package.xml \
   --test-level RunLocalTests \
   --wait 60
 ```
+
+**Never pass `--source-dir force-app/main/default` — that validates ALL components, not the delta.**
 
 Output must include:
 ```
@@ -320,13 +337,17 @@ If deploying to production, require user to type `CONFIRM PRODUCTION` before pro
 
 ## Rules
 
+- **Delta only — always.** Never use `--source-dir force-app/main/default` for validation or deployment. It sends ALL components. Always scope to the delta.
+- **Delta definition:**
+  - Phase 1 (pre-merge): `git diff origin/main...HEAD --name-only | grep "^force-app/"` — files committed to the feature branch
+  - Phase 2 (post-merge): `arief-github/get_pull_request_files(...)` — files in the merged PR
+  - Both must produce the same set. If they differ, stop and report discrepancy.
 - Never deploy to target org without scratch org validation passing
 - Always delete scratch org after validation — pass or fail
 - Never deploy without user confirmation
 - Salesforce MCP only for target org deployment
-- Always pull latest main before starting
-- **Always deploy delta only** — use PR diff files, never `--source-dir force-app`
-- Prefer sf CLI/local git for local operations; use GitHub MCP (`arief-github`) only for remote GitHub actions (PR checks/push/branch) when needed
+- Always pull latest main before starting Phase 2
+- Prefer sf CLI/local git for local operations; use GitHub MCP (`arief-github`) only for remote GitHub actions when needed
 
 ---
 
