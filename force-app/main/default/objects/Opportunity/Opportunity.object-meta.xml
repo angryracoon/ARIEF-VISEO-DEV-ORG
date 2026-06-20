@@ -180,6 +180,14 @@
             <fullName>AMS</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Closed Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed Lost</fullName>
+            <default>false</default>
+        </values>
     </businessProcesses>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
