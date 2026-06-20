@@ -203,7 +203,6 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <label>recordId</label>
     </variables>
     <variables>
         <name>varSignOff</name>
@@ -211,7 +210,6 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-        <label>varSignOff</label>
         <objectType>Project_Sign_Off__c</objectType>
     </variables>
     <variables>
@@ -220,7 +218,6 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-        <label>varOpportunity</label>
         <objectType>Opportunity</objectType>
     </variables>
 </Flow>
