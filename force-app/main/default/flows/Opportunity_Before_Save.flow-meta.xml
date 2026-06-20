@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Set_Sign_Off_Complete_False</name>
+        <label>Set Sign Off Complete to False</label>
+        <locationX>264</locationX>
+        <locationY>168</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Current_Stage_Sign_Off_Complete__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Before-Save flow on Opportunity. When StageName is changed to a sign-off stage, resets Current_Stage_Sign_Off_Complete__c to false.</description>
+    <interviewLabel>Opportunity Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>140</locationX>
+        <locationY>48</locationY>
+        <connector><targetReference>Set_Sign_Off_Complete_False</targetReference></connector>
+        <filterFormula>AND(
+  ISCHANGED({!$Record.StageName}),
+  OR(
+    ISPICKVAL({!$Record.StageName}, &apos;Discovery&apos;),
+    ISPICKVAL({!$Record.StageName}, &apos;Requirement Gathering&apos;),
+    ISPICKVAL({!$Record.StageName}, &apos;Requirement Documentation&apos;),
+    ISPICKVAL({!$Record.StageName}, &apos;User Story Finalization&apos;)
+  )
+)</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

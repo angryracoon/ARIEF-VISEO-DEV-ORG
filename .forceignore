@@ -12,3 +12,15 @@ package.xml
 **/__tests__/**
 
 node_modules/
+
+# OpportunityTeamMember custom fields require Team Selling feature to be enabled in the org.
+**/objects/OpportunityTeamMember/
+
+# BusinessProcess is not in the SDR registry -- embedded in Opportunity.object-meta.xml instead.
+force-app/main/default/businessProcesses/
+
+# FlexiPages: minimal structure (no componentInstances), configure layout in App Builder after deployment.
+# **/flexipages/
+
+# PathAssistant: re-enabled now that Path feature is active in org.
+# **/pathAssistants/
