@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Default Admin Permission Set Group combining RW and DELETE access for Project Tasks</description>
+    <description>Default Admin Permission Set Group combining RW and DELETE access for all Project Management objects</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>DefaultAdmin PSG</label>
+    <permissionSets>Opportunity_DELETE_PS</permissionSets>
+    <permissionSets>Opportunity_RW_PS</permissionSets>
+    <permissionSets>ProjectActivity_DELETE_PS</permissionSets>
+    <permissionSets>ProjectActivity_RW_PS</permissionSets>
+    <permissionSets>ProjectSignOff_DELETE_PS</permissionSets>
+    <permissionSets>ProjectSignOff_RW_PS</permissionSets>
+    <permissionSets>ProjectSprint_DELETE_PS</permissionSets>
+    <permissionSets>ProjectSprint_RW_PS</permissionSets>
     <permissionSets>ProjectTask_DELETE_PS</permissionSets>
     <permissionSets>ProjectTask_RW_PS</permissionSets>
     <status>Updated</status>
