@@ -2,7 +2,6 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Lightning Record Page for Project Sprint — sprint status, dates, mandays, rollup metrics, and related activities.</description>
     <masterLabel>Project Sprint Record Page</masterLabel>
-    <pageTemplate>UILayout:RecordDetail</pageTemplate>
     <sobjectType>Project_Sprint__c</sobjectType>
     <type>RecordPage</type>
     <flexiPageRegions>

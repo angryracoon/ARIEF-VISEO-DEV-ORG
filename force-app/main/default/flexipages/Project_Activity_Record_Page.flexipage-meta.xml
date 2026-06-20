@@ -2,7 +2,6 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Lightning Record Page for Project Activity — activity type, status, assignee, reviewer, dates, mandays, updates, and Chatter feed.</description>
     <masterLabel>Project Activity Record Page</masterLabel>
-    <pageTemplate>UILayout:RecordDetail</pageTemplate>
     <sobjectType>Project_Activity__c</sobjectType>
     <type>RecordPage</type>
     <flexiPageRegions>

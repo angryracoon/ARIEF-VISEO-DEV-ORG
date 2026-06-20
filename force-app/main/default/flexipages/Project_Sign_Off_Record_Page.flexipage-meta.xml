@@ -2,7 +2,6 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Lightning Record Page for Project Sign Off — stage, status, approval info, and files component.</description>
     <masterLabel>Project Sign Off Record Page</masterLabel>
-    <pageTemplate>UILayout:RecordDetail</pageTemplate>
     <sobjectType>Project_Sign_Off__c</sobjectType>
     <type>RecordPage</type>
     <flexiPageRegions>
