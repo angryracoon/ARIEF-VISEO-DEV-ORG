@@ -3,6 +3,7 @@
     <description>Lightning Record Page for Project Sprint — sprint status, dates, mandays, rollup metrics, and related activities.</description>
     <masterLabel>Project Sprint Record Page</masterLabel>
     <sobjectType>Project_Sprint__c</sobjectType>
+    <template>UILayout:RecordDetail</template>
     <type>RecordPage</type>
     <flexiPageRegions>
         <name>main</name>
