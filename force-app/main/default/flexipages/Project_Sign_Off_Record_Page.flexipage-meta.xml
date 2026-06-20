@@ -3,8 +3,18 @@
     <description>Lightning Record Page for Project Sign Off — stage, status, approval info, and files component.</description>
     <masterLabel>Project Sign Off Record Page</masterLabel>
     <sobjectType>Project_Sign_Off__c</sobjectType>
-    <template>UILayout:RecordDetail</template>
+    <template>
+        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
+    </template>
     <type>RecordPage</type>
+    <flexiPageRegions>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>subheader</name>
+        <type>Region</type>
+    </flexiPageRegions>
     <flexiPageRegions>
         <name>main</name>
         <type>Region</type>

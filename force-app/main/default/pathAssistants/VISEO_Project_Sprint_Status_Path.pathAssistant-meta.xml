@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Project_Sprint__c</entityName>
+    <fieldName>Sprint_Status__c</fieldName>
+    <masterLabel>VISEO Project Sprint Status Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Sprint_Goal__c</fieldNames>
+        <info>&lt;p&gt;Define the sprint goal, planned mandays, and start date.&lt;/p&gt;</info>
+        <picklistValueName>Planning</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Total_Open_Activities__c</fieldNames>
+        <info>&lt;p&gt;Monitor open activities. Update progress regularly.&lt;/p&gt;</info>
+        <picklistValueName>In Progress</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Actual_Mandays__c</fieldNames>
+        <info>&lt;p&gt;All activities completed. Record actual mandays and close the sprint.&lt;/p&gt;</info>
+        <picklistValueName>Complete</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Sprint_Description__c</fieldNames>
+        <info>&lt;p&gt;Sprint was cancelled. Document the reason in the description.&lt;/p&gt;</info>
+        <picklistValueName>Cancelled</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Default</recordTypeName>
+</PathAssistant>
