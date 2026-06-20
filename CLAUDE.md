@@ -18,7 +18,7 @@ Design (creates branch) → Admin (commits metadata) → Developer (commits code
 ```
 
 | Step | Agent | Model | Role |
-|------|-------|-------|------|
+|------|-------|-------|
 | 1 | `salesforce-design` | opus | Analyzes request, creates feature branch |
 | 2 | `salesforce-admin` | sonnet | Creates metadata, commits to branch |
 | 3 | `salesforce-developer` | opus | Writes Apex/LWC, commits to branch |
@@ -38,9 +38,16 @@ Design (creates branch) → Admin (commits metadata) → Developer (commits code
 
 ## Git sync rules (MANDATORY)
 
+- **Remote is HTTPS**: `origin` is set to `https://github.com/angryracoon/ARIEF-VISEO-DEV-ORG.git` — SSH is blocked in this environment
 - **After every deployment**: pull main locally — `git checkout main && git pull origin main`
-- **Before creating any feature branch**: always branch from a freshly pulled main, never from stale local state
-- This ensures local metadata stays in sync with what was deployed, and feature branches never diverge from the real org state
+- **Before creating any feature branch**: the orchestrator MUST run `git checkout main && git pull origin main` first, then create the branch — never branch from a stale local state or from another feature branch
+- **Branch creation sequence** (mandatory, no exceptions):
+  ```bash
+  git checkout main
+  git pull origin main
+  git checkout -b feature/YYYY-MM-DD-<description>
+  ```
+- This ensures every feature branch contains ALL deployed components from the latest org state
 
 ---
 
