@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Delete access to all Project Management objects</description>
+    <hasActivationRequired>false</hasActivationRequired>
     <label>Project Management Delete</label>
+    <recordTypeVisibilities>
+        <recordType>Opportunity.VISEO_Project_Opportunity</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Project_Sprint__c.VISEO_Project_Sprint</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Project_Activity__c.VISEO_Project_Activity</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Project_Sign_Off__c.VISEO_Project_Sign_Off</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>true</allowDelete>
