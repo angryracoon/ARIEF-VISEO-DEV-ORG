@@ -4,6 +4,5 @@
     <active>true</active>
     <description>Prevents a Sprint from being set to Closed when there are still open Project Activities associated with it.</description>
     <errorConditionFormula>ISPICKVAL(Sprint_Status__c, "Closed") &amp;&amp; Total_Open_Activities__c &gt; 0</errorConditionFormula>
-    <errorDisplayField></errorDisplayField>
     <errorMessage>Cannot close this sprint — there are still open project activities. Please close all activities before closing the sprint.</errorMessage>
 </ValidationRule>
