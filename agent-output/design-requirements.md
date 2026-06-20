@@ -104,7 +104,7 @@
 | Approved By | `Approved_By__c` | Lookup (User) | — |
 | Approval Date | `Approval_Date__c` | Date | — |
 
-> File upload is handled via Salesforce Files (ContentDocument). The Screen Flow uses a standard File Upload component — no custom file field needed.
+> File upload (the actual document) is handled via Salesforce Files (ContentDocument) attached to the sign-off record. The Screen Flow uses a standard File Upload component — no custom file field needed.
 
 ---
 
@@ -186,7 +186,8 @@
 | Trigger | Before Save (Create and Edit) |
 | Entry Criteria | `StageName` IS CHANGED AND new value is one of: Discovery, Requirement Gathering, Requirement Documentation, User Story Finalization |
 
-**Logic:** Assignment element — set `Current_Stage_Sign_Off_Complete__c` = false on `{!$Record}`
+**Logic:**
+1. Assignment: Set `Current_Stage_Sign_Off_Complete__c` = false on `{!$Record}`
 
 ### 7.2 After-Save Flow: Opportunity After Save (Sign Off Auto-Create)
 
@@ -201,7 +202,10 @@
 **Logic:**
 1. Get Records: Query `Project_Sign_Off__c` where `Opportunity__c = {$Record.Id}` AND `Stage__c = {$Record.StageName}` — limit 1
 2. Decision: if no records found → proceed to Create
-3. Create Record: `Project_Sign_Off__c` — `Opportunity__c = {$Record.Id}`, `Stage__c = {$Record.StageName}`, `Sign_Off_Status__c = Pending`
+3. Create Record: `Project_Sign_Off__c` with:
+   - `Opportunity__c` = `{$Record.Id}`
+   - `Stage__c` = `{$Record.StageName}`
+   - `Sign_Off_Status__c` = `Pending`
 
 ### 7.3 Screen Flow: Upload Sign-Off Document
 
@@ -211,17 +215,28 @@
 | Label | Upload Sign-Off Document |
 | Type | Screen Flow |
 
-**Input Variable:** `recordId` (Text, Input) — the Project Sign Off record ID
+**Input Variable:** `recordId` (Text, Input, Available for input) — the Project Sign Off record ID
 
-**Steps:**
-1. Get Records: Get `Project_Sign_Off__c` by `{!recordId}` → `varSignOff`
-2. Get Records: Get parent Opportunity via `varSignOff.Opportunity__c` → `varOpportunity`
-3. Screen 1 — Upload Document: File Upload component (related record = `{!recordId}`), required confirm checkbox
-4. Screen 2 — Confirm Approval: required confirm checkbox
-5. Update Records: Sign Off — set `Sign_Off_Status__c = Approved`, `Approved_By__c = {!$User.Id}`, `Approval_Date__c = {!$Flow.CurrentDate}`
-6. Update Records: Opportunity — set `Current_Stage_Sign_Off_Complete__c = true`
+**Flow Steps:**
+1. Get Records: Get `Project_Sign_Off__c` by `{!recordId}` — store in variable `varSignOff`
+2. Get Records: Get parent Opportunity via `varSignOff.Opportunity__c` — store in `varOpportunity`
+3. **Screen 1 — Upload Document:**
+   - Header: "Upload Sign-Off Document"
+   - Display Text: shows sign-off stage and current status
+   - File Upload component: related record = `{!recordId}`
+   - Confirm checkbox: required — "I have uploaded the required sign-off document"
+4. **Screen 2 — Confirm Approval:**
+   - Header: "Approve Sign-Off"
+   - Display Text: "By confirming, you approve the sign-off for this stage."
+   - Confirm checkbox: required — "I confirm I approve this sign-off"
+5. Update Records: `Project_Sign_Off__c` where Id = `{!recordId}`:
+   - `Sign_Off_Status__c` = `Approved`
+   - `Approved_By__c` = `{!$User.Id}`
+   - `Approval_Date__c` = `{!$Flow.CurrentDate}`
+6. Update Records: Opportunity where Id = `{!varOpportunity.Id}`:
+   - `Current_Stage_Sign_Off_Complete__c` = true
 
-**Placement:** Add as Action button on Project Sign Off Lightning Record Page.
+**Placement:** Add as Quick Action / Action button on Project Sign Off Lightning Record Page.
 
 ---
 
@@ -232,6 +247,7 @@
 | Object | Opportunity |
 | API Name | `Sign_Off_Required_Before_Stage_Advance` |
 | Active | true |
+| Error Location | Top of Page |
 | Error Message | Please complete and approve the sign-off document for the current stage before advancing. |
 
 **Formula:**
@@ -252,50 +268,72 @@ NOT(Current_Stage_Sign_Off_Complete__c) &&
 
 ### 9.1 ProjectManagement_RW_PS
 
+| Property | Value |
+|----------|-------|
 | API Name | `ProjectManagement_RW_PS` |
-|----------|---------------------------|
 | Label | Project Management Read Write |
+| Description | Read, Create, Edit access to all Project Management objects |
 
-Object Permissions: Read + Create + Edit on Opportunity, Project_Sprint__c, Project_Activity__c, Project_Sign_Off__c, Project_Task__c.
-Field Permissions: Read + Edit on all custom fields listed in sections 2.3, 3, 4.1, 5.1, 6.1.
+**Object Permissions:**
+
+| Object | Read | Create | Edit | Delete |
+|--------|------|--------|------|--------|
+| Opportunity | ✓ | ✓ | ✓ | — |
+| `Project_Sprint__c` | ✓ | ✓ | ✓ | — |
+| `Project_Activity__c` | ✓ | ✓ | ✓ | — |
+| `Project_Sign_Off__c` | ✓ | ✓ | ✓ | — |
+| `Project_Task__c` | ✓ | ✓ | ✓ | — |
+
+**Field Permissions:** Read + Edit on all custom fields for Opportunity (section 2.3), OpportunityTeamMember (section 3), Project_Sign_Off__c (section 4.1), Project_Sprint__c (section 5.1), Project_Activity__c (section 6.1).
 
 ### 9.2 ProjectManagement_DELETE_PS
 
+| Property | Value |
+|----------|-------|
 | API Name | `ProjectManagement_DELETE_PS` |
-|----------|-------------------------------|
 | Label | Project Management Delete |
+| Description | Delete access to all Project Management objects |
 
-Object Permissions: Read + Delete on Opportunity, Project_Sprint__c, Project_Activity__c, Project_Sign_Off__c, Project_Task__c.
+**Object Permissions:**
 
-### 9.3 Permission Set Group: DefaultAdmin_PSG
+| Object | Read | Create | Edit | Delete |
+|--------|------|--------|------|--------|
+| Opportunity | ✓ | — | — | ✓ |
+| `Project_Sprint__c` | ✓ | — | — | ✓ |
+| `Project_Activity__c` | ✓ | — | — | ✓ |
+| `Project_Sign_Off__c` | ✓ | — | — | ✓ |
+| `Project_Task__c` | ✓ | — | — | ✓ |
 
-Add to existing `DefaultAdmin_PSG`: `ProjectManagement_RW_PS` + `ProjectManagement_DELETE_PS`.
-Keep existing members: `ProjectTask_RW_PS`, `ProjectTask_DELETE_PS`.
+### 9.3 Permission Set Group Update: DefaultAdmin_PSG
+
+Add both new permission sets to the existing `DefaultAdmin_PSG`:
+- `ProjectManagement_RW_PS`
+- `ProjectManagement_DELETE_PS`
+
+Keep existing members (`ProjectTask_RW_PS`, `ProjectTask_DELETE_PS`) — do not remove.
 
 ---
 
 ## 10. Lightning App: The 7 Deadly Agents
 
-Append to existing `The_7_Deadly_Agents` app tabs:
-- Standard Opportunity tab
+Add the following tabs to the existing app `The_7_Deadly_Agents` (append to existing tabs):
+- Standard Opportunity tab (label: Project Opportunity)
 - `Project_Sprint__c` tab
 - `Project_Activity__c` tab
 - `Project_Sign_Off__c` tab
-
-Create custom tabs for `Project_Sprint__c`, `Project_Activity__c`, `Project_Sign_Off__c` if they do not already exist.
 
 ---
 
 ## 11. Lightning Record Pages
 
 | Object | Page Name | Key Sections |
-|--------|-----------|-------------|
-| Opportunity | `Opportunity_Project_Record_Page` | Header: Project Health, Methodology, Dates; Rollups panel; Related: Sprints, Sign Offs, Opportunity Team |
-| `Project_Sprint__c` | `Project_Sprint_Record_Page` | Header: Status, Dates, Mandays; Rollups panel; Related: Activities |
-| `Project_Activity__c` | `Project_Activity_Record_Page` | Header: Type, Status, Assignee, Reviewer; Dates + Mandays; Activity Updates; Chatter |
-| `Project_Sign_Off__c` | `Project_Sign_Off_Record_Page` | Header: Stage, Status, Approval info; Files component; Action: Upload Sign-Off Document flow |
+|--------|-----------|--------------|
+| Opportunity | `Opportunity_Project_Record_Page` | Header highlights: Project Health, Methodology, Dates; Rollup metrics panel; Related: Sprints, Sign Offs, Opportunity Team |
+| `Project_Sprint__c` | `Project_Sprint_Record_Page` | Header: Status, Dates, Mandays; Rollup metrics panel; Related: Activities |
+| `Project_Activity__c` | `Project_Activity_Record_Page` | Header: Type, Status, Assigned To, Reviewer; Dates + Mandays panels; Activity Updates; Chatter feed |
+| `Project_Sign_Off__c` | `Project_Sign_Off_Record_Page` | Header: Stage, Status, Approval info; Files component; Action button: Upload Sign-Off Document flow |
 
-Assign all pages as org default for their respective object.
+Assign all pages as the org default for their respective object.
 
 ---
 
@@ -303,8 +341,8 @@ Assign all pages as org default for their respective object.
 
 | Object | OWD |
 |--------|-----|
-| Opportunity | Public Read Only (set in org Sharing Settings — not deployable via metadata) |
-| `Project_Sprint__c` | ControlledByParent (set via `sharingModel` in object metadata) |
+| Opportunity | Public Read Only (verify/set in org Sharing Settings — not deployable via metadata for standard objects) |
+| `Project_Sprint__c` | ControlledByParent (set via `<sharingModel>` in object metadata) |
 | `Project_Activity__c` | ControlledByParent |
 | `Project_Sign_Off__c` | ControlledByParent |
 
@@ -312,7 +350,9 @@ Assign all pages as org default for their respective object.
 
 ## 13. Execution Order for Admin Agent
 
-1. Opportunity Stage picklist values (add all 9 stages)
+Implement in this order to avoid dependency errors:
+
+1. Opportunity Stage picklist values — add missing: Discovery, Requirement Gathering, Requirement Documentation, User Story Finalization, In Development, QA, UAT, Live, AMS
 2. Opportunity custom fields (section 2.3 — no rollups yet)
 3. Opportunity Record Type: `VISEO_Project_Opportunity`
 4. Opportunity Path: `VISEO_Project_Opportunity_Path`
@@ -320,8 +360,8 @@ Assign all pages as org default for their respective object.
 6. `Project_Sign_Off__c` object + fields
 7. `Project_Sprint__c` object + fields (no rollups yet)
 8. `Project_Activity__c` object + fields
-9. Roll-Up Summary fields on `Project_Sprint__c`
-10. Roll-Up Summary fields on Opportunity
+9. Roll-Up Summary fields on `Project_Sprint__c` (after `Project_Activity__c` exists)
+10. Roll-Up Summary fields on Opportunity (after `Project_Sprint__c` exists)
 11. Flow: `Opportunity_Before_Save`
 12. Flow: `Opportunity_After_Save`
 13. Flow: `Project_Sign_Off_Upload_Document`
@@ -330,8 +370,8 @@ Assign all pages as org default for their respective object.
 16. Permission Set: `ProjectManagement_DELETE_PS`
 17. Permission Set Group: `DefaultAdmin_PSG` (add new PSs, keep existing)
 18. Lightning Record Pages (all 4)
-19. Custom Tabs for new objects (if missing)
-20. App update: `The_7_Deadly_Agents` (add 4 tabs)
+19. App update: `The_7_Deadly_Agents` (add 4 tabs)
+20. Tabs: create `Project_Sprint__c`, `Project_Activity__c`, `Project_Sign_Off__c` custom tabs if they do not exist
 
 ---
 
@@ -339,13 +379,13 @@ Assign all pages as org default for their respective object.
 
 | # | Decision | Rationale |
 |---|----------|-----------|
-| 1 | Only 2 permission sets (RW + DELETE), no RO | Requirement explicitly specifies only these two |
-| 2 | `Current_Stage_Sign_Off_Complete__c` checkbox on Opportunity | Enables validation rule without Apex; managed by flows |
-| 3 | Split Before-Save + After-Save flows | Before-Save resets checkbox safely; After-Save creates sign-off — avoids recursive DML |
-| 4 | Sign-off document via Salesforce Files | Standard File Upload component in Screen Flow; no custom field needed |
-| 5 | `Project Task` in permission sets = existing `Project_Task__c` | No new task object |
-| 6 | Auto Number name on Project Sign Off and Project Activity | Better UX |
-| 7 | Total_Open_Activities uses two NOT EQUAL TO criteria | Roll-Up Summary supports this on picklist fields |
+| 1 | Only 2 permission sets (RW + DELETE), no RO set | Requirement explicitly specifies only these two |
+| 2 | `Current_Stage_Sign_Off_Complete__c` checkbox on Opportunity | Enables validation rule to check sign-off completion without Apex; managed by Before-Save and Screen flows |
+| 3 | Split Before-Save + After-Save flows | Before-Save resets checkbox safely; After-Save creates sign-off record — avoids recursive DML |
+| 4 | Sign-off file upload via Salesforce Files | No custom file field; standard File Upload component in Screen Flow attaches ContentDocument to the sign-off record |
+| 5 | `Project Task` in permission sets = existing `Project_Task__c` | No new task object created |
+| 6 | Auto Number name on Project Sign Off and Project Activity | Better UX; avoids manual naming |
+| 7 | Total_Open_Activities uses two NOT EQUAL TO criteria | Roll-Up Summary supports this operator on picklist fields |
 
 ---
 

@@ -61,7 +61,7 @@ Opportunity (Standard Object — VISEO_Project_Opportunity Record Type)
 
 **Record Type added:** `VISEO_Project_Opportunity` (active)
 
-**Stage path:** `VISEO_Project_Opportunity_Path` — 9 ordered stages:
+**Stage path:** `VISEO_Project_Opportunity_Path` — 9 ordered stages (see Section 5 for all Path Assistants):
 
 | # | Stage Name |
 |---|-----------|
@@ -184,9 +184,25 @@ Opportunity (Standard Object — VISEO_Project_Opportunity Record Type)
 
 ---
 
-## 4. Flow Logic
+## 4. Path Assistants
 
-### 4.1 Opportunity Before Save — `Opportunity_Before_Save`
+Three Path Assistants (guided record paths) were deployed in this sprint to provide step-by-step visual guidance on the key status fields across the delivery hierarchy.
+
+| API Name | Object | Field | Record Type | Steps |
+|----------|--------|-------|-------------|-------|
+| `VISEO_Project_Opportunity_Path` | Opportunity | `StageName` | `VISEO_Project_Opportunity` | 9 (Discovery → AMS) |
+| `VISEO_Project_Sprint_Status_Path` | `Project_Sprint__c` | `Sprint_Status__c` | Default | 4 (Planning / In Progress / Complete / Cancelled) |
+| `VISEO_Project_Activity_Status_Path` | `Project_Activity__c` | `Activity_Status__c` | Default | 6 (Not Started / In Progress / In Review / Completed / Blocked / Cancelled) |
+
+Each path is displayed in the subheader region of its respective Lightning Record Page using the `runtime_sales_pathassistant:pathAssistant` component (linear variant). The Opportunity path includes per-step guidance text; the Sprint and Activity paths use the default path behavior.
+
+**File locations:** `force-app/main/default/pathAssistants/`
+
+---
+
+## 5. Flow Logic and Validation
+
+### 5.1 Opportunity Before Save — `Opportunity_Before_Save`
 
 **Type:** Record-Triggered, Before Save (Create and Edit)
 
@@ -196,7 +212,7 @@ Opportunity (Standard Object — VISEO_Project_Opportunity Record Type)
 
 **Why split from After-Save:** Writing to `$Record` is only possible in a Before-Save flow. The After-Save flow handles record creation (DML), which is not allowed in Before-Save.
 
-### 4.2 Opportunity After Save — `Opportunity_After_Save`
+### 5.2 Opportunity After Save — `Opportunity_After_Save`
 
 **Type:** Record-Triggered, After Save (Create and Edit)
 
@@ -210,7 +226,7 @@ Opportunity (Standard Object — VISEO_Project_Opportunity Record Type)
 
 **Result:** Every time an Opportunity enters one of the four tracked stages, exactly one `Project_Sign_Off__c` record in Pending status is guaranteed to exist for that stage.
 
-### 4.3 Screen Flow — `Project_Sign_Off_Upload_Document`
+### 5.3 Screen Flow — `Project_Sign_Off_Upload_Document`
 
 **Type:** Screen Flow (user-launched via Quick Action on Project Sign Off record page)
 
@@ -230,7 +246,7 @@ Opportunity (Standard Object — VISEO_Project_Opportunity Record Type)
 5. **Update `Project_Sign_Off__c`:** Sets `Sign_Off_Status__c = Approved`, `Approved_By__c = {!$User.Id}`, `Approval_Date__c = {!$Flow.CurrentDate}`.
 6. **Update Opportunity:** Sets `Current_Stage_Sign_Off_Complete__c = true` on the parent Opportunity — this unlocks stage advancement.
 
-### 4.4 Validation Rule — `Sign_Off_Required_Before_Stage_Advance`
+### 5.4 Validation Rule — `Sign_Off_Required_Before_Stage_Advance`
 
 **Object:** Opportunity
 
@@ -252,7 +268,7 @@ NOT(Current_Stage_Sign_Off_Complete__c) &&
 
 ---
 
-## 5. Sign-Off Workflow (Step by Step)
+## 6. Sign-Off Workflow (Step by Step)
 
 This is the end-to-end sequence a delivery team follows when advancing an Opportunity through a sign-off stage:
 
@@ -280,9 +296,9 @@ This is the end-to-end sequence a delivery team follows when advancing an Opport
 
 ---
 
-## 6. Security Model
+## 7. Security Model
 
-### 6.1 Organisation-Wide Defaults (OWD)
+### 7.1 Organisation-Wide Defaults (OWD)
 
 | Object | OWD | How set |
 |--------|-----|---------|
@@ -291,7 +307,7 @@ This is the end-to-end sequence a delivery team follows when advancing an Opport
 | `Project_Sprint__c` | ControlledByParent | Set via `<sharingModel>` in object metadata — deployed automatically |
 | `Project_Activity__c` | ControlledByParent | Set via `<sharingModel>` in object metadata — deployed automatically |
 
-### 6.2 Permission Sets
+### 7.2 Permission Sets
 
 | Permission Set | API Name | Description |
 |---------------|----------|-------------|
@@ -309,15 +325,15 @@ This is the end-to-end sequence a delivery team follows when advancing an Opport
 
 **`ProjectManagement_DELETE_PS`** grants only Read + Delete per object — no Create or Edit.
 
-### 6.3 Permission Set Group
+### 7.3 Permission Set Group
 
 | PSG | API Name | Members after this sprint |
-|-----|----------|---------------------------|
+|-----|----------|--------------------------|
 | Default Admin | `DefaultAdmin_PSG` | `ProjectTask_RW_PS` (existing), `ProjectTask_DELETE_PS` (existing), `ProjectManagement_RW_PS` (new), `ProjectManagement_DELETE_PS` (new) |
 
 ---
 
-## 7. Lightning App and Navigation
+## 8. Lightning App and Navigation
 
 **App updated:** `The_7_Deadly_Agents`
 
@@ -343,7 +359,7 @@ This is the end-to-end sequence a delivery team follows when advancing an Opport
 
 ---
 
-## 8. File Locations
+## 9. File Locations
 
 ```
 force-app/main/default/
@@ -414,7 +430,9 @@ force-app/main/default/
 │   ├── Opportunity_After_Save.flow-meta.xml
 │   └── Project_Sign_Off_Upload_Document.flow-meta.xml
 ├── pathAssistants/
-│   └── VISEO_Project_Opportunity_Path.pathAssistant-meta.xml
+│   ├── VISEO_Project_Opportunity_Path.pathAssistant-meta.xml
+│   ├── VISEO_Project_Sprint_Status_Path.pathAssistant-meta.xml
+│   └── VISEO_Project_Activity_Status_Path.pathAssistant-meta.xml
 ├── permissionsets/
 │   ├── ProjectManagement_RW_PS.permissionset-meta.xml
 │   └── ProjectManagement_DELETE_PS.permissionset-meta.xml
@@ -435,11 +453,11 @@ force-app/main/default/
 
 ---
 
-## 9. Post-Deployment Steps (Manual — Cannot Be Automated)
+## 10. Post-Deployment Steps (Manual — Cannot Be Automated)
 
 The following steps must be performed manually by an administrator after deployment:
 
-### 9.1 Opportunity OWD (REQUIRED)
+### 10.1 Opportunity OWD (REQUIRED)
 
 The Opportunity OWD cannot be set to **Public Read Only** via Salesforce metadata for standard objects. After deployment:
 
@@ -450,7 +468,7 @@ The Opportunity OWD cannot be set to **Public Read Only** via Salesforce metadat
 
 Without this step, Opportunity records may be overly restricted or overly open depending on the org's current setting.
 
-### 9.2 Lightning Record Page Activation (REQUIRED)
+### 10.2 Lightning Record Page Activation (REQUIRED)
 
 The four Lightning Record Pages are deployed as available pages but are **not automatically set as the org default** (the metadata does not include `<pageAssignments>` blocks). After deployment:
 
@@ -462,11 +480,11 @@ The four Lightning Record Pages are deployed as available pages but are **not au
 2. Click **Activation** and set each page as the **Org Default** for its object.
 3. Save.
 
-### 9.3 Upload Sign-Off Document Action Button
+### 10.3 Upload Sign-Off Document Action Button
 
 The Screen Flow `Project_Sign_Off_Upload_Document` is available in the org after deployment. Confirm it appears as a Quick Action / Action button on the `Project_Sign_Off_Record_Page` by opening a sign-off record and checking the action bar.
 
-### 9.4 Assign Permission Sets to Users
+### 10.4 Assign Permission Sets to Users
 
 Assign the appropriate permission sets to delivery team members:
 
@@ -477,7 +495,7 @@ Both sets are already members of `DefaultAdmin_PSG` and will apply automatically
 
 ---
 
-## 10. Known Limitations and Code Review Warnings
+## 11. Known Limitations and Code Review Warnings
 
 The code review issued **APPROVED WITH WARNINGS**. The two blocker items were fixed before the PR was raised. Four warnings remain documented here for future sprint awareness.
 
@@ -495,14 +513,14 @@ The code review issued **APPROVED WITH WARNINGS**. The two blocker items were fi
 | WARN-1 | Low | Validation Rule | Empty `<errorDisplayField></errorDisplayField>` tag — cosmetic, deploys fine. Recommend removing in a future cleanup. |
 | WARN-2 | Medium | `Project_Sign_Off_Upload_Document` | No null/fault path after the two Get Records lookups. If `recordId` is blank or the record is deleted, the flow fails with a generic error rather than a user-friendly message. Recommend adding Decision elements and a fault screen in Sprint 2. |
 | WARN-3 | Low | `Opportunity_After_Save` | The "sign-off already exists" decision rule has no connector (execution ends silently). This is correct behavior — no action is needed if the sign-off exists. Documented for clarity only. |
-| WARN-4 | Medium | All 4 Lightning Record Pages | No `<pageAssignments>` metadata — pages deploy but are not set as org default automatically. Manual activation required (see Post-Deployment Steps 9.2). |
+| WARN-4 | Medium | All 4 Lightning Record Pages | No `<pageAssignments>` metadata — pages deploy but are not set as org default automatically. Manual activation required (see Post-Deployment Steps 10.2). |
 
 ---
 
-## 11. Design Decisions Reference
+## 12. Design Decisions Reference
 
 | # | Decision | Rationale |
-|---|----------|----------|
+|---|----------|-----------|
 | 1 | Two permission sets only (RW + DELETE), no RO set | Requirements explicitly specified only these two |
 | 2 | `Current_Stage_Sign_Off_Complete__c` checkbox as gating field | Enables declarative Validation Rule and Flow logic without Apex |
 | 3 | Before-Save flow resets checkbox; After-Save flow creates sign-off record | Before-Save can write to `$Record` (no DML); After-Save handles DML — avoids recursive DML issues |
@@ -510,6 +528,20 @@ The code review issued **APPROVED WITH WARNINGS**. The two blocker items were fi
 | 5 | `Project_Task__c` included in permission sets without creating a new object | References the existing `Project_Task__c` object from a prior sprint |
 | 6 | Auto Number names for `Project_Sign_Off__c` (PSO-) and `Project_Activity__c` (ACT-) | Better UX — avoids manual naming; provides a unique human-readable reference |
 | 7 | `Total_Open_Activities__c` uses two NOT EQUAL TO filter criteria | Roll-Up Summary filters do not support OR logic — two AND-combined NOT EQUAL criteria produce the correct count of activities that are neither Completed nor Cancelled |
+
+---
+
+## 13. Pre-PR Validation Result
+
+```
+VALIDATION_STATUS: PASS
+VALIDATION_TEST_LEVEL: RunLocalTests
+```
+
+Deploy ID: `0Afg500000AJCNtCAP`
+Tests executed: 11 / 11 passed, 0 component failures.
+
+This validation was run against the complete Sprint 1 metadata set prior to PR merge.
 
 ---
 

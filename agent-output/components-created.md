@@ -28,7 +28,7 @@
 
 | # | Component | Notes |
 |---|-----------|-------|
-| 14 | `Opportunity.object-meta.xml` | StageName picklist (9 project stages + standard values) |
+| 14 | `Opportunity.object-meta.xml` | StageName picklist values (9 project stages + standard values) |
 | 15 | Record Type: `VISEO_Project_Opportunity` | Active, 9 stage values |
 | 16 | Path: `VISEO_Project_Opportunity_Path` | 9 stages, linked to VISEO_Project_Opportunity RT |
 | 17 | Validation Rule: `Sign_Off_Required_Before_Stage_Advance` | Blocks stage advance without sign-off |
