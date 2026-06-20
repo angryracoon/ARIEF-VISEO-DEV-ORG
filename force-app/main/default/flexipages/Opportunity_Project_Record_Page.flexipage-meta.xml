@@ -5,12 +5,4 @@
     <pageTemplate>UILayout:RecordDetail</pageTemplate>
     <sobjectType>Opportunity</sobjectType>
     <type>RecordPage</type>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>flexipage:recordDetail</componentName>
-            <identifier>record_detail_opportunity</identifier>
-        </componentInstances>
-        <name>main</name>
-        <type>Region</type>
-    </flexiPageRegions>
 </FlexiPage>
