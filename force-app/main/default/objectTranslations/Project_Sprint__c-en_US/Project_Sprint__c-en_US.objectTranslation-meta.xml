@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project Sprint</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Project Sprints</value>
+    </caseValues>
+    <layouts>
+        <layout>Project Sprint Layout</layout>
+        <sections>
+            <label><!-- Activity Summary --></label>
+            <section>Activity Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Mandays --></label>
+            <section>Mandays</section>
+        </sections>
+        <sections>
+            <label><!-- Sprint Description --></label>
+            <section>Sprint Description</section>
+        </sections>
+        <sections>
+            <label><!-- Sprint Information --></label>
+            <section>Sprint Information</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VISEO Project Sprint --></label>
+        <name>VISEO_Project_Sprint</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Cannot close this sprint — there are still open project activities. Please close all activities before closing the sprint. --></errorMessage>
+        <name>Prevent_Close_With_Open_Activities</name>
+    </validationRules>
+</CustomObjectTranslation>

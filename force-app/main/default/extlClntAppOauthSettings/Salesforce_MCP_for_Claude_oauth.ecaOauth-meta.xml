@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtlClntAppOauthSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <commaSeparatedOauthScopes>Basic, Api, Web, Full, Chatter, CustomApplications, RefreshToken, OpenID, CustomPermissions, Wave, Eclair, Pardot, Lightning, Content, CDPIngest, CDPProfile, CDPQuery, Chatbot, CDPSegment, CDPIdentityResolution, ForgotPassword, CDPCalculatedInsight, UserRegistration, SFApiPlatform, Interaction, CDP, EinsteinGPT, PwdlessLogin, MCP, SCRT, DataCloudUserClaims</commaSeparatedOauthScopes>
+    <externalClientApplication>Salesforce_MCP_for_Claude</externalClientApplication>
+    <isFirstPartyAppEnabled>false</isFirstPartyAppEnabled>
+    <label>Salesforce_MCP_for_Claude_oauth</label>
+    <oauthLink>00Dg500000CShUX:888g5000000WjlB</oauthLink>
+</ExtlClntAppOauthSettings>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>After-save record-triggered flow on Project_Task__c. Entry fires when Reminder_Date__c is not null. Scheduled path calls the send-reminder sub-flow 3 days before Reminder_Date__c.</description>
     <interviewLabel>Project Task After Save {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Project Task After Save</label>

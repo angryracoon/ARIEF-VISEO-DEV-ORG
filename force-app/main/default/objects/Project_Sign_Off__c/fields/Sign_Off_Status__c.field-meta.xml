@@ -3,14 +3,26 @@
     <fullName>Sign_Off_Status__c</fullName>
     <label>Sign Off Status</label>
     <required>false</required>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>Pending</fullName><default>true</default><label>Pending</label></value>
-            <value><fullName>Approved</fullName><default>false</default><label>Approved</label></value>
-            <value><fullName>Rejected</fullName><default>false</default><label>Rejected</label></value>
+            <value>
+                <fullName>Pending</fullName>
+                <default>true</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -6,23 +6,13 @@
     <masterLabel>VISEO Project Opportunity Path</masterLabel>
     <pathAssistantSteps>
         <fieldNames>StageName</fieldNames>
+        <info>&lt;p&gt;Application Management Services phase. Record actual mandays.&lt;/p&gt;</info>
+        <picklistValueName>AMS</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Capture the initial project scope and requirements.&lt;/p&gt;</info>
         <picklistValueName>Discovery</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
-        <fieldNames>StageName</fieldNames>
-        <info>&lt;p&gt;Gather detailed requirements from stakeholders.&lt;/p&gt;</info>
-        <picklistValueName>Requirement Gathering</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
-        <fieldNames>StageName</fieldNames>
-        <info>&lt;p&gt;Document all requirements into formal specification.&lt;/p&gt;</info>
-        <picklistValueName>Requirement Documentation</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
-        <fieldNames>StageName</fieldNames>
-        <info>&lt;p&gt;Finalize user stories and acceptance criteria.&lt;/p&gt;</info>
-        <picklistValueName>User Story Finalization</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>StageName</fieldNames>
@@ -31,8 +21,23 @@
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>StageName</fieldNames>
+        <info>&lt;p&gt;Solution is live. Confirm go-live date.&lt;/p&gt;</info>
+        <picklistValueName>Live</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>StageName</fieldNames>
         <info>&lt;p&gt;Quality assurance testing in progress.&lt;/p&gt;</info>
         <picklistValueName>QA</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>StageName</fieldNames>
+        <info>&lt;p&gt;Document all requirements into formal specification.&lt;/p&gt;</info>
+        <picklistValueName>Requirement Documentation</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>StageName</fieldNames>
+        <info>&lt;p&gt;Gather detailed requirements from stakeholders.&lt;/p&gt;</info>
+        <picklistValueName>Requirement Gathering</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>StageName</fieldNames>
@@ -41,13 +46,8 @@
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>StageName</fieldNames>
-        <info>&lt;p&gt;Solution is live. Confirm go-live date.&lt;/p&gt;</info>
-        <picklistValueName>Live</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
-        <fieldNames>StageName</fieldNames>
-        <info>&lt;p&gt;Application Management Services phase. Record actual mandays.&lt;/p&gt;</info>
-        <picklistValueName>AMS</picklistValueName>
+        <info>&lt;p&gt;Finalize user stories and acceptance criteria.&lt;/p&gt;</info>
+        <picklistValueName>User Story Finalization</picklistValueName>
     </pathAssistantSteps>
     <recordTypeName>VISEO_Project_Opportunity</recordTypeName>
 </PathAssistant>

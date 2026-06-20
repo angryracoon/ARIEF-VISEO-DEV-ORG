@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project Activity</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Project Activities</value>
+    </caseValues>
+    <layouts>
+        <layout>Project Activity Layout</layout>
+        <sections>
+            <label><!-- Activity Information --></label>
+            <section>Activity Information</section>
+        </sections>
+        <sections>
+            <label><!-- Activity Updates --></label>
+            <section>Activity Updates</section>
+        </sections>
+        <sections>
+            <label><!-- Mandays --></label>
+            <section>Mandays</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VISEO Project Activity --></label>
+        <name>VISEO_Project_Activity</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

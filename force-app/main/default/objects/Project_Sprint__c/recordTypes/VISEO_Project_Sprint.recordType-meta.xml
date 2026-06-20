@@ -3,4 +3,23 @@
     <fullName>VISEO_Project_Sprint</fullName>
     <active>true</active>
     <label>VISEO Project Sprint</label>
+    <picklistValues>
+        <picklist>Sprint_Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Planning</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
 </RecordType>

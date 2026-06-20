@@ -4,6 +4,7 @@
     <label>Total Estimated Mandays</label>
     <summarizedField>Project_Activity__c.Estimated_Mandays__c</summarizedField>
     <summaryForeignKey>Project_Activity__c.Project_Sprint__c</summaryForeignKey>
-    <summaryOperation>SUM</summaryOperation>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
     <type>Summary</type>
 </CustomField>

@@ -3,15 +3,31 @@
     <fullName>Stage__c</fullName>
     <label>Stage</label>
     <required>false</required>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>Discovery</fullName><default>false</default><label>Discovery</label></value>
-            <value><fullName>Requirement Gathering</fullName><default>false</default><label>Requirement Gathering</label></value>
-            <value><fullName>Requirement Documentation</fullName><default>false</default><label>Requirement Documentation</label></value>
-            <value><fullName>User Story Finalization</fullName><default>false</default><label>User Story Finalization</label></value>
+            <value>
+                <fullName>Discovery</fullName>
+                <default>false</default>
+                <label>Discovery</label>
+            </value>
+            <value>
+                <fullName>Requirement Gathering</fullName>
+                <default>false</default>
+                <label>Requirement Gathering</label>
+            </value>
+            <value>
+                <fullName>Requirement Documentation</fullName>
+                <default>false</default>
+                <label>Requirement Documentation</label>
+            </value>
+            <value>
+                <fullName>User Story Finalization</fullName>
+                <default>false</default>
+                <label>User Story Finalization</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

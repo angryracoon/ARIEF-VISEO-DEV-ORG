@@ -3,9 +3,10 @@
     <fullName>Delivery_Methodology__c</fullName>
     <label>Delivery Methodology</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>

@@ -1,46 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>65.0</apiVersion>
-    <description>Sends a push notification to the Project Task record owner. Called by Project_Task_After_Save. Runs in system mode without sharing.</description>
-    <interviewLabel>Project Task Reminder Notification - Subflow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Project Task Reminder Notification - Subflow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>AutoLaunchedFlow</processType>
-    <runInMode>SystemModeWithoutSharing</runInMode>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Build_Recipient_Collection</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <assignments>
-        <name>Build_Recipient_Collection</name>
-        <label>Build Recipient Collection</label>
-        <locationX>176</locationX>
-        <locationY>50</locationY>
-        <assignmentItems>
-            <assignToReference>recipientIds</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>ownerId</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Send_Push_Notification</targetReference>
-        </connector>
-    </assignments>
-    <formulas>
-        <name>notificationBody</name>
-        <dataType>String</dataType>
-        <expression>&quot;Reminder: &quot; &amp; {!taskName} &amp; &quot; is due soon.&quot;</expression>
-    </formulas>
     <actionCalls>
         <name>Send_Push_Notification</name>
         <label>Send Push Notification</label>
@@ -48,6 +7,7 @@
         <locationY>158</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
             <value>
@@ -78,23 +38,52 @@
                 <elementReference>recordId</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
     </actionCalls>
-    <variables>
-        <name>recordId</name>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Build_Recipient_Collection</name>
+        <label>Build Recipient Collection</label>
+        <locationX>176</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>recipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>ownerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Push_Notification</targetReference>
+        </connector>
+    </assignments>
+    <description>Sends a push notification to the Project Task record owner. Called by Project_Task_After_Save. Runs in system mode without sharing.</description>
+    <formulas>
+        <name>notificationBody</name>
         <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+        <expression>&quot;Reminder: &quot; &amp; {!taskName} &amp; &quot; is due soon.&quot;</expression>
+    </formulas>
+    <interviewLabel>Project Task Reminder Notification - Subflow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Project Task Reminder Notification - Subflow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Build_Recipient_Collection</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
     <variables>
         <name>ownerId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>taskName</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
@@ -105,6 +94,20 @@
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>taskName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>

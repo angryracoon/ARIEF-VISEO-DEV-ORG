@@ -3,17 +3,42 @@
     <fullName>Activity_Type__c</fullName>
     <label>Activity Type</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value><fullName>Development</fullName><default>false</default><label>Development</label></value>
-            <value><fullName>QA</fullName><default>false</default><label>QA</label></value>
-            <value><fullName>BA</fullName><default>false</default><label>BA</label></value>
-            <value><fullName>Design</fullName><default>false</default><label>Design</label></value>
-            <value><fullName>DevOps</fullName><default>false</default><label>DevOps</label></value>
-            <value><fullName>Other</fullName><default>false</default><label>Other</label></value>
+            <value>
+                <fullName>Development</fullName>
+                <default>false</default>
+                <label>Development</label>
+            </value>
+            <value>
+                <fullName>QA</fullName>
+                <default>false</default>
+                <label>QA</label>
+            </value>
+            <value>
+                <fullName>BA</fullName>
+                <default>false</default>
+                <label>BA</label>
+            </value>
+            <value>
+                <fullName>Design</fullName>
+                <default>false</default>
+                <label>Design</label>
+            </value>
+            <value>
+                <fullName>DevOps</fullName>
+                <default>false</default>
+                <label>DevOps</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

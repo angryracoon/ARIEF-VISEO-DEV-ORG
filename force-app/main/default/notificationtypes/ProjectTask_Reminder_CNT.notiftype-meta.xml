@@ -4,4 +4,5 @@
     <desktop>true</desktop>
     <masterLabel>Project Task Reminder</masterLabel>
     <mobile>true</mobile>
+    <slack>false</slack>
 </CustomNotificationType>
