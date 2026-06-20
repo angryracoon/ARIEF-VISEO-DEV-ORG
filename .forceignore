@@ -15,6 +15,3 @@ node_modules/
 
 # Translations — standard object label rename requires Translation Workbench enabled in org
 **/translations/
-
-# OpportunityTeamMember custom field — entity not deployable via Metadata API in this org
-force-app/main/default/objects/OpportunityTeamMember/
