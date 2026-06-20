@@ -14,9 +14,9 @@ Design (creates branch)
  → [Optional] Developer (commits code)
  → [Optional] Unit Testing (for Apex/Trigger/LWC changes)
  → Code Review
- → Documentation (commits docs + pushes + pre-PR validation)
- → User approves + merges PR on GitHub
- → DevOps (deploys from main)
+ → DevOps Phase 1 (validates + commits + pushes + creates PR)
+ → User merges PR on GitHub
+ → DevOps Phase 2 (deploys from main)
 ```
 
 | Step | Agent | Model | Role |
@@ -26,8 +26,8 @@ Design (creates branch)
 | 3 | `salesforce-developer` | opus | Optional: writes Apex/LWC, commits to branch |
 | 4 | `salesforce-unit-testing` | sonnet | Optional: writes/runs tests for code changes |
 | 5 | `salesforce-code-review` | sonnet | Reviews metadata/code against best practices |
-| 6 | `salesforce-documentation` | sonnet | Writes docs, pushes, runs pre-PR validation |
-| 7 | `salesforce-devops` | opus | Deploys from main AFTER PR is merged |
+| 6 | `salesforce-devops` | opus | Phase 1: validates, commits, pushes, creates PR. Phase 2 (post-merge): deploys to org. |
+| * | `salesforce-documentation` | sonnet | Advisory only — read-only reference, called on demand. Not a pipeline step. |
 
 ---
 
@@ -39,8 +39,10 @@ Design (creates branch)
 
 Default routing:
 
-1. Declarative-only: `design → admin → documentation → devops`
-2. Code-related: `design → admin → developer → unit-testing → code-review → documentation → devops`
+1. Declarative-only: `design → admin → code-review → devops`
+2. Code-related: `design → admin → developer → unit-testing → code-review → devops`
+
+`salesforce-documentation` is NOT a pipeline step. Call it on demand when you need to confirm syntax, API names, or implementation constraints. It returns findings only — it does not write or commit anything.
 
 ---
 
@@ -61,6 +63,26 @@ To reduce token usage while preserving quality:
 - The orchestrator is responsible for every handoff between agents.
 - The user must never be used as a manual relay between subagents.
 - If a subagent reports completion and next-step readiness, orchestrator must immediately invoke the next agent (or the appropriate confirmation gate) in the same session.
+
+---
+
+## Repository inspection policy (all agents)
+
+- Do not run `ls`, `find`, or `git status` on the repository root more than once per session.
+- Cache the repository structure mentally after the first inspection.
+- Re-read a file or directory only if you have reason to believe it changed (e.g., another agent committed to it in this session).
+- Never repeat broad directory scans to "orient yourself" mid-task — use targeted reads of specific files instead.
+
+---
+
+## PR creation policy (mandatory)
+
+- **Only `salesforce-devops` may create PRs.** No other agent creates, updates, or comments on PRs.
+- Before creating a PR, devops must confirm:
+  1. All implementation agents have completed and committed
+  2. Pre-PR validation (`sf project deploy validate`) has passed
+  3. Git diff has been reviewed and confirmed correct
+- PR body must include: summary, component list, validation status, test results (if applicable).
 
 ---
 
@@ -87,12 +109,12 @@ To reduce token usage while preserving quality:
 | File | Written by | Read by |
 |------|-----------|---------|
 | `agent-output/current-branch.md` | salesforce-design | all agents |
-| `agent-output/design-requirements.md` | salesforce-design | admin, developer, unit-testing, code-review, documentation |
-| `agent-output/components-created.md` | salesforce-admin + salesforce-developer (append) | unit-testing, code-review, documentation, devops |
-| `agent-output/review-findings.md` | salesforce-code-review | developer (fix mode), documentation |
-| `agent-output/test-results.md` | salesforce-unit-testing | code-review, documentation |
+| `agent-output/design-requirements.md` | salesforce-design | admin, developer, unit-testing, code-review, devops |
+| `agent-output/components-created.md` | salesforce-admin + salesforce-developer (append) | unit-testing, code-review, devops |
+| `agent-output/review-findings.md` | salesforce-code-review | developer (fix mode), devops |
+| `agent-output/test-results.md` | salesforce-unit-testing | code-review, devops |
 | `agent-output/error-context.md` | any blocked agent | orchestrator + target fix agent |
-| `agent-output/deployment-log.md` | salesforce-devops | documentation, audit |
+| `agent-output/deployment-log.md` | salesforce-devops | audit |
 
 ---
 
@@ -121,9 +143,9 @@ Use the lightest tool that can complete the task:
 
 ---
 
-## Pre-PR validation gate (mandatory — all agents + orchestrator)
+## Pre-PR validation gate (mandatory — salesforce-devops owns this)
 
-Before ANY agent asks for PR approval or the orchestrator presents the PR merge prompt, Salesforce CLI validation MUST pass. This applies to both subagents and the orchestrator — whoever is at the handoff point owns this check.
+Before creating a PR, `salesforce-devops` must run Salesforce CLI validation. No other agent runs validation. The orchestrator must not present a PR merge prompt unless devops has confirmed `VALIDATION_STATUS: PASS`.
 
 ```bash
 # No .cls or .trigger changes:
@@ -149,11 +171,13 @@ Rules:
 
 ---
 
-## Documentation trigger policy
+## Documentation usage policy
 
-- `salesforce-documentation` runs only for PR-ready branches (final pass before merge)
-- During iterative build/fix loops, skip documentation until implementation and review are stable
-- If further code/metadata changes are expected, continue build/review cycle first, then run documentation once at the end
+- `salesforce-documentation` is a read-only advisory agent, NOT a pipeline step.
+- Call it when you need to confirm Salesforce API syntax, metadata field names, or implementation constraints.
+- It returns a structured finding (FINDING / SOURCE / CONSTRAINT / CONFIDENCE) and nothing else.
+- It does not write files, commit, push, or create PRs.
+- Release notes and PR descriptions are written by `salesforce-devops`.
 
 ---
 
@@ -169,8 +193,8 @@ Rules:
 
 - **Gate 1** — After design outputs plan: ask yes / no / changes; branch created after yes
 - **Gate 2** — After code review: show verdict, offer fix / skip / cancel
-- **Gate 2.5** — Before PR approval: pre-PR validation must pass
-- **Gate 3** — Inside devops: confirm PR merged + show component list, ask proceed/cancel
+- **Gate 3** — DevOps Phase 1: show validation result + component list + PR URL, user merges PR
+- **Gate 4** — DevOps Phase 2: confirm PR merged + show delta components, ask proceed/cancel
 
 ---
 
