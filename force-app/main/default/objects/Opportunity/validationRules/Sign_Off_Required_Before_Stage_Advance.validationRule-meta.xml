@@ -3,11 +3,12 @@
     <fullName>Sign_Off_Required_Before_Stage_Advance</fullName>
     <active>true</active>
     <errorConditionFormula>ISCHANGED(StageName) &amp;&amp;
+NOT(Current_Stage_Sign_Off_Complete__c) &amp;&amp;
 (
-  (ISPICKVAL(PRIORVALUE(StageName), &quot;Discovery&quot;) &amp;&amp; NOT(Discovery_Sign_Off_Complete__c)) ||
-  (ISPICKVAL(PRIORVALUE(StageName), &quot;Requirement Gathering&quot;) &amp;&amp; NOT(Requirement_Gathering_Sign_Off_Complete__c)) ||
-  (ISPICKVAL(PRIORVALUE(StageName), &quot;Requirement Documentation&quot;) &amp;&amp; NOT(Requirement_Documentation_Sign_Off_Complete__c)) ||
-  (ISPICKVAL(PRIORVALUE(StageName), &quot;User Story Finalization&quot;) &amp;&amp; NOT(User_Story_Finalization_Sign_Off_Complete__c))
+ISPICKVAL(StageName, &apos;Discovery&apos;) ||
+ISPICKVAL(StageName, &apos;Requirement Gathering&apos;) ||
+ISPICKVAL(StageName, &apos;Requirement Documentation&apos;) ||
+ISPICKVAL(StageName, &apos;User Story Finalization&apos;)
 )</errorConditionFormula>
     <errorMessage>Please complete and approve the sign-off document for the current stage before advancing.</errorMessage>
 </ValidationRule>
