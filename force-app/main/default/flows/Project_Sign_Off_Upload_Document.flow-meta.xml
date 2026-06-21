@@ -64,9 +64,76 @@
         <queriedFields>Sign_Off_Status__c</queriedFields>
         <queriedFields>Opportunity__c</queriedFields>
     </recordLookups>
+    <decisions>
+        <name>Route_Sign_Off_Stage</name>
+        <label>Route Sign Off Stage</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>Stage_Discovery</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varSignOff.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Discovery</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Discovery</targetReference>
+            </connector>
+            <label>Discovery</label>
+        </rules>
+        <rules>
+            <name>Stage_Requirement_Gathering</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varSignOff.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Requirement Gathering</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Req_Gathering</targetReference>
+            </connector>
+            <label>Requirement Gathering</label>
+        </rules>
+        <rules>
+            <name>Stage_Requirement_Documentation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varSignOff.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Requirement Documentation</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Req_Documentation</targetReference>
+            </connector>
+            <label>Requirement Documentation</label>
+        </rules>
+        <rules>
+            <name>Stage_User_Story_Finalization</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varSignOff.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>User Story Finalization</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_User_Story</targetReference>
+            </connector>
+            <label>User Story Finalization</label>
+        </rules>
+    </decisions>
     <recordUpdates>
-        <name>Update_Opportunity_Sign_Off_Complete</name>
-        <label>Update Opportunity Sign Off Complete</label>
+        <name>Update_Opportunity_Discovery</name>
+        <label>Update Opportunity Discovery Sign Off</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
@@ -78,7 +145,70 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>Current_Stage_Sign_Off_Complete__c</field>
+            <field>Discovery_Sign_Off_Complete__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity_Req_Documentation</name>
+        <label>Update Opportunity Req Documentation Sign Off</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varOpportunity.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Req_Documentation_Sign_Off_Complete__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity_Req_Gathering</name>
+        <label>Update Opportunity Req Gathering Sign Off</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varOpportunity.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Req_Gathering_Sign_Off_Complete__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity_User_Story</name>
+        <label>Update Opportunity User Story Sign Off</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varOpportunity.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>User_Story_Sign_Off_Complete__c</field>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
@@ -91,7 +221,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_Opportunity_Sign_Off_Complete</targetReference>
+            <targetReference>Route_Sign_Off_Stage</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
