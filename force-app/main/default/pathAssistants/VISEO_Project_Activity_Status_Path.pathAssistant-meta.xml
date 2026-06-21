@@ -30,10 +30,6 @@
         <picklistValueName>In Review</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <info>&lt;p&gt;Activity is closed.&lt;/p&gt;</info>
-        <picklistValueName>Closed</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
         <fieldNames>Estimated_Mandays__c</fieldNames>
         <info>&lt;p&gt;Assign the activity, set estimated mandays, and planned completion date.&lt;/p&gt;</info>
         <picklistValueName>Not Started</picklistValueName>

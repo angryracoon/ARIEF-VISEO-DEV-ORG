@@ -20,10 +20,6 @@
         <picklistValueName>In Progress</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
-        <info>&lt;p&gt;Sprint is closed.&lt;/p&gt;</info>
-        <picklistValueName>Closed</picklistValueName>
-    </pathAssistantSteps>
-    <pathAssistantSteps>
         <fieldNames>Sprint_Goal__c</fieldNames>
         <info>&lt;p&gt;Define the sprint goal, planned mandays, and start date.&lt;/p&gt;</info>
         <picklistValueName>Planning</picklistValueName>

@@ -48,3 +48,4 @@ $RECYCLE.BIN/
 .claude/agent-memory-local/
 agent-output/
 .sf-agents-tmp/
+.mcp.json

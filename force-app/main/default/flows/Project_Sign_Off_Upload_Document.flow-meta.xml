@@ -18,73 +18,6 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <decisions>
-        <name>Route_Stage_Checkbox</name>
-        <label>Route Stage Checkbox</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Other Stage</defaultConnectorLabel>
-        <rules>
-            <name>Stage_Discovery</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varSignOff.Stage__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Discovery</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Opportunity_Discovery</targetReference>
-            </connector>
-            <label>Discovery</label>
-        </rules>
-        <rules>
-            <name>Stage_Requirement_Gathering</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varSignOff.Stage__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Requirement Gathering</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Opportunity_Req_Gathering</targetReference>
-            </connector>
-            <label>Requirement Gathering</label>
-        </rules>
-        <rules>
-            <name>Stage_Requirement_Documentation</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varSignOff.Stage__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Requirement Documentation</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Opportunity_Req_Documentation</targetReference>
-            </connector>
-            <label>Requirement Documentation</label>
-        </rules>
-        <rules>
-            <name>Stage_User_Story_Finalization</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varSignOff.Stage__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>User Story Finalization</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Opportunity_User_Story</targetReference>
-            </connector>
-            <label>User Story Finalization</label>
-        </rules>
-    </decisions>
     <recordLookups>
         <name>Get_Parent_Opportunity</name>
         <label>Get Parent Opportunity</label>
@@ -132,8 +65,8 @@
         <queriedFields>Opportunity__c</queriedFields>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Opportunity_Discovery</name>
-        <label>Update Opportunity Discovery</label>
+        <name>Update_Opportunity_Sign_Off_Complete</name>
+        <label>Update Opportunity Sign Off Complete</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>
@@ -145,70 +78,7 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>Discovery_Sign_Off_Complete__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Opportunity_Req_Documentation</name>
-        <label>Update Opportunity Requirement Documentation</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varOpportunity.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Requirement_Documentation_Sign_Off_Complete__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Opportunity_Req_Gathering</name>
-        <label>Update Opportunity Requirement Gathering</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varOpportunity.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Requirement_Gathering_Sign_Off_Complete__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Opportunity_User_Story</name>
-        <label>Update Opportunity User Story Finalization</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varOpportunity.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>User_Story_Finalization_Sign_Off_Complete__c</field>
+            <field>Current_Stage_Sign_Off_Complete__c</field>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
@@ -221,7 +91,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Route_Stage_Checkbox</targetReference>
+            <targetReference>Update_Opportunity_Sign_Off_Complete</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
