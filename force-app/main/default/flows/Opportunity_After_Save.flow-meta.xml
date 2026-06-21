@@ -100,7 +100,10 @@
             <targetReference>Get_Existing_Sign_Off</targetReference>
         </connector>
         <filterFormula>AND(
-  ISCHANGED({!$Record.StageName}),
+  OR(
+    ISNEW(),
+    ISCHANGED({!$Record.StageName})
+  ),
   OR(
     ISPICKVAL({!$Record.StageName}, &apos;Discovery&apos;),
     ISPICKVAL({!$Record.StageName}, &apos;Requirement Gathering&apos;),
