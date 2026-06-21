@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <description>Indicates the Requirement Documentation stage sign-off document has been uploaded and approved. Set by the Upload Sign-Off Document flow and enforced by the stage-advance validation rule.</description>
     <inlineHelpText>Checked automatically when the Requirement Documentation sign-off is approved. Required before advancing past the Requirement Documentation stage.</inlineHelpText>
-    <label>Requirement Documentation Sign Off Complete</label>
+    <label>Req Documentation Sign Off Complete</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
