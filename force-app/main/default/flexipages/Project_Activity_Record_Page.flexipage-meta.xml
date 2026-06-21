@@ -35,7 +35,24 @@
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
-    <!-- Activity Information: Sprint + Type || Status -->
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>hideUpdateButton</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>variant</name>
+                    <value>linear</value>
+                </componentInstanceProperties>
+                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
+                <identifier>runtime_sales_pathassistant_pathAssistant</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>subheader</name>
+        <type>Region</type>
+    </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -98,7 +115,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70003</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Assignment: Assigned To || Reviewer -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -151,7 +167,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70006</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Dates: Planned Completion || Actual Completion -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -204,7 +219,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70009</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Mandays: Estimated || Actual -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -257,7 +271,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70012</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Activity Updates (full width) -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -286,7 +299,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70014</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Detail tab body -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -381,7 +393,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70015</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Related lists tab -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -404,7 +415,6 @@
         <name>Facet-c2d3e4f5-a6b7-8901-c2d3-e4f5a6b70016</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Tabs -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
