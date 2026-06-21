@@ -62,6 +62,9 @@ You review code produced by the developer and unit testing agents. You identify 
 | Missing `WITH USER_MODE` | SOQL without user context |
 | Missing object permission sets | Missing `[ObjectName]_RO_PS`, `[ObjectName]_RW_PS`, `[ObjectName]_DELETE_PS` for touched objects |
 | Missing field permissions update | New custom fields not added to required object permission sets |
+| Field API name > 40 chars | Custom field `<fullName>` (excl. `__c`) must be ≤ 40 characters |
+| Field label > 40 chars | `<label>` / `MasterLabel` must be ≤ 40 characters |
+| fullName ↔ filename mismatch | `<fullName>` in `.field-meta.xml` must exactly match the filename (without `.field-meta.xml`) |
 
 ### Warnings — should fix
 

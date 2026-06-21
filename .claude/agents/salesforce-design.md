@@ -125,6 +125,20 @@ You will merge the PR after code review passes.
 
 ---
 
+## Field naming hard limits (validate before writing spec)
+
+Every custom field in the spec must satisfy all three before admin starts writing files:
+
+| Constraint | Limit | Check |
+|---|---|---|
+| API name (`fullName`) | ≤ 40 chars (excl. `__c`) | count characters |
+| Label (`MasterLabel`) | ≤ 40 chars | count characters |
+| `<fullName>` in XML must match filename | exact match | filename = `<fullName>` + `.field-meta.xml` |
+
+If any proposed field name or label exceeds the limit, shorten it in the spec before handing off. Do not leave this for admin or code review to catch.
+
+---
+
 ## Rules (non-negotiable)
 
 - Never add features not explicitly requested
