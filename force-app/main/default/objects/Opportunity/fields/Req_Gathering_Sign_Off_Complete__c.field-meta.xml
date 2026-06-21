@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Requirement_Gathering_Sign_Off_Complete__c</fullName>
+    <fullName>Req_Gathering_Sign_Off_Complete__c</fullName>
     <defaultValue>false</defaultValue>
     <description>Indicates the Requirement Gathering stage sign-off document has been uploaded and approved. Set by the Upload Sign-Off Document flow and enforced by the stage-advance validation rule.</description>
     <inlineHelpText>Checked automatically when the Requirement Gathering sign-off is approved. Required before advancing past the Requirement Gathering stage.</inlineHelpText>
