@@ -37,7 +37,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Current_Stage_Sign_Off_Complete__c</field>
+        <field>Opportunity.Discovery_Sign_Off_Complete__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Req_Gathering_Sign_Off_Complete__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Req_Documentation_Sign_Off_Complete__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.User_Story_Sign_Off_Complete__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
