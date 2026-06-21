@@ -1,1 +1,1 @@
-fix/2026-06-21-signoff-fullname-fix
+fix/2026-06-21-signoff-label-fix
