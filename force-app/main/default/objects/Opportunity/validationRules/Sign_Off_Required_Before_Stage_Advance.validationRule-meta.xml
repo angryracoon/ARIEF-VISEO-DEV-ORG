@@ -2,13 +2,22 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Sign_Off_Required_Before_Stage_Advance</fullName>
     <active>true</active>
-    <errorConditionFormula>ISCHANGED(StageName) &amp;&amp;
-NOT(Current_Stage_Sign_Off_Complete__c) &amp;&amp;
-(
-ISPICKVAL(StageName, &apos;Discovery&apos;) ||
-ISPICKVAL(StageName, &apos;Requirement Gathering&apos;) ||
-ISPICKVAL(StageName, &apos;Requirement Documentation&apos;) ||
-ISPICKVAL(StageName, &apos;User Story Finalization&apos;)
+    <errorConditionFormula>AND(
+  ISCHANGED(StageName),
+  OR(
+    PRIORVALUE(StageName) = &quot;Discovery&quot;,
+    PRIORVALUE(StageName) = &quot;Requirement Gathering&quot;,
+    PRIORVALUE(StageName) = &quot;Requirement Documentation&quot;,
+    PRIORVALUE(StageName) = &quot;User Story Finalization&quot;
+  ),
+  CASE(
+    PRIORVALUE(StageName),
+    &quot;Discovery&quot;, NOT(Discovery_Sign_Off_Complete__c),
+    &quot;Requirement Gathering&quot;, NOT(Req_Gathering_Sign_Off_Complete__c),
+    &quot;Requirement Documentation&quot;, NOT(Req_Documentation_Sign_Off_Complete__c),
+    &quot;User Story Finalization&quot;, NOT(User_Story_Sign_Off_Complete__c),
+    FALSE
+  )
 )</errorConditionFormula>
     <errorMessage>Please complete and approve the sign-off document for the current stage before advancing.</errorMessage>
 </ValidationRule>
