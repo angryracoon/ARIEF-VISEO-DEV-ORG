@@ -25,5 +25,9 @@
       "mcp__arief-dev-org__list_metadata",
       "mcp__arief-dev-org__read_metadata"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "arief-dev-org",
+    "arief-github"
+  ]
 }

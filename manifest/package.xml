@@ -153,7 +153,6 @@
 		<members>Opportunity.Actual_Go_Live_Date__c</members>
 		<members>Opportunity.Actual_Mandays__c</members>
 		<members>Opportunity.CurrentGenerators__c</members>
-		<members>Opportunity.Current_Stage_Sign_Off_Complete__c</members>
 		<members>Opportunity.DeliveryInstallationStatus__c</members>
 		<members>Opportunity.Delivery_Methodology__c</members>
 		<members>Opportunity.MainCompetitors__c</members>

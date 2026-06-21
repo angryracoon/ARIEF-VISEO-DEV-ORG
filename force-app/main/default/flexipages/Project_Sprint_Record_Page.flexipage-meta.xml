@@ -35,7 +35,6 @@
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
-    <!-- Sprint Information: Name | Opportunity | SprintNum || Goal | Status -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -118,7 +117,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60003</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Dates: Start || End -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -171,7 +169,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60006</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Mandays: Planned || Actual -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -224,7 +221,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60009</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Sprint Description -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -253,7 +249,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60011</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Activity Summary: Counts || Manday Rollups -->
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
@@ -336,7 +331,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60014</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Detail tab body: all field sections -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -431,7 +425,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60015</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Related lists tab -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -454,7 +447,6 @@
         <name>Facet-b1c2d3e4-f5a6-7890-b1c2-d3e4f5a60016</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <!-- Tabs -->
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
