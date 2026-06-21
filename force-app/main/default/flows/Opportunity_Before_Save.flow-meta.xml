@@ -2,20 +2,7 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <assignments>
-        <name>Set_Sign_Off_Complete_False</name>
-        <label>Set Sign Off Complete to False</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.Current_Stage_Sign_Off_Complete__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <description>Before-Save flow on Opportunity. When StageName is changed to a sign-off stage (Discovery, Requirement Gathering, Requirement Documentation, User Story Finalization), resets Current_Stage_Sign_Off_Complete__c to false.</description>
+    <description>Obsolete before-save flow on Opportunity. Previously reset a sign-off completion field on stage change; that field has been removed.</description>
     <interviewLabel>Opportunity Before Save {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Opportunity Before Save</label>
     <processMetadataValues>
@@ -34,9 +21,6 @@
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Set_Sign_Off_Complete_False</targetReference>
-        </connector>
         <filterFormula>AND(
   ISCHANGED({!$Record.StageName}),
   OR(
