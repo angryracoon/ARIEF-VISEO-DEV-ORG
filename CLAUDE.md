@@ -38,7 +38,7 @@ Design (creates branch) → Admin (commits metadata) → Developer (commits code
 
 ## Git sync rules (MANDATORY)
 
-- **Remote is HTTPS**: `origin` is set to `https://github.com/angryracoon/ARIEF-VISEO-DEV-ORG.git` — SSH is blocked in this environment
+- **Remote is SSH**: `origin` is set to `git@github.com:angryracoon/ARIEF-VISEO-DEV-ORG.git`
 - **After every deployment**: pull main locally — `git checkout main && git pull origin main`
 - **Before creating any feature branch**: the orchestrator MUST run `git checkout main && git pull origin main` first, then create the branch — never branch from a stale local state or from another feature branch
 - **Branch creation sequence** (mandatory, no exceptions):
