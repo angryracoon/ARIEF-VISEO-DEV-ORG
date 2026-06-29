@@ -1,0 +1,129 @@
+<template>
+    <div class="slds-box slds-box_x-small slds-theme_default">
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Working..." size="small"></lightning-spinner>
+        </template>
+
+        <!-- Step: Capture -->
+        <template lwc:if={isCapture}>
+            <h2 class="slds-text-heading_small slds-m-bottom_small">Step 1 — Capture Receipt</h2>
+            <lightning-input
+                type="file"
+                label="Receipt image"
+                accept="image/*"
+                onchange={handleFileChange}>
+            </lightning-input>
+            <template lwc:if={previewUrl}>
+                <div class="slds-m-vertical_small">
+                    <img src={previewUrl} alt="Receipt preview" class="receipt-preview" />
+                </div>
+            </template>
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                <lightning-button
+                    variant="brand"
+                    label="Upload & Scan"
+                    disabled={scanDisabled}
+                    onclick={handleUploadAndScan}>
+                </lightning-button>
+            </div>
+        </template>
+
+        <!-- Step: Review -->
+        <template lwc:if={isReview}>
+            <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                <h2 class="slds-text-heading_small">Step 2 — Review Details</h2>
+                <template lwc:if={hasConfidence}>
+                    <span class={confidenceClass}>AI confidence: {confidencePercent}</span>
+                </template>
+            </div>
+
+            <lightning-input
+                label="Merchant"
+                value={form.merchant}
+                onchange={handleMerchantChange}>
+            </lightning-input>
+            <lightning-input
+                type="date"
+                label="Date"
+                value={form.transactionDate}
+                onchange={handleDateChange}>
+            </lightning-input>
+            <lightning-input
+                type="number"
+                label="Amount"
+                formatter="currency"
+                step="0.01"
+                value={form.amount}
+                onchange={handleAmountChange}>
+            </lightning-input>
+
+            <lightning-record-picker
+                label="Category"
+                object-api-name="Category__c"
+                value={form.categoryId}
+                placeholder="Search categories..."
+                onchange={handleCategoryChange}>
+            </lightning-record-picker>
+
+            <lightning-combobox
+                label="Financial Account"
+                value={form.financialAccountId}
+                placeholder="Select an account"
+                options={financialAccountOptions}
+                onchange={handleAccountChange}>
+            </lightning-combobox>
+
+            <lightning-textarea
+                label="Notes"
+                value={form.notes}
+                onchange={handleNotesChange}>
+            </lightning-textarea>
+
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <lightning-button label="Back" onclick={handleBackToCapture}></lightning-button>
+                <lightning-button variant="brand" label="Next" onclick={handleReviewNext}></lightning-button>
+            </div>
+        </template>
+
+        <!-- Step: Confirm -->
+        <template lwc:if={isConfirm}>
+            <h2 class="slds-text-heading_small slds-m-bottom_small">Step 3 — Confirm</h2>
+            <dl class="slds-dl_horizontal">
+                <dt class="slds-dl_horizontal__label">Merchant</dt>
+                <dd class="slds-dl_horizontal__detail">{form.merchant}</dd>
+                <dt class="slds-dl_horizontal__label">Date</dt>
+                <dd class="slds-dl_horizontal__detail">{form.transactionDate}</dd>
+                <dt class="slds-dl_horizontal__label">Amount</dt>
+                <dd class="slds-dl_horizontal__detail">
+                    <lightning-formatted-number
+                        value={form.amount}
+                        format-style="currency"
+                        currency-code="SGD">
+                    </lightning-formatted-number>
+                </dd>
+                <dt class="slds-dl_horizontal__label">Financial Account</dt>
+                <dd class="slds-dl_horizontal__detail">{selectedAccountLabel}</dd>
+            </dl>
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <lightning-button label="Back" onclick={handleBackToReview}></lightning-button>
+                <lightning-button variant="brand" label="Create Expense" onclick={handleCreateExpense}></lightning-button>
+            </div>
+        </template>
+
+        <!-- Step: Success -->
+        <template lwc:if={isSuccess}>
+            <div class="slds-align_absolute-center slds-text-align_center slds-p-vertical_medium">
+                <lightning-icon icon-name="action:approval" size="large"></lightning-icon>
+            </div>
+            <p class="slds-text-align_center slds-text-heading_small slds-m-bottom_medium">
+                Expense created successfully.
+            </p>
+            <div class="slds-grid slds-grid_align-center slds-gutters">
+                <lightning-button class="slds-m-right_x-small" label="View Expense" variant="brand" onclick={handleViewExpense}></lightning-button>
+                <lightning-button class="slds-m-right_x-small" label="Scan Another" onclick={handleStartOver}></lightning-button>
+                <lightning-button label="Done" onclick={handleCancel}></lightning-button>
+            </div>
+        </template>
+    </div>
+</template>
