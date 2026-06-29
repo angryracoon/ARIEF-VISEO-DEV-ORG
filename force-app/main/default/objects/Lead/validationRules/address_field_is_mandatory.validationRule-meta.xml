@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>address_field_is_mandatory</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK(Street) || ISBLANK(City) || ISBLANK(State) || ISBLANK(PostalCode) || ISBLANK(Country)</errorConditionFormula>
+    <errorMessage>Please fill all of the address details.</errorMessage>
+</ValidationRule>

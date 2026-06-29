@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Sub_Type__c</fullName>
+    <label>Activity Sub Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Activity_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Admin and Planning</fullName>
+                <default>false</default>
+                <label>Admin and Planning</label>
+            </value>
+            <value>
+                <fullName>Annual Leave</fullName>
+                <default>false</default>
+                <label>Annual Leave</label>
+            </value>
+            <value>
+                <fullName>Dealer Visit</fullName>
+                <default>false</default>
+                <label>Dealer Visit</label>
+            </value>
+            <value>
+                <fullName>Dispatch</fullName>
+                <default>false</default>
+                <label>Dispatch</label>
+            </value>
+            <value>
+                <fullName>Office meeting</fullName>
+                <default>false</default>
+                <label>Office meeting</label>
+            </value>
+            <value>
+                <fullName>Product Presentation</fullName>
+                <default>false</default>
+                <label>Product Presentation</label>
+            </value>
+            <value>
+                <fullName>Public Holiday</fullName>
+                <default>false</default>
+                <label>Public Holiday</label>
+            </value>
+            <value>
+                <fullName>Sick Leave</fullName>
+                <default>false</default>
+                <label>Sick Leave</label>
+            </value>
+            <value>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+                <label>Tradeshow</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Travelling</fullName>
+                <default>false</default>
+                <label>Travelling</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+            <value>
+                <fullName>Incoming</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Incoming</label>
+            </value>
+            <value>
+                <fullName>Outgoing</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Outgoing</label>
+            </value>
+            <value>
+                <fullName>Whatsapp</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Whatsapp</label>
+            </value>
+            <value>
+                <fullName>With Dealer Sales Rep</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>With Dealer Sales Rep</label>
+            </value>
+            <value>
+                <fullName>With Internal Associate</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>With Internal Associate</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Face to Face Meeting</controllingFieldValue>
+            <controllingFieldValue>Telesales</controllingFieldValue>
+            <controllingFieldValue>Co-call</controllingFieldValue>
+            <controllingFieldValue>Phone Call</controllingFieldValue>
+            <controllingFieldValue>Instant Messenger</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Email</controllingFieldValue>
+            <controllingFieldValue>Lunch &amp; Learn</controllingFieldValue>
+            <valueName>Product Presentation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Face to Face Meeting</controllingFieldValue>
+            <controllingFieldValue>Telesales</controllingFieldValue>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <controllingFieldValue>Co-call</controllingFieldValue>
+            <controllingFieldValue>Phone Call</controllingFieldValue>
+            <controllingFieldValue>Instant Messenger</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Email</controllingFieldValue>
+            <controllingFieldValue>Lunch &amp; Learn</controllingFieldValue>
+            <valueName>Others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Admin and Planning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Annual Leave</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Dealer Visit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Dispatch</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Office meeting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Public Holiday</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Sick Leave</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Tradeshow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Training</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Justified Miscalls</controllingFieldValue>
+            <valueName>Travelling</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

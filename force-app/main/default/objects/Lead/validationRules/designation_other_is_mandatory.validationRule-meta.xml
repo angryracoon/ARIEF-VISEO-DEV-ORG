@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>designation_other_is_mandatory</fullName>
+    <active>true</active>
+    <description>designation other is mandatory if the designation is set to Others</description>
+    <errorConditionFormula>ISPICKVAL( Designation__c, &apos;Others (Please specify)&apos; ) &amp;&amp; ISBLANK( Designation_Other__c )</errorConditionFormula>
+    <errorDisplayField>Designation_Other__c</errorDisplayField>
+    <errorMessage>Please specify the other designation if you select others on the designation.</errorMessage>
+</ValidationRule>

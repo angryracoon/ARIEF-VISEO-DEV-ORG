@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>area_country_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  NOT(ISBLANK(Country)),
+  OR(
+    ISBLANK(TEXT(Area__c)),
+    AND(
+      TEXT(Area__c) &lt;&gt; &quot;UN-Unknown&quot;,
+      OR(
+        AND(
+          Country = &quot;Australia&quot;,
+          NOT(
+            OR(
+              LEFT(TEXT(Area__c), 2) = &quot;AU&quot;,
+              LEFT(TEXT(Area__c), 2) = &quot;NZ&quot;
+            )
+          )
+        ),
+        AND(
+          Country &lt;&gt; &quot;Australia&quot;,
+          LEFT(TEXT(Area__c), 2) &lt;&gt;
+          CASE(
+            Country,
+            &quot;Brunei Darussalam&quot;, &quot;BN&quot;,
+            &quot;Indonesia&quot;, &quot;ID&quot;,
+            &quot;India&quot;, &quot;IN&quot;,
+            &quot;Malaysia&quot;, &quot;MY&quot;,
+            &quot;New Zealand&quot;, &quot;NZ&quot;,
+            &quot;Philippines&quot;, &quot;PH&quot;,
+            &quot;Singapore&quot;, &quot;SG&quot;,
+            &quot;Thailand&quot;, &quot;TH&quot;,
+            &quot;Vietnam&quot;, &quot;VN&quot;, &quot;&quot;
+          )
+        )
+      )
+    )
+  )
+)</errorConditionFormula>
+    <errorDisplayField>Area__c</errorDisplayField>
+    <errorMessage>Please assign the correct area of the country</errorMessage>
+</ValidationRule>

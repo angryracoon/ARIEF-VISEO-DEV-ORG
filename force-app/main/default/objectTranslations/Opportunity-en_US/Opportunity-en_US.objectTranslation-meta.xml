@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project Opportunity</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Project Opportunities</value>
+    </caseValues>
+    <layouts>
+        <layout>VISEO Project Opportunity Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Mandays --></label>
+            <section>Mandays</section>
+        </sections>
+        <sections>
+            <label><!-- Project Information --></label>
+            <section>Project Information</section>
+        </sections>
+        <sections>
+            <label><!-- Project Status --></label>
+            <section>Project Status</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Record type for VISEO project delivery opportunities, tracking delivery stages from Discovery through AMS. --></description>
+        <label><!-- VISEO Project Opportunity --></label>
+        <name>VISEO_Project_Opportunity</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Close Date is required when the Opportunity Stage is Closed Won. --></errorMessage>
+        <name>CloseDate_Required_For_Closed_Won</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Close Date cannot be modified after the Opportunity is Closed Won. --></errorMessage>
+        <name>Prevent_CloseDate_Change_After_ClosedWon</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please complete and approve the sign-off document for the current stage before advancing. --></errorMessage>
+        <name>Sign_Off_Required_Before_Stage_Advance</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- DeliveryStatus --></label>
+        <name>DeliveryStatus</name>
+    </webLinks>
+</CustomObjectTranslation>

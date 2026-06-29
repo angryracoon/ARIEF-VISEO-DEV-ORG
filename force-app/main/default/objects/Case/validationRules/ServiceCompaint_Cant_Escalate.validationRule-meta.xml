@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ServiceCompaint_Cant_Escalate</fullName>
+    <active>true</active>
+    <description>User cannot escalate cases with service complaint sub type</description>
+    <errorConditionFormula>ISPICKVAL( Case_Sub_Type__c, &apos;Service Complaints&apos;) &amp;&amp; (ISPICKVAL(Status, &apos;Escalated to L2&apos;) || ISPICKVAL(Status, &apos;L2 Closed&apos;))</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>Service Complaint case cannot be escalated to L2</errorMessage>
+</ValidationRule>

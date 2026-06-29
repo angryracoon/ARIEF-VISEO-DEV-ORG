@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Specialisation__c</fullName>
+    <label>Specialisation</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Aged Care</fullName>
+                <default>false</default>
+                <label>Aged Care</label>
+            </value>
+            <value>
+                <fullName>Analog</fullName>
+                <default>false</default>
+                <label>Analog</label>
+            </value>
+            <value>
+                <fullName>CAD/CAM Digital</fullName>
+                <default>false</default>
+                <label>CAD/CAM Digital</label>
+            </value>
+            <value>
+                <fullName>Ceramist</fullName>
+                <default>false</default>
+                <label>Ceramist</label>
+            </value>
+            <value>
+                <fullName>Dental Technician</fullName>
+                <default>false</default>
+                <label>Dental Technician</label>
+            </value>
+            <value>
+                <fullName>Endodontics</fullName>
+                <default>false</default>
+                <label>Endodontics</label>
+            </value>
+            <value>
+                <fullName>Fixed Prosthetics</fullName>
+                <default>false</default>
+                <label>Fixed Prosthetics</label>
+            </value>
+            <value>
+                <fullName>General Practitioner</fullName>
+                <default>false</default>
+                <label>General Practitioner</label>
+            </value>
+            <value>
+                <fullName>Implantology</fullName>
+                <default>false</default>
+                <label>Implantology</label>
+            </value>
+            <value>
+                <fullName>Laboratory</fullName>
+                <default>false</default>
+                <label>Laboratory</label>
+            </value>
+            <value>
+                <fullName>Medicine &amp; Radiology</fullName>
+                <default>false</default>
+                <label>Medicine &amp; Radiology</label>
+            </value>
+            <value>
+                <fullName>Metalleogist</fullName>
+                <default>false</default>
+                <label>Metalleogist</label>
+            </value>
+            <value>
+                <fullName>Oncology</fullName>
+                <default>false</default>
+                <label>Oncology</label>
+            </value>
+            <value>
+                <fullName>Operative/Restorative</fullName>
+                <default>false</default>
+                <label>Operative/Restorative</label>
+            </value>
+            <value>
+                <fullName>Oral &amp; Maxillofacial</fullName>
+                <default>false</default>
+                <label>Oral &amp; Maxillofacial</label>
+            </value>
+            <value>
+                <fullName>Oral Pathology</fullName>
+                <default>false</default>
+                <label>Oral Pathology</label>
+            </value>
+            <value>
+                <fullName>Orthodontics</fullName>
+                <default>false</default>
+                <label>Orthodontics</label>
+            </value>
+            <value>
+                <fullName>Paediatric Dentistry</fullName>
+                <default>false</default>
+                <label>Paediatric Dentistry</label>
+            </value>
+            <value>
+                <fullName>Periodontics</fullName>
+                <default>false</default>
+                <label>Periodontics</label>
+            </value>
+            <value>
+                <fullName>Plaster/Wax</fullName>
+                <default>false</default>
+                <label>Plaster/Wax</label>
+            </value>
+            <value>
+                <fullName>Prosthodontics</fullName>
+                <default>false</default>
+                <label>Prosthodontics</label>
+            </value>
+            <value>
+                <fullName>Public Health</fullName>
+                <default>false</default>
+                <label>Public Health</label>
+            </value>
+            <value>
+                <fullName>Removal Dentures</fullName>
+                <default>false</default>
+                <label>Removal Dentures</label>
+            </value>
+            <value>
+                <fullName>Special Needs Dentistry</fullName>
+                <default>false</default>
+                <label>Special Needs Dentistry</label>
+            </value>
+            <value>
+                <fullName>Pedodontics</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pedodontics</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

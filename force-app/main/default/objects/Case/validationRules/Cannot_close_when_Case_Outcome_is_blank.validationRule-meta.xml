@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_close_when_Case_Outcome_is_blank</fullName>
+    <active>true</active>
+    <description>The case cannot be closed if the Case Outcome is not populated for Service Complaints.</description>
+    <errorConditionFormula>IF(
+	(ISPICKVAL( Status , &apos;L1 Closed&apos;) || ISPICKVAL( Status , &apos;L2 Closed&apos;)) &amp;&amp; ISBLANK(Case_Outcome__c) &amp;&amp; ISPICKVAL(Case_Sub_Type__c, &apos;Service Complaints&apos;), 
+	TRUE,
+	FALSE
+)</errorConditionFormula>
+    <errorDisplayField>Case_Outcome__c</errorDisplayField>
+    <errorMessage>The case cannot be closed if the Case Outcome is not populated for Service Complaints.</errorMessage>
+</ValidationRule>

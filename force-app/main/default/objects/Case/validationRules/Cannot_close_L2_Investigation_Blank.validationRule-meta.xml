@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_close_L2_Investigation_Blank</fullName>
+    <active>true</active>
+    <description>The case cannot be closed (L2 Closed) if the Investigation Result (L2) is not populated after the case has been escalated to L2.</description>
+    <errorConditionFormula>ISPICKVAL(Status, &apos;L2 Closed&apos;) &amp;&amp; ISBLANK( Investigation_Result_L2__c) &amp;&amp; NOT(ISPICKVAL(Case_Sub_Type__c, &apos;Service Complaints&apos;))</errorConditionFormula>
+    <errorDisplayField>Investigation_Result_L2__c</errorDisplayField>
+    <errorMessage>The case cannot be closed (L2 Closed) if the Investigation Result (L2) is not populated after the case has been escalated to L2.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Member_Auto_Number__c</fullName>
+    <displayFormat>GCM-{00000000}</displayFormat>
+    <externalId>false</externalId>
+    <label>Contact Member Auto Number</label>
+    <trackHistory>false</trackHistory>
+    <type>AutoNumber</type>
+</CustomField>

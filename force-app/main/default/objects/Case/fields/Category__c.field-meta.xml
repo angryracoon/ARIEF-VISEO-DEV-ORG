@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <label>Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Case_Sub_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Abnormal smell / flavor</fullName>
+                <default>false</default>
+                <label>Abnormal smell / flavor</label>
+            </value>
+            <value>
+                <fullName>Air Bubbles</fullName>
+                <default>false</default>
+                <label>Air Bubbles</label>
+            </value>
+            <value>
+                <fullName>Allergic Reaction</fullName>
+                <default>false</default>
+                <label>Allergic Reaction</label>
+            </value>
+            <value>
+                <fullName>Brittle</fullName>
+                <default>false</default>
+                <label>Brittle</label>
+            </value>
+            <value>
+                <fullName>Cannot mix well</fullName>
+                <default>false</default>
+                <label>Cannot mix well</label>
+            </value>
+            <value>
+                <fullName>Clumped together</fullName>
+                <default>false</default>
+                <label>Clumped together</label>
+            </value>
+            <value>
+                <fullName>Color issue</fullName>
+                <default>false</default>
+                <label>Color issue</label>
+            </value>
+            <value>
+                <fullName>Contamination</fullName>
+                <default>false</default>
+                <label>Contamination</label>
+            </value>
+            <value>
+                <fullName>Contents are leaking</fullName>
+                <default>false</default>
+                <label>Contents are leaking</label>
+            </value>
+            <value>
+                <fullName>Damaged</fullName>
+                <default>false</default>
+                <label>Damaged</label>
+            </value>
+            <value>
+                <fullName>Dried Out</fullName>
+                <default>false</default>
+                <label>Dried Out</label>
+            </value>
+            <value>
+                <fullName>Easy to lose toothbrush bristles</fullName>
+                <default>false</default>
+                <label>Easy to lose toothbrush bristles</label>
+            </value>
+            <value>
+                <fullName>Extrusion defect (Cartridge &amp; Capsule)</fullName>
+                <default>false</default>
+                <label>Extrusion defect (Cartridge &amp; Capsule)</label>
+            </value>
+            <value>
+                <fullName>Hardened / High viscosity</fullName>
+                <default>false</default>
+                <label>Hardened / High viscosity</label>
+            </value>
+            <value>
+                <fullName>Liquid / Paste is separating</fullName>
+                <default>false</default>
+                <label>Liquid / Paste is separating</label>
+            </value>
+            <value>
+                <fullName>Malfunction (Dental equipment)</fullName>
+                <default>false</default>
+                <label>Malfunction (Dental equipment)</label>
+            </value>
+            <value>
+                <fullName>Milling</fullName>
+                <default>false</default>
+                <label>Milling</label>
+            </value>
+            <value>
+                <fullName>Missing / Incorrect Contents</fullName>
+                <default>false</default>
+                <label>Missing / Incorrect Contents</label>
+            </value>
+            <value>
+                <fullName>Packaging issue</fullName>
+                <default>false</default>
+                <label>Packaging issue</label>
+            </value>
+            <value>
+                <fullName>Restoration Cracks</fullName>
+                <default>false</default>
+                <label>Restoration Cracks</label>
+            </value>
+            <value>
+                <fullName>Restoration fall out</fullName>
+                <default>false</default>
+                <label>Restoration fall out</label>
+            </value>
+            <value>
+                <fullName>Rough Surface</fullName>
+                <default>false</default>
+                <label>Rough Surface</label>
+            </value>
+            <value>
+                <fullName>Rusty / Corrosion</fullName>
+                <default>false</default>
+                <label>Rusty / Corrosion</label>
+            </value>
+            <value>
+                <fullName>Setting time is too fast</fullName>
+                <default>false</default>
+                <label>Setting time is too fast</label>
+            </value>
+            <value>
+                <fullName>Setting time is too late</fullName>
+                <default>false</default>
+                <label>Setting time is too late</label>
+            </value>
+            <value>
+                <fullName>Sticky</fullName>
+                <default>false</default>
+                <label>Sticky</label>
+            </value>
+            <value>
+                <fullName>Too soft / Low viscosity</fullName>
+                <default>false</default>
+                <label>Too soft / Low viscosity</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Health Issue</controllingFieldValue>
+            <valueName>Allergic Reaction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Health Issue</controllingFieldValue>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Abnormal smell / flavor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Air Bubbles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Brittle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Cannot mix well</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Clumped together</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Color issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Contamination</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Contents are leaking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Damaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Dried Out</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Easy to lose toothbrush bristles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Extrusion defect (Cartridge &amp; Capsule)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Hardened / High viscosity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Liquid / Paste is separating</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Malfunction (Dental equipment)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Milling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Missing / Incorrect Contents</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Packaging issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Restoration Cracks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Restoration fall out</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Rough Surface</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Rusty / Corrosion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Setting time is too fast</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Setting time is too late</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Sticky</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Issue</controllingFieldValue>
+            <valueName>Too soft / Low viscosity</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

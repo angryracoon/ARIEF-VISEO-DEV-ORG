@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KOL_Expertise_General__c</fullName>
+    <label>KOL Expertise General</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Influencing</fullName>
+                <default>false</default>
+                <label>Influencing</label>
+            </value>
+            <value>
+                <fullName>Lecturing (Presentation skills) – International</fullName>
+                <default>false</default>
+                <label>Lecturing (Presentation skills) – International</label>
+            </value>
+            <value>
+                <fullName>Good clinical pictures</fullName>
+                <default>false</default>
+                <label>Good clinical pictures</label>
+            </value>
+            <value>
+                <fullName>Field Test participant</fullName>
+                <default>false</default>
+                <label>Field Test participant</label>
+            </value>
+            <value>
+                <fullName>Workshops (Hands on ability)</fullName>
+                <default>false</default>
+                <label>Workshops (Hands on ability)</label>
+            </value>
+            <value>
+                <fullName>Testimonials</fullName>
+                <default>false</default>
+                <label>Testimonials</label>
+            </value>
+            <value>
+                <fullName>Live Patient Demo</fullName>
+                <default>false</default>
+                <label>Live Patient Demo</label>
+            </value>
+            <value>
+                <fullName>Ability to write articles</fullName>
+                <default>false</default>
+                <label>Ability to write articles</label>
+            </value>
+            <value>
+                <fullName>Clinical Case Report</fullName>
+                <default>false</default>
+                <label>Clinical Case Report</label>
+            </value>
+            <value>
+                <fullName>Lecturing (Presentation skills)</fullName>
+                <default>false</default>
+                <label>Lecturing (Presentation skills)</label>
+            </value>
+            <value>
+                <fullName>Local Clinical research</fullName>
+                <default>false</default>
+                <label>Local Clinical research</label>
+            </value>
+            <value>
+                <fullName>Peer reviewed publications</fullName>
+                <default>false</default>
+                <label>Peer reviewed publications</label>
+            </value>
+            <value>
+                <fullName>Lab research</fullName>
+                <default>false</default>
+                <label>Lab research</label>
+            </value>
+            <value>
+                <fullName>Involving governmental policies</fullName>
+                <default>false</default>
+                <label>Involving governmental policies</label>
+            </value>
+            <value>
+                <fullName>T2T participant</fullName>
+                <default>false</default>
+                <label>T2T participant</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

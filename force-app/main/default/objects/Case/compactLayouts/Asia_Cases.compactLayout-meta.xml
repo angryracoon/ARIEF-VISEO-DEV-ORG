@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asia_Cases</fullName>
+    <fields>Status</fields>
+    <fields>Subject</fields>
+    <fields>CaseNumber</fields>
+    <fields>RecordTypeId</fields>
+    <label>Asia Cases</label>
+</CompactLayout>

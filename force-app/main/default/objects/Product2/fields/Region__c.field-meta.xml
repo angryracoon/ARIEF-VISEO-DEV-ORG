@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Region__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    Country__c, 
+    &apos;India&apos;, &apos;India&apos;,
+    &apos;Australia&apos;, &apos;ANZ&apos;,
+    &apos;New Zealand&apos;, &apos;ANZ&apos;,
+    &apos;Indonesia&apos;, &apos;SEA&apos;,
+    &apos;Singapore&apos;, &apos;SEA&apos;,
+    &apos;Malaysia&apos;, &apos;SEA&apos;,
+    &apos;Thailand&apos;, &apos;SEA&apos;,
+    &apos;Vietnam&apos;, &apos;SEA&apos;,
+    &apos;Philippines&apos;, &apos;SEA&apos;,
+    &apos;Pakistan&apos;, &apos;SEA&apos;,
+    &apos;Myanmar&apos;, &apos;SEA&apos;,
+    &apos;Afghanistan&apos;, &apos;SEA&apos;,
+    &apos;Laos&apos;, &apos;SEA&apos;,
+    &apos;Cambodia&apos;, &apos;SEA&apos;,
+    &apos;Brunei&apos;, &apos;SEA&apos;,
+    &apos;&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Region</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

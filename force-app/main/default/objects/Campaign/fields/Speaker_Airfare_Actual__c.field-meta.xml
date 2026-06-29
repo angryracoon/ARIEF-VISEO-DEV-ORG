@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Speaker_Airfare_Actual__c</fullName>
+    <label>Speaker Airfare (Actual)</label>
+    <summarizedField>Speaker_Detail__c.Speaker_Airfare_Actual__c</summarizedField>
+    <summaryForeignKey>Speaker_Detail__c.Campaign__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

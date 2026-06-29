@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_able_to_create_within_same_country</fullName>
+    <active>true</active>
+    <description>User only able to create contact within his/her country</description>
+    <errorConditionFormula>AND (
+    NOT(
+        $Profile.Name == &apos;System Administrator&apos; ||
+        CONTAINS($UserRole.Name, &apos;Head Office&apos;) ||
+        CONTAINS($UserRole.Name, &apos;HO Operations Manager&apos;) ||
+        ($User.Country == &apos;Malaysia&apos; &amp;&amp;  MailingCountry== &apos;Brunei&apos;)
+    ),
+    OR (
+        ($User.Country = &apos;India&apos; &amp;&amp; UPPER(MailingCountry) != UPPER($User.Country)),
+        (CONTAINS($UserRole.Name, &apos;Zonal Sales 1&apos;) &amp;&amp;
+            (UPPER(MailingCountry) != &apos;MALAYSIA&apos; &amp;&amp;
+            UPPER(MailingCountry) != &apos;SINGAPORE&apos;)
+        ),
+        (CONTAINS($UserRole.Name, &apos;Zonal Sales 2&apos;) &amp;&amp;
+            (UPPER(MailingCountry) != &apos;INDONESIA&apos; &amp;&amp;
+            UPPER(MailingCountry) != &apos;PHILIPPINES&apos;)
+        ),
+        (CONTAINS($UserRole.Name, &apos;Zonal Sales 3&apos;) &amp;&amp;
+            (UPPER(MailingCountry) != &apos;THAILAND&apos; &amp;&amp;
+            UPPER(MailingCountry) != &apos;VIETNAM&apos;)
+        ),
+        (
+            ISPICKVAL($User.Region__c, &apos;ANZ&apos;) &amp;&amp; 
+            (
+                NOT(CONTAINS($UserRole.Name, &apos;ANZ Regional Sales&apos;)) &amp;&amp; 
+                NOT(CONTAINS($UserRole.Name, &apos;ANZ Back Office Operations Manager&apos;)) &amp;&amp;
+                (
+                    (UPPER($User.Country) == &apos;AUSTRALIA&apos; &amp;&amp; UPPER(MailingCountry) != &apos;AUSTRALIA&apos;) ||
+                    (UPPER($User.Country) == &apos;NEW ZEALAND&apos; &amp;&amp; UPPER(MailingCountry) != &apos;NEW ZEALAND&apos;)
+                )
+            )
+        ),
+        (
+            (CONTAINS($UserRole.Name, &apos;ANZ Regional Sales&apos;) || CONTAINS($UserRole.Name, &apos;ANZ Back Office Operations Manager&apos;)) &amp;&amp;
+            (UPPER(MailingCountry) != &apos;AUSTRALIA&apos; &amp;&amp; UPPER(MailingCountry) != &apos;NEW ZEALAND&apos;)
+        ),
+        (
+            NOT(
+                CONTAINS($UserRole.Name, &apos;Zonal Sales&apos;) || 
+                CONTAINS($UserRole.Name, &apos;Regional Sales&apos;) || 
+                CONTAINS($UserRole.Name, &apos;Back Office&apos;)
+            ) &amp;&amp;
+            UPPER(MailingCountry) != UPPER($User.Country) &amp;&amp;
+            NOT(
+                CONTAINS(UPPER(MailingCountry), &apos;AFGHANISTAN&apos;) ||
+                CONTAINS(UPPER(MailingCountry), &apos;CAMBODIA&apos;) ||
+                CONTAINS(UPPER(MailingCountry), &apos;LAO&apos;) ||
+                CONTAINS(UPPER(MailingCountry), &apos;MYANMAR&apos;) ||
+                CONTAINS(UPPER(MailingCountry), &apos;PAKISTAN&apos;)
+            )
+        )
+    )
+)</errorConditionFormula>
+    <errorDisplayField>MailingCountry</errorDisplayField>
+    <errorMessage>You can only create a Contact within your country. Please double check your Contact Mailing Country.</errorMessage>
+</ValidationRule>

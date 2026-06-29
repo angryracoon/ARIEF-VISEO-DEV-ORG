@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_User_Sale__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>First time order for the product by the account in the last 12 months.</inlineHelpText>
+    <label>New User Sale</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

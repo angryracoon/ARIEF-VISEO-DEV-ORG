@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Checked automatically when the User Story Finalization sign-off is approved. Required before advancing past the User Story Finalization stage. --></help>
+    <label><!-- User Story Sign Off Complete --></label>
+    <name>User_Story_Sign_Off_Complete__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>address_is_mandatory</fullName>
+    <active>true</active>
+    <description>Although address will be populated automatically from account address, user shouldnt be able to clear out the address and leave it blank</description>
+    <errorConditionFormula>(
+ISBLANK(BillingStreet) || ISBLANK(BillingCity) || ISBLANK(BillingState) || ISBLANK(BillingPostalCode) || ISBLANK(BillingCountry)
+) ||
+(
+ISBLANK(ShippingStreet) || ISBLANK(ShippingCity) || ISBLANK(ShippingState) || ISBLANK(ShippingPostalCode) || ISBLANK(ShippingCountry)
+)</errorConditionFormula>
+    <errorMessage>You cannot leave the billing and shipping addresses empty. If you have an address different from the account address, please fill in all the address details.</errorMessage>
+</ValidationRule>

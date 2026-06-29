@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>account_contact_mandatory_validation</fullName>
+    <active>true</active>
+    <description>Account and contact are mandatory
+OLD:
+NOT(ISPICKVAL(Activity_Type__c, &apos;Justified Miscalls&apos;)) &amp;&amp; (ISBLANK(WhatId) || ISBLANK(WhoId))</description>
+    <errorConditionFormula>ISBLANK(WhatId) || ISBLANK(WhoId)</errorConditionFormula>
+    <errorDisplayField>WhatId</errorDisplayField>
+    <errorMessage>Account and Contact are mandatory.</errorMessage>
+</ValidationRule>

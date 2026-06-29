@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prod_Mandatory_NonServiceComplaint</fullName>
+    <active>true</active>
+    <description>Product and quantity should be mandatory if the sub type is service complaints</description>
+    <errorConditionFormula>IF(
+(ISPICKVAL(Case_Sub_Type__c, &apos;Product Issue&apos;) || ISPICKVAL(Case_Sub_Type__c, &apos;Health Issue&apos;)) &amp;&amp;  ISBLANK(ProductId),
+TRUE,
+FALSE
+)</errorConditionFormula>
+    <errorDisplayField>ProductId</errorDisplayField>
+    <errorMessage>Product and Quantity are mandatory if the case sub type is Health Issue or Product Issue.</errorMessage>
+</ValidationRule>

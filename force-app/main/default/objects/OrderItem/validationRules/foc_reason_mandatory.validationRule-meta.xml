@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>foc_reason_mandatory</fullName>
+    <active>true</active>
+    <description>FOC reason is mandatory if FOC quantity populated</description>
+    <errorConditionFormula>FOC_Quantity__c &gt; 0 &amp;&amp; ISBLANK(TEXT(FOC_Reason__c))</errorConditionFormula>
+    <errorDisplayField>FOC_Reason__c</errorDisplayField>
+    <errorMessage>FOC Reason is required if FOC Quantity is not empty</errorMessage>
+</ValidationRule>

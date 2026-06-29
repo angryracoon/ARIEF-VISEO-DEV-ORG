@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mailing_Address_is_Mandatory</fullName>
+    <active>true</active>
+    <description>To make address field mandatory</description>
+    <errorConditionFormula>ISBLANK(MailingStreet) || ISBLANK(MailingCity) || ISBLANK(MailingState) || ISBLANK(MailingPostalCode) || ISBLANK(MailingCountry)</errorConditionFormula>
+    <errorMessage>Please fill up all of the Contact Mailing Address details such as Street, City, Country, State/Province, and Postal Code</errorMessage>
+</ValidationRule>

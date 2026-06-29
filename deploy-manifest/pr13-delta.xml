@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Opportunity.Discovery_Sign_Off_Complete__c</members>
+        <members>Opportunity.Req_Gathering_Sign_Off_Complete__c</members>
+        <members>Opportunity.Req_Documentation_Sign_Off_Complete__c</members>
+        <members>Opportunity.User_Story_Sign_Off_Complete__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Opportunity.Sign_Off_Required_Before_Stage_Advance</members>
+        <name>ValidationRule</name>
+    </types>
+    <types>
+        <members>Opportunity_Before_Save</members>
+        <members>Project_Sign_Off_Upload_Document</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Opportunity_Before_Save</members>
+        <members>Project_Sign_Off_Upload_Document</members>
+        <name>FlowDefinition</name>
+    </types>
+    <types>
+        <members>Opportunity_Project_Record_Page</members>
+        <members>Project_Activity_Record_Page</members>
+        <members>Project_Sign_Off_Record_Page</members>
+        <members>Project_Sprint_Record_Page</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Opportunity_RO_PS</members>
+        <members>Opportunity_RW_PS</members>
+        <members>Opportunity_DELETE_PS</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>VISEO_Project_Activity_Status_Path</members>
+        <members>VISEO_Project_Sprint_Status_Path</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>Opportunity-VISEO Project Opportunity Layout</members>
+        <name>Layout</name>
+    </types>
+    <version>65.0</version>
+</Package>

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"ORCHESTRATOR HARD OVERRIDE — NO EXCEPTIONS:\\\\n\\\\nYou are the orchestrator. NEVER implement Salesforce changes directly.\\\\n\\\\nFOR ANY SALESFORCE REQUEST your VERY FIRST tool call MUST be:\\\\n  Agent(subagent_type: salesforce-design, ...)\\\\n\\\\nFORBIDDEN as first action — these are violations:\\\\n  - Calling Read on force-app/ to understand requirements before delegating\\\\n  - Calling Write or Edit on ANY .cls .trigger .xml .html .js file\\\\n  - Calling Bash to run sf or sfdx commands\\\\n  - Creating metadata inline because it seems simple\\\\n\\\\nAFTER salesforce-design completes:\\\\n  STOP. Show design output to user.\\\\n  Ask: Approve this design? [Y] Yes / [N] No / [C] Changes needed\\\\n  DO NOT spawn salesforce-admin or any agent until user says Y.\\\\n\\\\nDelegate. Gate. Wait. This is the only allowed sequence.\\\"}}\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
