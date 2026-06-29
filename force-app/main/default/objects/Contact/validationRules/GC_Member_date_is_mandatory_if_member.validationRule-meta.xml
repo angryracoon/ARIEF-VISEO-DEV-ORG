@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GC_Member_date_is_mandatory_if_member</fullName>
+    <active>true</active>
+    <errorConditionFormula>is_GC_Member__c &amp;&amp; (ISBLANK( GC_Membership_Start_Date__c) || ISBLANK( GC_Membership_End_Date__c ))</errorConditionFormula>
+    <errorDisplayField>GC_Membership_Start_Date__c</errorDisplayField>
+    <errorMessage>GC Membership Start Date and End Date are mandatory if the contact is GC Member.</errorMessage>
+</ValidationRule>

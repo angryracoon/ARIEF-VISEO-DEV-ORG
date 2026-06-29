@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_StartDate_Before_EndDate</fullName>
+    <active>true</active>
+    <description>Actual Event Start Date must be earlier than End Date.</description>
+    <errorConditionFormula>StartDate &gt; EndDate</errorConditionFormula>
+    <errorDisplayField>StartDate</errorDisplayField>
+    <errorMessage>Actual Event Start Date must be earlier than End Date.</errorMessage>
+</ValidationRule>

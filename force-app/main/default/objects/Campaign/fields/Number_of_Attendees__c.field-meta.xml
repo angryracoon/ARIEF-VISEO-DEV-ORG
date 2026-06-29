@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Attendees__c</fullName>
+    <description>This is to indicate the total number of attendees that have attended the event/ campaign program/ marketing effort.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The total number of attendees that have attended the event/ campaign program/ marketing effort.</inlineHelpText>
+    <label>Number of Attendees</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

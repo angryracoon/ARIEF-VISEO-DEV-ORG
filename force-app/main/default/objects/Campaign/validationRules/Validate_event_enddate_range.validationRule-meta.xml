@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_event_enddate_range</fullName>
+    <active>true</active>
+    <description>Actual Event End Date must be between Sales Start Date and Sales End Date.</description>
+    <errorConditionFormula>OR(
+    EndDate &lt; Sales_Start_Date__c,
+    EndDate &gt; Sales_Close_Date__c
+)</errorConditionFormula>
+    <errorDisplayField>EndDate</errorDisplayField>
+    <errorMessage>Actual Event End Date must be between Sales Start Date and Sales End Date.</errorMessage>
+</ValidationRule>

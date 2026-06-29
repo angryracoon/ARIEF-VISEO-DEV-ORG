@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salutation_mandatory_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK(TEXT(Salutation))</errorConditionFormula>
+    <errorDisplayField>Salutation</errorDisplayField>
+    <errorMessage>Salutation is mandatory.</errorMessage>
+</ValidationRule>

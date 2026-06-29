@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trainer_Subject__c</fullName>
+    <label>Trainer Subject</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lab - Composite</fullName>
+                <default>false</default>
+                <label>Lab - Composite</label>
+            </value>
+            <value>
+                <fullName>Lab- General</fullName>
+                <default>false</default>
+                <label>Lab- General</label>
+            </value>
+            <value>
+                <fullName>Lab - Implant</fullName>
+                <default>false</default>
+                <label>Lab - Implant</label>
+            </value>
+            <value>
+                <fullName>Lab - Digital</fullName>
+                <default>false</default>
+                <label>Lab - Digital</label>
+            </value>
+            <value>
+                <fullName>Lab - Ceramic</fullName>
+                <default>false</default>
+                <label>Lab - Ceramic</label>
+            </value>
+            <value>
+                <fullName>Ope - Direct restoration</fullName>
+                <default>false</default>
+                <label>Ope - Direct restoration</label>
+            </value>
+            <value>
+                <fullName>Ope - Indirect/Digital/CAD CAM</fullName>
+                <default>false</default>
+                <label>Ope - Indirect/Digital/CAD CAM</label>
+            </value>
+            <value>
+                <fullName>Ope - MI</fullName>
+                <default>false</default>
+                <label>Ope - MI</label>
+            </value>
+            <value>
+                <fullName>Ope - Implants</fullName>
+                <default>false</default>
+                <label>Ope - Implants</label>
+            </value>
+            <value>
+                <fullName>Ope - Others</fullName>
+                <default>false</default>
+                <label>Ope - Others</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

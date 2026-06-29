@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Key_Contact_Person__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>To select the key contact person (user) related to this contact.</description>
+    <inlineHelpText>Salesforce User Account</inlineHelpText>
+    <label>Key Contact Person</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Contacts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

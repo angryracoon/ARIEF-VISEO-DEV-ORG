@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KOL_Who_can_Contact__c</fullName>
+    <label>KOL Who can Contact</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GCAD &amp; Local</fullName>
+                <default>false</default>
+                <label>GCAD &amp; Local</label>
+            </value>
+            <value>
+                <fullName>Local to contact Only</fullName>
+                <default>false</default>
+                <label>Local to contact Only</label>
+            </value>
+            <value>
+                <fullName>GCAD HQ &amp; Local</fullName>
+                <default>false</default>
+                <label>GCAD HQ &amp; Local</label>
+            </value>
+            <value>
+                <fullName>Professional Service Local</fullName>
+                <default>false</default>
+                <label>Professional Service Local</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

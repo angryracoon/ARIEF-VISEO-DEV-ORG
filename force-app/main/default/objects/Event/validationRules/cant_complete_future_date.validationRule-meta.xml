@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cant_complete_future_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ ActivityDate &gt; Today(),
+ISPICKVAL(Activity_Status__c,&apos;Completed&apos;),
+NOT(ISPICKVAL(Activity_Type__c,&apos;Justified Miscalls&apos;))
+)</errorConditionFormula>
+    <errorMessage>Can&apos;t complete Future Date Event</errorMessage>
+</ValidationRule>

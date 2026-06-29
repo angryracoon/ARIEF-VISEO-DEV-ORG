@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Completed_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+AND(
+    ISCHANGED(Status),
+    ISPICKVAL(Status, &quot;Completed&quot;),
+    NOT(ISPICKVAL(PRIORVALUE(Status), &quot;Active&quot;))
+),
+AND(
+    ISCHANGED(Status),
+    ISPICKVAL(Status, &quot;Completed&quot;),
+    TODAY() &lt;= Sales_Close_Date__c
+)
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You can only change the Status to &apos;Completed&apos; if the current Status is &apos;Active&apos; and today&apos;s date is after the Sales Close Date.</errorMessage>
+</ValidationRule>

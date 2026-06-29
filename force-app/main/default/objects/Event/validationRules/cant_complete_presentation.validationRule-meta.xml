@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cant_complete_presentation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISBLANK(Presentation_On__c),
+ISPICKVAL(Activity_Status__c,&apos;Completed&apos;),
+ISPICKVAL(Activity_Sub_Type__c,&apos;Product Presentation&apos;)
+)</errorConditionFormula>
+    <errorMessage>Can&apos;t complete there is no Presentation On</errorMessage>
+</ValidationRule>

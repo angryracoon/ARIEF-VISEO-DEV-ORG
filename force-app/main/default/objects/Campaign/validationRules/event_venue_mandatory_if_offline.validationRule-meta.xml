@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>event_venue_mandatory_if_offline</fullName>
+    <active>true</active>
+    <description>Event venue is mandatory when event type is Offline Events</description>
+    <errorConditionFormula>ISPICKVAL( Type , &apos;Offline Events&apos;) &amp;&amp; ISBLANK( Event_Venue__c )</errorConditionFormula>
+    <errorDisplayField>Event_Venue__c</errorDisplayField>
+    <errorMessage>Event Venue is mandatory when the type of the event is Offline Events</errorMessage>
+</ValidationRule>

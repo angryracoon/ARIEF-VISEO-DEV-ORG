@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_able_to_create_within_same_country</fullName>
+    <active>true</active>
+    <description>User only able to create account within his/her country/region/zone</description>
+    <errorConditionFormula>AND(
+NOT(
+$Profile.Name = &apos;System Administrator&apos; ||
+CONTAINS($UserRole.Name, &apos;Head Office&apos;) ||
+CONTAINS($UserRole.Name, &apos;HO Operations Manager&apos;)
+),
+
+OR(
+
+($User.Country = &apos;India&apos; &amp;&amp; UPPER(BillingCountry) &lt;&gt; UPPER($User.Country)),
+
+(CONTAINS($UserRole.Name, &apos;Zonal Sales 1&apos;) &amp;&amp;
+(
+UPPER(BillingCountry) &lt;&gt; &apos;MALAYSIA&apos; &amp;&amp;
+UPPER(BillingCountry) &lt;&gt; &apos;SINGAPORE&apos; &amp;&amp;
+UPPER(BillingCountry) &lt;&gt; &apos;BRUNEI DARUSSALAM&apos;
+)
+),
+
+(CONTAINS($UserRole.Name, &apos;Zonal Sales 2&apos;) &amp;&amp;
+(
+UPPER(BillingCountry) &lt;&gt; &apos;INDONESIA&apos; &amp;&amp;
+UPPER(BillingCountry) &lt;&gt; &apos;PHILIPPINES&apos;
+)
+),
+
+(CONTAINS($UserRole.Name, &apos;Zonal Sales 3&apos;) &amp;&amp;
+(
+UPPER(BillingCountry) &lt;&gt; &apos;THAILAND&apos; &amp;&amp;
+UPPER(BillingCountry) &lt;&gt; &apos;VIETNAM&apos;
+)
+),
+
+(
+ISPICKVAL($User.Region__c, &apos;ANZ&apos;) &amp;&amp;
+NOT(CONTAINS($UserRole.Name, &apos;ANZ Regional Sales&apos;)) &amp;&amp;
+NOT(CONTAINS($UserRole.Name, &apos;ANZ Back Office Operations Manager&apos;)) &amp;&amp;
+(
+(UPPER($User.Country) = &apos;AUSTRALIA&apos; &amp;&amp; UPPER(BillingCountry) &lt;&gt; &apos;AUSTRALIA&apos;) ||
+(UPPER($User.Country) = &apos;NEW ZEALAND&apos; &amp;&amp; UPPER(BillingCountry) &lt;&gt; &apos;NEW ZEALAND&apos;)
+)
+),
+
+(
+(CONTAINS($UserRole.Name, &apos;ANZ Regional Sales&apos;) || CONTAINS($UserRole.Name, &apos;ANZ Back Office Operations Manager&apos;)) &amp;&amp;
+(
+UPPER(BillingCountry) &lt;&gt; &apos;AUSTRALIA&apos; &amp;&amp;
+UPPER(BillingCountry) &lt;&gt; &apos;NEW ZEALAND&apos;
+)
+),
+
+(
+NOT(
+CONTAINS($UserRole.Name, &apos;Zonal Sales&apos;) ||
+CONTAINS($UserRole.Name, &apos;Regional Sales&apos;) ||
+CONTAINS($UserRole.Name, &apos;Back Office&apos;)
+) &amp;&amp;
+UPPER(BillingCountry) &lt;&gt; UPPER($User.Country) &amp;&amp;
+NOT(
+CONTAINS(UPPER(BillingCountry), &apos;BRUNEI&apos;) ||
+
+(
+$User.Username = &apos;vince.xie@gc.dental&apos; &amp;&amp;
+(
+CONTAINS(UPPER(BillingCountry), &apos;AFGHANISTAN&apos;) ||
+CONTAINS(UPPER(BillingCountry), &apos;CAMBODIA&apos;) ||
+CONTAINS(UPPER(BillingCountry), &apos;LAO&apos;) ||
+CONTAINS(UPPER(BillingCountry), &apos;MYANMAR&apos;) ||
+CONTAINS(UPPER(BillingCountry), &apos;PAKISTAN&apos;)
+)
+)
+
+)
+),
+
+(
+UPPER(BillingCountry) = &apos;BRUNEI DARUSSALAM&apos; &amp;&amp;
+UPPER($User.Country) &lt;&gt; &apos;BRUNEI DARUSSALAM&apos; &amp;&amp;
+NOT($Permission.Manage_Brunei)
+)
+
+)
+)</errorConditionFormula>
+    <errorDisplayField>BillingCountry</errorDisplayField>
+    <errorMessage>You can only create an Account within the Country or Region/Zone you are assigned to. Please check the billing country that you populated.</errorMessage>
+</ValidationRule>

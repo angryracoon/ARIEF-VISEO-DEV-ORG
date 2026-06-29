@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>order_type_check</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(TEXT(Type))),
+NOT(ISPICKVAL(Type, &apos;Sub-Dealer Order&apos;)),
+ISPICKVAL(Account.Type,&apos;Sub-dealer&apos;)
+)</errorConditionFormula>
+    <errorDisplayField>Type</errorDisplayField>
+    <errorMessage>Please use order type &quot;Sub-Dealer Order&quot; for Account Type &quot;Sub-dealer&quot;.</errorMessage>
+</ValidationRule>

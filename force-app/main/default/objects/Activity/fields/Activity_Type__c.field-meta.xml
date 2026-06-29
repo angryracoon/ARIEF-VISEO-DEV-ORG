@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Type__c</fullName>
+    <label>Activity Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Face to Face Meeting</fullName>
+                <default>false</default>
+                <label>Face to Face Meeting</label>
+            </value>
+            <value>
+                <fullName>Telesales</fullName>
+                <default>false</default>
+                <label>Telesales</label>
+            </value>
+            <value>
+                <fullName>Justified Miscalls</fullName>
+                <default>false</default>
+                <label>Justified Miscalls</label>
+            </value>
+            <value>
+                <fullName>Co-call</fullName>
+                <default>false</default>
+                <label>Co-call</label>
+            </value>
+            <value>
+                <fullName>Phone Call</fullName>
+                <default>false</default>
+                <label>Phone Call</label>
+            </value>
+            <value>
+                <fullName>Instant Messenger</fullName>
+                <default>false</default>
+                <label>Instant Messenger</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+            <value>
+                <fullName>Lunch &amp; Learn</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Learn</label>
+            </value>
+            <value>
+                <fullName>Mini Workshop</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Mini Workshop</label>
+            </value>
+            <value>
+                <fullName>Non-Agenda Visit</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Non-Agenda Visit</label>
+            </value>
+            <value>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Social Media</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

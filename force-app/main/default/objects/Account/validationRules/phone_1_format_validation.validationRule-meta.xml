@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>phone_1_format_validation</fullName>
+    <active>true</active>
+    <description>Only allow number, without space and special character</description>
+    <errorConditionFormula>NOT(ISBLANK(Phone)) &amp;&amp; NOT(REGEX(Phone, &quot;^[0-9]+$&quot;))</errorConditionFormula>
+    <errorDisplayField>Phone</errorDisplayField>
+    <errorMessage>Phone number can only contain digits, no spaces or special characters.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GC_Asia_Event_Compact_Layout</fullName>
+    <fields>Subject</fields>
+    <fields>StartDateTime</fields>
+    <fields>EndDateTime</fields>
+    <fields>WhatId</fields>
+    <fields>WhoId</fields>
+    <fields>Order__c</fields>
+    <label>GC Asia Event Compact Layout</label>
+</CompactLayout>

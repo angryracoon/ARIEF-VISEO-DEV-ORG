@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_Fee__c</fullName>
+    <description>This is to indicate the campaign fee. If the campaign fee is not applicable, users to leave the value  as it is ‘0’ in the field.</description>
+    <inlineHelpText>Input value ‘0’ if fee is not applicable</inlineHelpText>
+    <label>Campaign Fee</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

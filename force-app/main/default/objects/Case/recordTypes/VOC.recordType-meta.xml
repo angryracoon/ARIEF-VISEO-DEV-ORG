@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VOC</fullName>
+    <active>true</active>
+    <businessProcess>VOC</businessProcess>
+    <compactLayoutAssignment>Asia_Cases</compactLayoutAssignment>
+    <description>Refers to the feedback given by customer, both negative and positive.</description>
+    <label>VOC</label>
+    <picklistValues>
+        <picklist>Case_Sub_Type__c</picklist>
+        <values>
+            <fullName>Existing Product Feedback</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General Feedback %28non-product%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Product Feedback</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Category__c</picklist>
+        <values>
+            <fullName>Abnormal smell %2F flavor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Air Bubbles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Allergic Reaction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brittle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cannot mix well</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clumped together</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Color issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contamination</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contents are leaking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dried Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Easy to lose toothbrush bristles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extrusion defect %28Cartridge %26 Capsule%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hardened %2F High viscosity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Liquid %2F Paste is separating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Malfunction %28Dental equipment%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing %2F Incorrect Contents</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Others</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Packaging issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restoration Cracks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restoration fall out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rough Surface</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rusty %2F Corrosion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Setting time is too fast</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Setting time is too late</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sticky</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Too soft %2F Low viscosity</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Nature_of_VOC__c</picklist>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Positive</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>Manual</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>Complex functionality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions not clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User didn%27t attend training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Product Complaint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VOC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Checked automatically when the Requirement Documentation sign-off is approved. Required before advancing past the Requirement Documentation stage. --></help>
+    <label><!-- Req Documentation Sign Off Complete --></label>
+    <name>Req_Documentation_Sign_Off_Complete__c</name>
+</CustomFieldTranslation>

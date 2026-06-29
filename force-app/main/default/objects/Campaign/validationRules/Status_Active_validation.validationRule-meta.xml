@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Active_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+AND(
+    ISCHANGED(Status),
+    ISPICKVAL(Status, &quot;Active&quot;),
+    TODAY() &lt; Sales_Start_Date__c
+),
+AND(
+    ISCHANGED(Status),
+    ISPICKVAL(Status, &quot;Active&quot;),
+    NOT(ISPICKVAL(PRIORVALUE(Status), &quot;Approved&quot;))
+)
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You can only change the Status to &apos;Active&apos; if the current Status is &apos;Approved&apos; and today&apos;s date is after the Sales Start Date.</errorMessage>
+</ValidationRule>

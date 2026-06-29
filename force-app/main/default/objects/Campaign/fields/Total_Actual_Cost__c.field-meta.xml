@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Actual_Cost__c</fullName>
+    <formula>Speaker_Accomodation_Actual__c +
+ Speaker_Airfare_Actual__c  +
+ Speaker_Honorarium_Actual__c +
+ Participation_Fee_Actual__c +
+ Booth_Construction_Actual__c +
+ Venue_Rental_Actual__c +
+ Equipment_Rental_Actual__c +
+ Workshop_Demo_Materials_Actual__c +
+ Promo_Materials_Actual__c +
+ Travelling_Accommodation_Actual__c +
+ Cost_Others_Actual__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Actual Cost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

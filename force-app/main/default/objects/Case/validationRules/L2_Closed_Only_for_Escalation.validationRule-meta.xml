@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>L2_Closed_Only_for_Escalation</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+AND(
+    ISCHANGED(Status),
+    ISPICKVAL(Status, &quot;L2 Closed&quot;),
+    NOT(ISPICKVAL(PRIORVALUE(Status), &quot;Escalated to L2&quot;)),
+    NOT(ISPICKVAL(Case_Sub_Type__c, &apos;Service Complaints&apos;))
+),
+ISNEW() &amp;&amp; ISPICKVAL(Status, &quot;L2 Closed&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You cannot change the status to L2 Closed if the case is not Escalated.</errorMessage>
+</ValidationRule>

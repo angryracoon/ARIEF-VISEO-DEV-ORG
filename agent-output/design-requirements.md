@@ -1,107 +1,126 @@
-# Design Requirements — Sign-Off Field Name Fix
+# Design Requirements — Opportunity Probability Auto-Update on Stage Change
 
-**Date:** 2026-06-21
-**Branch:** `fix/2026-06-21-signoff-field-rename`
+**Date:** 2026-06-26
+**Branch:** `feat/opportunity-probability-auto-update`
 **API Version:** 65.0
-**Parent PR:** #9 (merged — never deployed, blocked by field name + VR bugs)
 
 ---
 
-## Context
+## Context and Key Finding
 
-PR #9 introduced 4 per-stage sign-off checkbox fields on Opportunity. Three of the four API names exceed Salesforce's 40-char limit and could not be deployed. The validation rule also still references the field being destructively removed (`Current_Stage_Sign_Off_Complete__c`). This fix branch resolves all blockers.
+The org uses two distinct Opportunity record types:
 
----
+1. **VISEO_Project_Opportunity** — uses the `VISEO_Sales_Process` business process with delivery-centric stages: Discovery, Requirement Gathering, Requirement Documentation, User Story Finalization, AMS, In Development, Live, QA, UAT. These stages have no probability semantics and are not in scope for this feature.
 
-## Already Done (staged, not yet committed)
+2. **Default/Standard Opportunity** — uses standard Salesforce stage picklist values (Qualification, Proposal/Price Quote, Id. Decision Makers, Perception Analysis, Value Proposition, Needs Analysis, Negotiation/Review, Closed Won, Closed Lost). The requirement maps to a simplified 6-stage subset of these.
 
-| Action | File |
-|--------|------|
-| Renamed `Requirement_Documentation_Sign_Off_Complete__c` → `Req_Documentation_Sign_Off_Complete__c` | `objects/Opportunity/fields/` |
-| Renamed `Requirement_Gathering_Sign_Off_Complete__c` → `Req_Gathering_Sign_Off_Complete__c` | `objects/Opportunity/fields/` |
-| Renamed `User_Story_Finalization_Sign_Off_Complete__c` → `User_Story_Sign_Off_Complete__c` | `objects/Opportunity/fields/` |
-| Deleted `DataCloudGeoLocation.cleanDataService-meta.xml` | `cleanDataServices/` |
-| `Discovery_Sign_Off_Complete__c` (30 chars) | unchanged — keep as-is |
+**Critical insight:** Salesforce already has a built-in Stage→Probability mapping via the `ForecastCategoryName` and `defaultProbability` on stage picklist values. However, the behavior is: the standard SF UI syncs Probability when Stage changes **only if the user has not manually edited Probability** (the "Override" checkbox). The acceptance criteria explicitly states "Existing manually entered Probability should be overwritten when Stage changes," which the standard picklist config does NOT guarantee in all scenarios.
+
+Therefore: **Option B — Before Save Flow** is required to guarantee overwrite on every stage change.
 
 ---
 
-## ADMIN WORK (salesforce-admin)
+## Chosen Approach: Option B — Record-Triggered Flow (Before Save)
 
-### A2 — Validation rule `Sign_Off_Required_Before_Stage_Advance`
-File: `force-app/main/default/objects/Opportunity/validationRules/Sign_Off_Required_Before_Stage_Advance.validationRule-meta.xml`
+**Rationale:**
+- Option A (picklist `defaultProbability`) does not overwrite a manually-entered Probability in all cases — Salesforce only resets Probability automatically when the user has not unlocked the field.
+- Option B (Before Save Flow) unconditionally sets `Probability` on every `StageName` change, satisfying the "overwrite manual entry" acceptance criterion.
+- A Before Save flow is the simplest declarative mechanism that covers this requirement without Apex.
+- This approach aligns with the project's declarative-first preference (memory: always prefer declarative over Apex when viable).
 
-Replace the current `errorConditionFormula` (which contains `NOT(Current_Stage_Sign_Off_Complete__c)`) with a per-stage gate using `PRIORVALUE(StageName)`:
+---
 
+## Stage → Probability Mapping
+
+| Stage            | Probability |
+|------------------|-------------|
+| Qualification    | 10          |
+| Discovery        | 25          |
+| Proposal         | 50          |
+| Negotiation      | 75          |
+| Closed Won       | 100         |
+| Closed Lost      | 0           |
+
+**Note on stage names:** The requirement uses simplified names. The actual Salesforce picklist values in a standard org may use longer names (e.g., "Proposal/Price Quote", "Negotiation/Review"). The flow must use the exact API values as they appear in the org's StageName picklist. If the org's stage values differ (e.g., use "Proposal/Price Quote" instead of "Proposal"), the developer must verify and match exactly. Since the VISEO org only has VISEO_Project_Opportunity as a custom record type, these 6 stages are presumed to be on the standard default record type.
+
+---
+
+## Components to Create / Update
+
+### Flow: `Opportunity_Before_Save` (existing — revive with new logic)
+- **Type:** Record-Triggered Flow (Before Save)
+- **Object:** Opportunity
+- **Trigger:** Create and Update
+- **Start element:** NO entry condition / filterFormula — start is unconditional
+- **Structure:**
+  1. **Start** → Decision
+  2. **Decision** `Stage Changed?`
+     - **Yes** outcome: `frmStageChanged` EqualTo `true` → Assignment
+     - **No** (default): → End
+  3. **Assignment** `Assign Probability`: sets `$Record.Probability` = `frmProbability`
+
+### Formula Variables
+
+**`frmStageChanged`** — Boolean
 ```
-AND(
-  OR(
-    PRIORVALUE(StageName) = "Discovery",
-    PRIORVALUE(StageName) = "Requirement Gathering",
-    PRIORVALUE(StageName) = "Requirement Documentation",
-    PRIORVALUE(StageName) = "User Story Finalization"
-  ),
-  ISCHANGED(StageName),
-  CASE(
-    PRIORVALUE(StageName),
-    "Discovery", NOT(Discovery_Sign_Off_Complete__c),
-    "Requirement Gathering", NOT(Req_Gathering_Sign_Off_Complete__c),
-    "Requirement Documentation", NOT(Req_Documentation_Sign_Off_Complete__c),
-    "User Story Finalization", NOT(User_Story_Sign_Off_Complete__c),
-    FALSE
-  )
-)
+ISCHANGED({!$Record.StageName})
 ```
 
-### A3 — Permission sets
-Files: `force-app/main/default/permissionsets/Opportunity_RO_PS.permissionset-meta.xml`, `Opportunity_RW_PS.permissionset-meta.xml`, `Opportunity_DELETE_PS.permissionset-meta.xml`
+**`frmProbability`** — Number (0 decimal places)
+```
+IF(ISPICKVAL({!$Record.StageName}, "Qualification"), 10,
+IF(ISPICKVAL({!$Record.StageName}, "Discovery"), 25,
+IF(ISPICKVAL({!$Record.StageName}, "Proposal"), 50,
+IF(ISPICKVAL({!$Record.StageName}, "Negotiation"), 75,
+IF(ISPICKVAL({!$Record.StageName}, "Closed Won"), 100,
+IF(ISPICKVAL({!$Record.StageName}, "Closed Lost"), 0,
+{!$Record.Probability}))))))
+```
+The final fallback `{!$Record.Probability}` preserves the existing value for unmatched stages (e.g., VISEO delivery stages).
 
-- Remove `Current_Stage_Sign_Off_Complete__c` field permission entries (field is being deleted)
-- Add field permissions for all 4 per-stage checkboxes:
-  - `Discovery_Sign_Off_Complete__c`
-  - `Req_Gathering_Sign_Off_Complete__c`
-  - `Req_Documentation_Sign_Off_Complete__c`
-  - `User_Story_Sign_Off_Complete__c`
-- RO PS: readable=true, editable=false
-- RW PS: readable=true, editable=true
-- DELETE PS: readable=true, editable=true
-
-### A4 — Clean remaining `Current_Stage_Sign_Off_Complete__c` references
-
-1. **`Opportunity_Project_Record_Page.flexipage-meta.xml`** — remove the `readonly` uiBehavior entry for `Current_Stage_Sign_Off_Complete__c`
-2. **`Opportunity-VISEO Project Opportunity Layout.layout-meta.xml`** — remove the field from the layout sections
-3. **`objectTranslations/Current_Stage_Sign_Off_Complete__c.fieldTranslation-meta.xml`** — delete this file entirely
+**Implementation file:**
+`force-app/main/default/flows/Opportunity_Before_Save.flow-meta.xml`
 
 ---
 
-## DEV WORK (salesforce-developer)
+## Existing Automation Compatibility
 
-### D1 — `Project_Sign_Off_Upload_Document` flow (Active)
-File: `force-app/main/default/flows/Project_Sign_Off_Upload_Document.flow-meta.xml`
+### `Opportunity_Before_Save.flow-meta.xml`
+- Status: **Obsolete/InvalidDraft** — this flow has no active logic (all assignments were removed). It will not conflict. No changes needed.
 
-Replace the single `Current_Stage_Sign_Off_Complete__c = true` assignment with a Decision element on `{!varSignOff.Stage__c}` that routes to 4 separate assignments:
-- "Discovery" → set `Discovery_Sign_Off_Complete__c = true` on the Opportunity record
-- "Requirement Gathering" → set `Req_Gathering_Sign_Off_Complete__c = true`
-- "Requirement Documentation" → set `Req_Documentation_Sign_Off_Complete__c = true`
-- "User Story Finalization" → set `User_Story_Sign_Off_Complete__c = true`
+### `Opportunity_After_Save.flow-meta.xml`
+- Status: **Active** — triggers on StageName change to specific VISEO delivery stages (Discovery, Requirement Gathering, Requirement Documentation, User Story Finalization). Creates Project_Sign_Off__c records.
+- **Interaction:** No conflict. The new Probability Sync flow runs Before Save (different trigger point). The After Save flow is not affected by Probability changes.
 
-### D2 — `Opportunity_Before_Save` flow (Obsolete)
-File: `force-app/main/default/flows/Opportunity_Before_Save.flow-meta.xml`
+### Validation Rules
+- `CloseDate_Required_For_Closed_Won.validationRule-meta.xml` — requires CloseDate when Stage = Closed Won. No conflict; Probability change does not affect CloseDate.
+- `Prevent_CloseDate_Change_After_ClosedWon.validationRule-meta.xml` — prevents CloseDate modification after Closed Won. No conflict.
+- `Sign_Off_Required_Before_Stage_Advance.validationRule-meta.xml` — gates stage advances on sign-off checkboxes. No conflict; runs independently on stage change.
 
-Remove the 2 dead `Current_Stage_Sign_Off_Complete__c` references from the Obsolete flow definition. Do NOT reactivate this flow.
-
----
-
-## EXCLUDED
-
-- All 44 profile files — do NOT modify any profile metadata
-- `DataCloudGeoLocation.cleanDataService-meta.xml` — already deleted from branch, keep excluded
+### VISEO_Project_Opportunity Stages
+The new flow's fallback (`{!$Record.Probability}` when no match) ensures VISEO delivery stages (AMS, In Development, QA, UAT, Live, Requirement Gathering, Requirement Documentation, User Story Finalization) are untouched. The VISEO_Project_Opportunity record type does not use Probability for forecasting, so no impact.
 
 ---
 
-## EXECUTION ORDER
+## Implementation Notes for Developer Agent
 
-1. A2, A3, A4 (admin) — can run in parallel, all depend on renamed fields already being present
-2. D1, D2 (developer) — after admin commits
-3. Code review → Documentation → PR → DevOps deploy
+1. Update `force-app/main/default/flows/Opportunity_Before_Save.flow-meta.xml` — revive the existing Obsolete flow.
+2. Start element must have NO `filterFormula` / entry condition.
+3. Add Boolean formula `frmStageChanged` = `ISCHANGED({!$Record.StageName})`.
+4. Add Decision element `Stage_Changed` with Yes outcome checking `frmStageChanged EqualTo true`.
+5. Add Number formula `frmProbability` (scale 0) with the IF/ISPICKVAL chain above.
+6. Add Assignment element `Assign_Probability` setting `$Record.Probability` = `frmProbability`.
+7. `<status>Active</status>` — deploy as active.
+6. Verify exact stage API values in the org before implementing. If the standard picklist uses "Proposal/Price Quote" or "Negotiation/Review", update the ISPICKVAL values accordingly. Use `sf data query --query "SELECT MasterLabel FROM OpportunityStage" --target-org "ARIEF VISEO DEV ORG"` to confirm.
+7. Do NOT modify any existing flows, validation rules, or the VISEO_Sales_Process business process.
 
-NEXT_AGENT: salesforce-admin
+---
+
+## Execution Order
+
+1. Developer: create `Opportunity_Probability_Sync.flow-meta.xml`
+2. Code review
+3. SF CLI validation: `sf project deploy validate --target-org "ARIEF VISEO DEV ORG"`
+4. PR creation and merge
+
+NEXT_AGENT: salesforce-developer

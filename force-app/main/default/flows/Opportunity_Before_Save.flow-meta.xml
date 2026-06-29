@@ -1,8 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <description>Obsolete Before-Save flow on Opportunity. Previously reset the shared per-stage sign-off checkbox; that logic was removed when the shared field was replaced by per-stage sign-off checkboxes.</description>
+    <assignments>
+        <name>Assign_Probability</name>
+        <label>Assign Probability</label>
+        <locationX>264</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>frmProbability</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Stage_Changed</name>
+        <label>Stage Changed?</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>frmStageChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Probability</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>frmStageChanged</name>
+        <dataType>Boolean</dataType>
+        <expression>ISCHANGED({!$Record.StageName})</expression>
+    </formulas>
+    <formulas>
+        <name>frmProbability</name>
+        <dataType>Number</dataType>
+        <expression>IF(ISPICKVAL({!$Record.StageName}, &quot;Qualification&quot;), 10,
+IF(ISPICKVAL({!$Record.StageName}, &quot;Discovery&quot;), 25,
+IF(ISPICKVAL({!$Record.StageName}, &quot;Proposal&quot;), 50,
+IF(ISPICKVAL({!$Record.StageName}, &quot;Negotiation&quot;), 75,
+IF(ISPICKVAL({!$Record.StageName}, &quot;Closed Won&quot;), 100,
+IF(ISPICKVAL({!$Record.StageName}, &quot;Closed Lost&quot;), 0,
+{!$Record.Probability}))))))</expression>
+        <scale>0</scale>
+    </formulas>
     <interviewLabel>Opportunity Before Save {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Opportunity Before Save</label>
     <processMetadataValues>
@@ -21,18 +71,12 @@
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <filterFormula>AND(
-  ISCHANGED({!$Record.StageName}),
-  OR(
-    ISPICKVAL({!$Record.StageName}, &apos;Discovery&apos;),
-    ISPICKVAL({!$Record.StageName}, &apos;Requirement Gathering&apos;),
-    ISPICKVAL({!$Record.StageName}, &apos;Requirement Documentation&apos;),
-    ISPICKVAL({!$Record.StageName}, &apos;User Story Finalization&apos;)
-  )
-)</filterFormula>
+        <connector>
+            <targetReference>Stage_Changed</targetReference>
+        </connector>
         <object>Opportunity</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Mandatory_if_Auto_True</fullName>
+    <active>true</active>
+    <description>To make Email 1 field mandatory if Send Auto Email equals true</description>
+    <errorConditionFormula>Opt_for_Auto_Email__c == true &amp;&amp;  Email_1__c == null</errorConditionFormula>
+    <errorDisplayField>Email_1__c</errorDisplayField>
+    <errorMessage>Please populate the email if you select Send Auto Email</errorMessage>
+</ValidationRule>

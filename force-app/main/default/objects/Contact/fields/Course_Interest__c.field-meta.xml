@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Interest__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Values should be from active Campaigns list</description>
+    <label>Course Interest</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Please select active campaign.</errorMessage>
+        <filterItems>
+            <field>Campaign.Status</field>
+            <operation>equals</operation>
+            <value>Active, Completed</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Campaign</referenceTo>
+    <relationshipLabel>Contacts</relationshipLabel>
+    <relationshipName>Contacts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

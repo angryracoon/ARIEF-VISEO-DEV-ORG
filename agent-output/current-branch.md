@@ -1,1 +1,1 @@
-fix/2026-06-21-signoff-vr-formula
+feat/opportunity-probability-auto-update
