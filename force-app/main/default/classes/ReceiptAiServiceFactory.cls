@@ -2,7 +2,7 @@
  * @class        ReceiptAiServiceFactory
  * @description  Resolves the active ReceiptAiService implementation. Returns the
  *               deterministic MockReceiptAiProvider in test context and the real
- *               OpenAiReceiptAiProvider otherwise, keeping callers decoupled from
+ *               GeminiReceiptAiProvider otherwise, keeping callers decoupled from
  *               the concrete provider.
  * @author       Arief Gunawan
  * @date         2026-06-30

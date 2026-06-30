@@ -3,7 +3,8 @@
     <types>
         <members>GeminiReceiptAiProvider</members>
         <members>GeminiReceiptAiProviderTest</members>
-        <members>OpenAiReceiptAiProviderTest</members>
+        <members>MonthlyFinanceSummaryBatchTest</members>
+        <members>MonthlyFinanceSummarySchedulableTest</members>
         <members>ReceiptAiServiceFactory</members>
         <name>ApexClass</name>
     </types>

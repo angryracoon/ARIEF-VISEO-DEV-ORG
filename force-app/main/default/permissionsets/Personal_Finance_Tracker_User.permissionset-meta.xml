@@ -109,10 +109,6 @@
         <enabled>true</enabled>
         <externalCredentialPrincipal>Gemini_API-GeminiNamedPrincipal</externalCredentialPrincipal>
     </externalCredentialPrincipalAccesses>
-    <externalCredentialPrincipalAccesses>
-        <enabled>true</enabled>
-        <externalCredentialPrincipal>OpenAI_API-OpenAINamedPrincipal</externalCredentialPrincipal>
-    </externalCredentialPrincipalAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Personal Finance Tracker User</label>
     <license>Salesforce</license>
