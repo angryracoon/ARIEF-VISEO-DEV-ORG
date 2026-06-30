@@ -3,6 +3,8 @@
     <description>Default Admin Permission Set Group combining RW and DELETE access for Project Tasks</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>DefaultAdmin PSG</label>
+    <permissionSets>FinancialAccount_DELETE_PS</permissionSets>
+    <permissionSets>FinancialAccount_RW_PS</permissionSets>
     <permissionSets>Opportunity_DELETE_PS</permissionSets>
     <permissionSets>Opportunity_RW_PS</permissionSets>
     <permissionSets>ProjectActivity_DELETE_PS</permissionSets>

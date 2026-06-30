@@ -1,0 +1,6 @@
+.receipt-preview {
+    max-width: 100%;
+    max-height: 220px;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+}
