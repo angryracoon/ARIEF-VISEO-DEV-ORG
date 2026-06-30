@@ -4,7 +4,7 @@
 **Sprint:** Personal Finance Enhancement P1
 **Date:** 2026-06-30
 **Review Verdict:** APPROVED WITH WARNINGS
-**Validation:** PASS — 32/32 components, 28 tests (RunSpecifiedTests)
+**Validation:** PASS — 32/32 components, 27 tests (RunSpecifiedTests)
 
 ---
 
@@ -16,7 +16,7 @@ Introduces a new `FinancialAccount__c` custom object to track financial accounts
 
 ### Feature 2 — AI Receipt Scanner
 
-Adds an `Expense Creation Panel` LWC to the Personal Finance home page. Users can create an expense manually (navigates to standard New Expense page) or scan a receipt. The scan workflow captures or uploads a receipt image, sends it to Anthropic Claude Vision via a Named Credential, extracts merchant, date, amount, and suggested category, presents the results for review and edit, then creates the expense via a standard `insert` so existing validation rules and the `Expense_Update_Budget_Spending` flow fire without duplication. The receipt file is attached to the new expense as a `ContentDocumentLink`. The AI provider is swappable; a mock provider is available for test and development environments.
+Adds an `Expense Creation Panel` LWC to the Personal Finance home page. Users can create an expense manually (navigates to standard New Expense page) or scan a receipt. The scan workflow captures or uploads a receipt image, sends it to OpenAI GPT-4o Vision via a Named Credential, extracts merchant, date, amount, and suggested category, presents the results for review and edit, then creates the expense via a standard `insert` so existing validation rules and the `Expense_Update_Budget_Spending` flow fire without duplication. The receipt file is attached to the new expense as a `ContentDocumentLink`. The AI provider is swappable; a mock provider is available for test and development environments.
 
 ---
 
@@ -51,8 +51,8 @@ Adds an `Expense Creation Panel` LWC to the Personal Finance home page. Users ca
 | `ReceiptAiService` | Apex Interface | Provider-swappable AI service contract |
 | `ReceiptExtractionResult` | Apex Class | @AuraEnabled DTO: Merchant, Date, TotalAmount, Currency, SuggestedCategory, ConfidenceScore |
 | `MockReceiptAiProvider` | Apex Class | Deterministic stub for tests and dev |
-| `ClaudeReceiptAiProvider` | Apex Class | Anthropic Claude Vision callout; all failures return structured result (no throws) |
-| `ReceiptAiServiceFactory` | Apex Class | Resolves mock vs Claude provider; @TestVisible override |
+| `OpenAiReceiptAiProvider` | Apex Class | OpenAI GPT-4o Vision callout; all failures return structured result (no throws) |
+| `ReceiptAiServiceFactory` | Apex Class | Resolves mock vs GPT-4o provider; @TestVisible override |
 | `ReceiptScanController` | Apex Class | @AuraEnabled: uploadReceipt, processReceipt, getActiveFinancialAccounts, matchCategory, createExpenseFromReceipt |
 
 ### Apex (modified)
@@ -65,7 +65,7 @@ Adds an `Expense Creation Panel` LWC to the Personal Finance home page. Users ca
 |------------|---------------|
 | `ExpenseTriggerHandlerTest` | Insert, bulk (200), amount change, reparent, delete, undelete, mixed-account isolation, no-account guard |
 | `ReceiptScanControllerTest` | Upload, extraction via mock, account filtering, category match hit/miss/blank, expense creation with attachment and balance assertion, VR enforcement, empty-data guard |
-| `ClaudeReceiptAiProviderTest` | Success parse, code-fence JSON, unparseable content, HTTP 500, empty content array, blank-image short-circuit, factory override/default |
+| `OpenAiReceiptAiProviderTest` | Success parse, code-fence JSON, unparseable content, HTTP 500, empty content array, blank-image short-circuit, factory override/default |
 
 ### LWC
 | Component | Notes |
@@ -83,8 +83,8 @@ Adds an `Expense Creation Panel` LWC to the Personal Finance home page. Users ca
 ### Named Credential / External Credential
 | Component | Notes |
 |-----------|-------|
-| `Anthropic_API` (External Credential) | Custom protocol, x-api-key header auth |
-| `Anthropic_API` (Named Credential) | SecuredEndpoint → https://api.anthropic.com |
+| `OpenAI_API` (External Credential) | Custom protocol, Bearer token auth |
+| `OpenAI_API` (Named Credential) | SecuredEndpoint → https://api.openai.com |
 
 ### Metadata Modified
 | Component | Change |
@@ -127,7 +127,7 @@ These require separate remediation: fix the `MonthlyFinanceSummaryBatchTest` dat
 
 ## Dependencies
 
-- Anthropic API key required — must be configured in the Named Credential `Anthropic_API` in the target org before deploying.
+- OpenAI API key required — must be configured in the Named Credential `OpenAI_API` in the target org before deploying. Obtain the key from platform.openai.com → API Keys.
 - No other external dependencies introduced.
 
 ---
@@ -142,7 +142,7 @@ sf project deploy start --manifest manifest/components-created.xml \
   --test-level RunSpecifiedTests \
   --tests ExpenseTriggerHandlerTest \
   --tests ReceiptScanControllerTest \
-  --tests ClaudeReceiptAiProviderTest
+  --tests OpenAiReceiptAiProviderTest
 ```
 
 **Do not use RunLocalTests** until the two pre-existing failures listed above are remediated in separate stories.
@@ -151,7 +151,7 @@ sf project deploy start --manifest manifest/components-created.xml \
 
 ## Post-Deployment Steps
 
-1. **Configure Named Credential** — In the target org, open `Anthropic_API` Named Credential and enter a valid Anthropic API key. The AI Receipt Scanner will not function until this is done.
+1. **Configure Named Credential** — In the target org, navigate to Setup → External Credentials → `OpenAI_API` → Principal `OpenAINamedPrincipal` → Parameter `ApiKey` and set the value to your OpenAI API key (Bearer token format is handled automatically by the credential). Obtain the key from platform.openai.com → API Keys. The AI Receipt Scanner will not function until this is done.
 
 2. **Assign Permission Sets** — Assign access to users who need Financial Account access:
    - Read-only access: `FinancialAccount_RO_PS`
