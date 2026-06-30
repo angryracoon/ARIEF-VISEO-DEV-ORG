@@ -1,39 +1,34 @@
 /**
- * @class        ClaudeReceiptAiProvider
- * @description  Real ReceiptAiService implementation backed by the Anthropic Claude
- *               Vision API. Sends a base64-encoded receipt image to the Messages
- *               endpoint through the Anthropic_API Named Credential and parses the
- *               model's JSON response into a ReceiptExtractionResult.
+ * @class        OpenAiReceiptAiProvider
+ * @description  Real ReceiptAiService implementation backed by the OpenAI GPT-4o
+ *               Vision API. Sends a base64-encoded receipt image to the Chat
+ *               Completions endpoint through the OpenAI_API Named Credential and
+ *               parses the model's JSON response into a ReceiptExtractionResult.
  *
- *               The API key is injected as the x-api-key header by the External
- *               Credential, so no secret is ever hardcoded here.
+ *               The API key is injected as the Authorization Bearer header by the
+ *               External Credential, so no secret is ever hardcoded here.
  * @author       Arief Gunawan
  * @date         2026-06-30
  */
-public with sharing class ClaudeReceiptAiProvider implements ReceiptAiService {
+public with sharing class OpenAiReceiptAiProvider implements ReceiptAiService {
 
-    /** Named Credential endpoint base. */
-    private static final String ENDPOINT = 'callout:Anthropic_API/v1/messages';
+    /** Named Credential endpoint for the Chat Completions API. */
+    private static final String ENDPOINT = 'callout:OpenAI_API/v1/chat/completions';
 
-    /** Anthropic API version header value. */
-    private static final String ANTHROPIC_VERSION = '2023-06-01';
-
-    /** Vision-capable Claude model. */
-    private static final String MODEL = 'claude-3-5-sonnet-20241022';
+    /** Vision-capable GPT-4o model. */
+    private static final String MODEL = 'gpt-4o';
 
     /** Maximum tokens for the completion. */
-    private static final Integer MAX_TOKENS = 1024;
+    private static final Integer MAX_TOKENS = 500;
 
     /** Instruction asking the model to return strict JSON. */
     private static final String PROMPT =
-        'You are a receipt parsing assistant. Extract the following fields from this ' +
-        'receipt image and respond with ONLY a JSON object, no markdown, no commentary. ' +
-        'Keys: merchantName (string), expenseDate (ISO date yyyy-MM-dd), totalAmount ' +
-        '(number), suggestedCategoryName (string), confidenceScore (number 0-1). ' +
-        'If a value cannot be determined, use null.';
+        'Extract receipt data as JSON with fields: merchantName, expenseDate ' +
+        '(YYYY-MM-DD), totalAmount (number), suggestedCategory, confidenceScore ' +
+        '(0-1). Return only valid JSON.';
 
     /**
-     * @description  Calls Claude Vision with the supplied image and returns the
+     * @description  Calls GPT-4o Vision with the supplied image and returns the
      *               parsed extraction result. Any callout or parsing failure is
      *               returned as an unsuccessful result rather than thrown.
      * @param        base64Image  Base64-encoded image bytes.
@@ -66,13 +61,15 @@ public with sharing class ClaudeReceiptAiProvider implements ReceiptAiService {
     }
 
     /**
-     * @description  Builds the Anthropic Messages request carrying the image and prompt.
+     * @description  Builds the OpenAI Chat Completions request carrying the image
+     *               (as a data URL) and the extraction prompt.
      * @param        base64Image  Base64-encoded image bytes.
      * @param        contentType  MIME type of the image.
      * @return       A ready-to-send HttpRequest.
      */
     private HttpRequest buildRequest(String base64Image, String contentType) {
         String mediaType = String.isBlank(contentType) ? 'image/jpeg' : contentType;
+        String dataUrl = 'data:' + mediaType + ';base64,' + base64Image;
 
         JSONGenerator gen = JSON.createGenerator(false);
         gen.writeStartObject();
@@ -87,12 +84,10 @@ public with sharing class ClaudeReceiptAiProvider implements ReceiptAiService {
 
         // Image block
         gen.writeStartObject();
-        gen.writeStringField('type', 'image');
-        gen.writeFieldName('source');
+        gen.writeStringField('type', 'image_url');
+        gen.writeFieldName('image_url');
         gen.writeStartObject();
-        gen.writeStringField('type', 'base64');
-        gen.writeStringField('media_type', mediaType);
-        gen.writeStringField('data', base64Image);
+        gen.writeStringField('url', dataUrl);
         gen.writeEndObject();
         gen.writeEndObject();
 
@@ -111,30 +106,30 @@ public with sharing class ClaudeReceiptAiProvider implements ReceiptAiService {
         request.setEndpoint(ENDPOINT);
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
-        request.setHeader('anthropic-version', ANTHROPIC_VERSION);
         request.setTimeout(120000);
         request.setBody(gen.getAsString());
         return request;
     }
 
     /**
-     * @description  Pulls the first text block out of an Anthropic Messages response body.
+     * @description  Pulls the assistant message content out of an OpenAI Chat
+     *               Completions response body (choices[0].message.content).
      * @param        body  Raw response JSON.
      * @return       The model's text content, or null if not present.
      */
     private String extractModelText(String body) {
         Map<String, Object> parsed = (Map<String, Object>) JSON.deserializeUntyped(body);
-        Object contentObj = parsed.get('content');
-        if (!(contentObj instanceof List<Object>)) {
+        Object choicesObj = parsed.get('choices');
+        if (!(choicesObj instanceof List<Object>) || ((List<Object>) choicesObj).isEmpty()) {
             return null;
         }
-        for (Object block : (List<Object>) contentObj) {
-            Map<String, Object> blockMap = (Map<String, Object>) block;
-            if ('text'.equals(blockMap.get('type')) && blockMap.get('text') != null) {
-                return String.valueOf(blockMap.get('text'));
-            }
+        Map<String, Object> firstChoice = (Map<String, Object>) ((List<Object>) choicesObj).get(0);
+        Object messageObj = firstChoice.get('message');
+        if (!(messageObj instanceof Map<String, Object>)) {
+            return null;
         }
-        return null;
+        Object contentObj = ((Map<String, Object>) messageObj).get('content');
+        return contentObj == null ? null : String.valueOf(contentObj);
     }
 
     /**
@@ -151,7 +146,9 @@ public with sharing class ClaudeReceiptAiProvider implements ReceiptAiService {
             ReceiptExtractionResult result = new ReceiptExtractionResult();
             result.success = true;
             result.merchantName = asString(data.get('merchantName'));
-            result.suggestedCategoryName = asString(data.get('suggestedCategoryName'));
+            result.suggestedCategoryName = asString(
+                data.containsKey('suggestedCategory') ? data.get('suggestedCategory') : data.get('suggestedCategoryName')
+            );
             result.expenseDate = asDate(data.get('expenseDate'));
             result.totalAmount = asDecimal(data.get('totalAmount'));
             result.confidenceScore = asDecimal(data.get('confidenceScore'));
