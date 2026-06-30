@@ -105,6 +105,10 @@
         <field>Expense__c.Transaction_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>OpenAI_API-OpenAINamedPrincipal</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Personal Finance Tracker User</label>
     <license>Salesforce</license>
