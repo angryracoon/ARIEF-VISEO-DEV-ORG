@@ -1,1 +1,1 @@
-fix/2026-06-21-signoff-vr-formula
+fix/openai-external-credential-parametergroup
