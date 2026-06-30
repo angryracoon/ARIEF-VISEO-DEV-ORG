@@ -1,25 +1,20 @@
 /**
- * @class        OpenAiReceiptAiProvider
- * @description  Real ReceiptAiService implementation backed by the OpenAI GPT-4o
- *               Vision API. Sends a base64-encoded receipt image to the Chat
- *               Completions endpoint through the OpenAI_API Named Credential and
- *               parses the model's JSON response into a ReceiptExtractionResult.
+ * @class        GeminiReceiptAiProvider
+ * @description  Real ReceiptAiService implementation backed by the Google Gemini
+ *               1.5 Flash multimodal API. Sends a base64-encoded receipt image to
+ *               the generateContent endpoint through the Gemini_API Named Credential
+ *               and parses the model's JSON response into a ReceiptExtractionResult.
  *
- *               The API key is injected as the Authorization Bearer header by the
- *               External Credential, so no secret is ever hardcoded here.
+ *               The API key is injected as the x-goog-api-key header by the External
+ *               Credential, so no secret is ever hardcoded here.
  * @author       Arief Gunawan
  * @date         2026-06-30
  */
-public with sharing class OpenAiReceiptAiProvider implements ReceiptAiService {
+public with sharing class GeminiReceiptAiProvider implements ReceiptAiService {
 
-    /** Named Credential endpoint for the Chat Completions API. */
-    private static final String ENDPOINT = 'callout:OpenAI_API/v1/chat/completions';
-
-    /** Vision-capable GPT-4o model. */
-    private static final String MODEL = 'gpt-4o';
-
-    /** Maximum tokens for the completion. */
-    private static final Integer MAX_TOKENS = 500;
+    /** Named Credential endpoint for the Gemini generateContent API. */
+    private static final String ENDPOINT =
+        'callout:Gemini_API/v1beta/models/gemini-1.5-flash:generateContent';
 
     /** Instruction asking the model to return strict JSON. */
     private static final String PROMPT =
@@ -28,7 +23,7 @@ public with sharing class OpenAiReceiptAiProvider implements ReceiptAiService {
         '(0-1). Return only valid JSON.';
 
     /**
-     * @description  Calls GPT-4o Vision with the supplied image and returns the
+     * @description  Calls Gemini 1.5 Flash with the supplied image and returns the
      *               parsed extraction result. Any callout or parsing failure is
      *               returned as an unsuccessful result rather than thrown.
      * @param        base64Image  Base64-encoded image bytes.
@@ -61,39 +56,34 @@ public with sharing class OpenAiReceiptAiProvider implements ReceiptAiService {
     }
 
     /**
-     * @description  Builds the OpenAI Chat Completions request carrying the image
-     *               (as a data URL) and the extraction prompt.
+     * @description  Builds the Gemini generateContent request carrying the image
+     *               (as raw base64 inline_data) and the extraction prompt.
      * @param        base64Image  Base64-encoded image bytes.
      * @param        contentType  MIME type of the image.
      * @return       A ready-to-send HttpRequest.
      */
     private HttpRequest buildRequest(String base64Image, String contentType) {
         String mediaType = String.isBlank(contentType) ? 'image/jpeg' : contentType;
-        String dataUrl = 'data:' + mediaType + ';base64,' + base64Image;
 
         JSONGenerator gen = JSON.createGenerator(false);
         gen.writeStartObject();
-        gen.writeStringField('model', MODEL);
-        gen.writeNumberField('max_tokens', MAX_TOKENS);
-        gen.writeFieldName('messages');
+        gen.writeFieldName('contents');
         gen.writeStartArray();
         gen.writeStartObject();
-        gen.writeStringField('role', 'user');
-        gen.writeFieldName('content');
+        gen.writeFieldName('parts');
         gen.writeStartArray();
 
-        // Image block
+        // Image block (raw base64, no data: URL prefix).
         gen.writeStartObject();
-        gen.writeStringField('type', 'image_url');
-        gen.writeFieldName('image_url');
+        gen.writeFieldName('inline_data');
         gen.writeStartObject();
-        gen.writeStringField('url', dataUrl);
+        gen.writeStringField('mime_type', mediaType);
+        gen.writeStringField('data', base64Image);
         gen.writeEndObject();
         gen.writeEndObject();
 
-        // Text block
+        // Text block.
         gen.writeStartObject();
-        gen.writeStringField('type', 'text');
         gen.writeStringField('text', PROMPT);
         gen.writeEndObject();
 
@@ -112,24 +102,32 @@ public with sharing class OpenAiReceiptAiProvider implements ReceiptAiService {
     }
 
     /**
-     * @description  Pulls the assistant message content out of an OpenAI Chat
-     *               Completions response body (choices[0].message.content).
+     * @description  Pulls the model text out of a Gemini generateContent response
+     *               body (candidates[0].content.parts[0].text).
      * @param        body  Raw response JSON.
      * @return       The model's text content, or null if not present.
      */
     private String extractModelText(String body) {
         Map<String, Object> parsed = (Map<String, Object>) JSON.deserializeUntyped(body);
-        Object choicesObj = parsed.get('choices');
-        if (!(choicesObj instanceof List<Object>) || ((List<Object>) choicesObj).isEmpty()) {
+        Object candidatesObj = parsed.get('candidates');
+        if (!(candidatesObj instanceof List<Object>) || ((List<Object>) candidatesObj).isEmpty()) {
             return null;
         }
-        Map<String, Object> firstChoice = (Map<String, Object>) ((List<Object>) choicesObj).get(0);
-        Object messageObj = firstChoice.get('message');
-        if (!(messageObj instanceof Map<String, Object>)) {
+        Map<String, Object> firstCandidate = (Map<String, Object>) ((List<Object>) candidatesObj).get(0);
+        Object contentObj = firstCandidate.get('content');
+        if (!(contentObj instanceof Map<String, Object>)) {
             return null;
         }
-        Object contentObj = ((Map<String, Object>) messageObj).get('content');
-        return contentObj == null ? null : String.valueOf(contentObj);
+        Object partsObj = ((Map<String, Object>) contentObj).get('parts');
+        if (!(partsObj instanceof List<Object>) || ((List<Object>) partsObj).isEmpty()) {
+            return null;
+        }
+        Object firstPartObj = ((List<Object>) partsObj).get(0);
+        if (!(firstPartObj instanceof Map<String, Object>)) {
+            return null;
+        }
+        Object textObj = ((Map<String, Object>) firstPartObj).get('text');
+        return textObj == null ? null : String.valueOf(textObj);
     }
 
     /**

@@ -1,85 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>ExpenseBalanceService</members>
-        <members>ExpenseTriggerHandler</members>
-        <members>ExpenseTriggerHandlerTest</members>
-        <members>MockReceiptAiProvider</members>
-        <members>OpenAiReceiptAiProvider</members>
-        <members>OpenAiReceiptAiProviderTest</members>
-        <members>ReceiptAiService</members>
+        <members>GeminiReceiptAiProvider</members>
+        <members>GeminiReceiptAiProviderTest</members>
+        <members>MonthlyFinanceSummaryBatchTest</members>
+        <members>MonthlyFinanceSummarySchedulableTest</members>
         <members>ReceiptAiServiceFactory</members>
-        <members>ReceiptExtractionResult</members>
-        <members>ReceiptScanController</members>
-        <members>ReceiptScanControllerTest</members>
-        <members>TestDataFactory</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>ExpenseTrigger</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>Personal_Finance</members>
-        <name>CustomApplication</name>
-    </types>
-    <types>
-        <members>Expense__c.Financial_Account__c</members>
-        <members>FinancialAccount__c.Account_Type__c</members>
-        <members>FinancialAccount__c.Current_Balance__c</members>
-        <members>FinancialAccount__c.Notes__c</members>
-        <members>FinancialAccount__c.Status__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>FinancialAccount__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>FinancialAccount__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>OpenAI_API</members>
+        <members>Gemini_API</members>
         <name>ExternalCredential</name>
     </types>
     <types>
-        <members>Expense_Record_Page</members>
-        <members>Personal_Finance_Home</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>
-        <members>Opportunity_Before_Save</members>
-        <members>Project_Sign_Off_Upload_Document</members>
-        <name>Flow</name>
-    </types>
-    <types>
-        <members>Project_Sign_Off_Upload_Document</members>
-        <name>FlowDefinition</name>
-    </types>
-    <types>
-        <members>expenseCreationPanel</members>
-        <members>receiptScanWorkflow</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>OpenAI_API</members>
+        <members>Gemini_API</members>
         <name>NamedCredential</name>
     </types>
     <types>
-        <members>FinancialAccount_DELETE_PS</members>
-        <members>FinancialAccount_RO_PS</members>
-        <members>FinancialAccount_RW_PS</members>
-        <members>Opportunity_DELETE_PS</members>
-        <members>Opportunity_RO_PS</members>
-        <members>Opportunity_RW_PS</members>
         <members>Personal_Finance_Tracker_User</members>
         <name>PermissionSet</name>
-    </types>
-    <types>
-        <members>Expense__c.Financial_Account_Must_Be_Active</members>
-        <members>Opportunity.CloseDate_Required_For_Closed_Won</members>
-        <name>ValidationRule</name>
     </types>
     <version>65.0</version>
 </Package>

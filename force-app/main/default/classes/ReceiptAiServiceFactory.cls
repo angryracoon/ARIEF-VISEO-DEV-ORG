@@ -2,7 +2,7 @@
  * @class        ReceiptAiServiceFactory
  * @description  Resolves the active ReceiptAiService implementation. Returns the
  *               deterministic MockReceiptAiProvider in test context and the real
- *               OpenAiReceiptAiProvider otherwise, keeping callers decoupled from
+ *               GeminiReceiptAiProvider otherwise, keeping callers decoupled from
  *               the concrete provider.
  * @author       Arief Gunawan
  * @date         2026-06-30
@@ -16,7 +16,7 @@ public with sharing class ReceiptAiServiceFactory {
     /**
      * @description  Returns the ReceiptAiService implementation to use. A test
      *               override takes precedence; otherwise the mock provider is used
-     *               in test context and the OpenAI provider in all other contexts.
+     *               in test context and the Gemini provider in all other contexts.
      * @return       A ReceiptAiService instance.
      */
     public static ReceiptAiService getInstance() {
@@ -33,10 +33,10 @@ public with sharing class ReceiptAiServiceFactory {
      * @description  Constructs the production provider. Isolated into its own
      *               @TestVisible method so the real provider wiring can be exercised
      *               by tests without forcing a live callout through getInstance().
-     * @return       The production ReceiptAiService (OpenAI).
+     * @return       The production ReceiptAiService (Gemini).
      */
     @TestVisible
     private static ReceiptAiService createDefaultProvider() {
-        return new OpenAiReceiptAiProvider();
+        return new GeminiReceiptAiProvider();
     }
 }

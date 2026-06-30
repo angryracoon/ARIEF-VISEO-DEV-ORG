@@ -107,7 +107,7 @@
     </fieldPermissions>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
-        <externalCredentialPrincipal>OpenAI_API-OpenAINamedPrincipal</externalCredentialPrincipal>
+        <externalCredentialPrincipal>Gemini_API-GeminiNamedPrincipal</externalCredentialPrincipal>
     </externalCredentialPrincipalAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Personal Finance Tracker User</label>
