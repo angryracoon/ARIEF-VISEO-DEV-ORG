@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>GeminiReceiptAiProvider</members>
+        <members>GeminiReceiptAiProviderTest</members>
+        <members>OpenAiReceiptAiProviderTest</members>
+        <members>ReceiptAiServiceFactory</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Gemini_API</members>
+        <name>ExternalCredential</name>
+    </types>
+    <types>
+        <members>Gemini_API</members>
+        <name>NamedCredential</name>
+    </types>
+    <types>
+        <members>Personal_Finance_Tracker_User</members>
+        <name>PermissionSet</name>
+    </types>
     <version>65.0</version>
 </Package>

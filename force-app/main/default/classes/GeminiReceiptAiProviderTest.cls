@@ -1,22 +1,23 @@
 /**
- * @class        OpenAiReceiptAiProviderTest
- * @description  Tests for OpenAiReceiptAiProvider using a simulated HTTP callout.
+ * @class        GeminiReceiptAiProviderTest
+ * @description  Tests for GeminiReceiptAiProvider using a simulated HTTP callout.
  *               Covers successful parse, code-fence wrapped JSON, unparseable
- *               content, non-2xx responses, and blank-input short-circuiting.
- *               The provider is instantiated directly to bypass the factory's
- *               test-context mock.
+ *               content, non-2xx responses, empty candidates, and blank-input
+ *               short-circuiting. Also asserts the factory's production default is
+ *               now the Gemini provider. The provider is instantiated directly to
+ *               bypass the factory's test-context mock.
  * @author       Arief Gunawan
  * @date         2026-06-30
  */
 @isTest
-private class OpenAiReceiptAiProviderTest {
+private class GeminiReceiptAiProviderTest {
 
     /** Configurable HttpCalloutMock returning a fixed status and body. */
-    private class OpenAiMock implements HttpCalloutMock {
+    private class GeminiMock implements HttpCalloutMock {
         private Integer statusCode;
         private String body;
 
-        OpenAiMock(Integer statusCode, String body) {
+        GeminiMock(Integer statusCode, String body) {
             this.statusCode = statusCode;
             this.body = body;
         }
@@ -32,24 +33,24 @@ private class OpenAiReceiptAiProviderTest {
     }
 
     /**
-     * @description  Wraps an assistant message content string in a minimal OpenAI
-     *               Chat Completions response envelope.
-     * @param        innerText  The assistant message content.
-     * @return       A JSON string matching the OpenAI response shape.
+     * @description  Wraps a model text string in a minimal Gemini generateContent
+     *               response envelope.
+     * @param        innerText  The model part text.
+     * @return       A JSON string matching the Gemini response shape.
      */
-    private static String openAiBody(String innerText) {
-        return '{"choices":[{"message":{"role":"assistant","content":' +
-            JSON.serialize(innerText) + '}}]}';
+    private static String geminiBody(String innerText) {
+        return '{"candidates":[{"content":{"parts":[{"text":' +
+            JSON.serialize(innerText) + '}]}}]}';
     }
 
     @isTest
     static void parsesSuccessfulResponse() {
         String innerJson = '{"merchantName":"Corner Cafe","expenseDate":"2026-06-15",' +
             '"totalAmount":12.30,"suggestedCategory":"Dining","confidenceScore":0.88}';
-        Test.setMock(HttpCalloutMock.class, new OpenAiMock(200, openAiBody(innerJson)));
+        Test.setMock(HttpCalloutMock.class, new GeminiMock(200, geminiBody(innerJson)));
 
         Test.startTest();
-        ReceiptExtractionResult result = new OpenAiReceiptAiProvider()
+        ReceiptExtractionResult result = new GeminiReceiptAiProvider()
             .extractFromReceipt('Zm9v', 'image/jpeg');
         Test.stopTest();
 
@@ -64,10 +65,10 @@ private class OpenAiReceiptAiProviderTest {
     @isTest
     static void parsesCodeFenceWrappedJson() {
         String innerJson = '```json\n{"merchantName":"Fenced","totalAmount":5}\n```';
-        Test.setMock(HttpCalloutMock.class, new OpenAiMock(200, openAiBody(innerJson)));
+        Test.setMock(HttpCalloutMock.class, new GeminiMock(200, geminiBody(innerJson)));
 
         Test.startTest();
-        ReceiptExtractionResult result = new OpenAiReceiptAiProvider()
+        ReceiptExtractionResult result = new GeminiReceiptAiProvider()
             .extractFromReceipt('Zm9v', 'image/png');
         Test.stopTest();
 
@@ -77,10 +78,10 @@ private class OpenAiReceiptAiProviderTest {
 
     @isTest
     static void unparseableContentReturnsFailure() {
-        Test.setMock(HttpCalloutMock.class, new OpenAiMock(200, openAiBody('this is not json')));
+        Test.setMock(HttpCalloutMock.class, new GeminiMock(200, geminiBody('this is not json')));
 
         Test.startTest();
-        ReceiptExtractionResult result = new OpenAiReceiptAiProvider()
+        ReceiptExtractionResult result = new GeminiReceiptAiProvider()
             .extractFromReceipt('Zm9v', 'image/jpeg');
         Test.stopTest();
 
@@ -90,10 +91,10 @@ private class OpenAiReceiptAiProviderTest {
 
     @isTest
     static void nonSuccessStatusReturnsFailure() {
-        Test.setMock(HttpCalloutMock.class, new OpenAiMock(500, '{"error":"server"}'));
+        Test.setMock(HttpCalloutMock.class, new GeminiMock(500, '{"error":"server"}'));
 
         Test.startTest();
-        ReceiptExtractionResult result = new OpenAiReceiptAiProvider()
+        ReceiptExtractionResult result = new GeminiReceiptAiProvider()
             .extractFromReceipt('Zm9v', 'image/jpeg');
         Test.stopTest();
 
@@ -102,21 +103,21 @@ private class OpenAiReceiptAiProviderTest {
     }
 
     @isTest
-    static void emptyChoicesArrayReturnsFailure() {
-        Test.setMock(HttpCalloutMock.class, new OpenAiMock(200, '{"choices":[]}'));
+    static void emptyCandidatesArrayReturnsFailure() {
+        Test.setMock(HttpCalloutMock.class, new GeminiMock(200, '{"candidates":[]}'));
 
         Test.startTest();
-        ReceiptExtractionResult result = new OpenAiReceiptAiProvider()
+        ReceiptExtractionResult result = new GeminiReceiptAiProvider()
             .extractFromReceipt('Zm9v', 'image/jpeg');
         Test.stopTest();
 
-        System.assertEquals(false, result.success, 'Empty choices should fail.');
+        System.assertEquals(false, result.success, 'Empty candidates should fail.');
     }
 
     @isTest
     static void blankImageShortCircuits() {
         Test.startTest();
-        ReceiptExtractionResult result = new OpenAiReceiptAiProvider()
+        ReceiptExtractionResult result = new GeminiReceiptAiProvider()
             .extractFromReceipt('', 'image/jpeg');
         Test.stopTest();
 
@@ -124,18 +125,10 @@ private class OpenAiReceiptAiProviderTest {
     }
 
     @isTest
-    static void factoryReturnsMockInTestContext() {
-        System.assert(
-            ReceiptAiServiceFactory.getInstance() instanceof MockReceiptAiProvider,
-            'Factory should return the mock provider in test context.'
-        );
-    }
-
-    @isTest
     static void factoryDefaultProviderIsGemini() {
         System.assert(
             ReceiptAiServiceFactory.createDefaultProvider() instanceof GeminiReceiptAiProvider,
-            'The production default provider should be the Gemini provider after the swap.'
+            'The production default provider should be the Gemini provider.'
         );
     }
 }
