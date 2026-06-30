@@ -16,9 +16,6 @@ public with sharing class GeminiReceiptAiProvider implements ReceiptAiService {
     private static final String ENDPOINT =
         'callout:Gemini_API/v1beta/models/gemini-1.5-flash:generateContent';
 
-    /** Vision-capable Gemini model. */
-    private static final String MODEL = 'gemini-1.5-flash';
-
     /** Instruction asking the model to return strict JSON. */
     private static final String PROMPT =
         'Extract receipt data as JSON with fields: merchantName, expenseDate ' +
