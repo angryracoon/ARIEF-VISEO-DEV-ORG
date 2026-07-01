@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customErrors>
+        <description>Throws a custom error when a duplicate budget is detected.</description>
+        <name>Throw_Duplicate_Error</name>
+        <label>Throw Duplicate Error</label>
+        <locationX>176</locationX>
+        <locationY>504</locationY>
+        <customErrorMessages>
+            <errorMessage>A Budget already exists for this Category and Month.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Check_Duplicate</name>
+        <label>Check Duplicate</label>
+        <locationX>176</locationX>
+        <locationY>396</locationY>
+        <defaultConnectorLabel>No Duplicate</defaultConnectorLabel>
+        <rules>
+            <name>Duplicate_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Existing_Budgets</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Throw_Duplicate_Error</targetReference>
+            </connector>
+            <label>Duplicate Found</label>
+        </rules>
+    </decisions>
+    <description>Prevents duplicate Budget records for the same Category and Month combination.</description>
+    <environments>Default</environments>
+    <interviewLabel>Budget Prevent Duplicate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Budget Prevent Duplicate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Existing_Budgets</name>
+        <label>Get Existing Budgets</label>
+        <locationX>176</locationX>
+        <locationY>288</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Duplicate</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Category__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Category__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Month__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Month__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Budget__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Existing_Budgets</targetReference>
+        </connector>
+        <object>Budget__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

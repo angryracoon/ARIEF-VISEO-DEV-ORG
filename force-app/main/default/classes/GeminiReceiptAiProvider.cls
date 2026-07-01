@@ -1,7 +1,7 @@
 /**
  * @class        GeminiReceiptAiProvider
  * @description  Real ReceiptAiService implementation backed by the Google Gemini
- *               1.5 Flash multimodal API. Sends a base64-encoded receipt image to
+ *               2.0 Flash multimodal API. Sends a base64-encoded receipt image to
  *               the generateContent endpoint through the Gemini_API Named Credential
  *               and parses the model's JSON response into a ReceiptExtractionResult.
  *
@@ -14,7 +14,7 @@ public with sharing class GeminiReceiptAiProvider implements ReceiptAiService {
 
     /** Named Credential endpoint for the Gemini generateContent API. */
     private static final String ENDPOINT =
-        'callout:Gemini_API/v1beta/models/gemini-1.5-flash:generateContent';
+        'callout:Gemini_API/v1beta/models/gemini-2.5-flash:generateContent';
 
     /** Instruction asking the model to return strict JSON. */
     private static final String PROMPT =
@@ -23,7 +23,7 @@ public with sharing class GeminiReceiptAiProvider implements ReceiptAiService {
         '(0-1). Return only valid JSON.';
 
     /**
-     * @description  Calls Gemini 1.5 Flash with the supplied image and returns the
+     * @description  Calls Gemini 2.0 Flash with the supplied image and returns the
      *               parsed extraction result. Any callout or parsing failure is
      *               returned as an unsuccessful result rather than thrown.
      * @param        base64Image  Base64-encoded image bytes.

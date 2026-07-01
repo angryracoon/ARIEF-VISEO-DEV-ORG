@@ -136,4 +136,8 @@
         <name>The_7_Deadly_Agents</name>
         <type>CustomApplication</type>
     </appMenuItems>
+    <appMenuItems>
+        <name>Personal_Finance</name>
+        <type>CustomApplication</type>
+    </appMenuItems>
 </AppMenu>

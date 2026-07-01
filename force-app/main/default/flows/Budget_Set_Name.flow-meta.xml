@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Budget_Name</name>
+        <label>Set Budget Name</label>
+        <locationX>176</locationX>
+        <locationY>288</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>BudgetNameFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Auto-populates Budget Name with YYYY-MM – Category Name format before save.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>BudgetNameFormula</name>
+        <dataType>String</dataType>
+        <expression>TEXT(YEAR({!$Record.Month__c})) &amp; &quot;-&quot; &amp; LPAD(TEXT(MONTH({!$Record.Month__c})), 2, &quot;0&quot;) &amp; &quot; – &quot; &amp; {!$Record.Category__r.Name}</expression>
+    </formulas>
+    <interviewLabel>Budget Set Name {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Budget Set Name</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Budget_Name</targetReference>
+        </connector>
+        <object>Budget__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

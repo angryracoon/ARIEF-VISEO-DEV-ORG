@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Income_Cannot_Use_Expense_Category</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Transaction_Type__c, &quot;Income&quot;), NOT(ISBLANK(Category__c)), ISPICKVAL(Category__r.Category_Type__c, &quot;Expense&quot;))</errorConditionFormula>
+    <errorDisplayField>Category__c</errorDisplayField>
+    <errorMessage>An Income transaction cannot be linked to an Expense category. Please select an Income category.</errorMessage>
+</ValidationRule>

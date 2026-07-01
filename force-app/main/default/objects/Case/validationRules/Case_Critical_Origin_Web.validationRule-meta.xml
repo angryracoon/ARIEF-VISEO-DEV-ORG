@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Critical_Origin_Web</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Support_Priority__c, &quot;Critical&quot;), ISPICKVAL(Origin, &quot;Web&quot;))</errorConditionFormula>
+    <errorDisplayField>Origin</errorDisplayField>
+    <errorMessage>Critical priority cases cannot be submitted via the Web channel. Please use Phone or Email.</errorMessage>
+</ValidationRule>

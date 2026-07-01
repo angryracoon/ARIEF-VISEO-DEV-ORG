@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category_Is_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK(Category__c)</errorConditionFormula>
+    <errorDisplayField>Category__c</errorDisplayField>
+    <errorMessage>Category is required. Please select a category for this transaction.</errorMessage>
+</ValidationRule>

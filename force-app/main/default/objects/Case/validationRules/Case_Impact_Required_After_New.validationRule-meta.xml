@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Impact_Required_After_New</fullName>
+    <active>true</active>
+    <description>Requires Impact__c to be populated when Status is not New</description>
+    <errorConditionFormula>AND(
+  NOT(ISPICKVAL(Status, &quot;New&quot;)),
+  ISPICKVAL(Impact__c, &quot;&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Impact__c</errorDisplayField>
+    <errorMessage>Impact is required. Please select High, Medium, or Low before saving.</errorMessage>
+</ValidationRule>

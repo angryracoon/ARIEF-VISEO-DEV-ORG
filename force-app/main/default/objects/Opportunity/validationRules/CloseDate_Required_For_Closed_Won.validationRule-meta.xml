@@ -3,7 +3,7 @@
     <fullName>CloseDate_Required_For_Closed_Won</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-  ISPICKVAL(StageName, "Closed Won"),
+  ISPICKVAL(StageName, &quot;Closed Won&quot;),
   ISBLANK(CloseDate)
 )</errorConditionFormula>
     <errorMessage>Close Date is required when the Opportunity Stage is Closed Won.</errorMessage>

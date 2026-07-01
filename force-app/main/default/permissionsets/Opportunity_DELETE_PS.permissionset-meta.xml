@@ -7,12 +7,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Opportunity.Req_Gathering_Sign_Off_Complete__c</field>
+        <field>Opportunity.Req_Documentation_Sign_Off_Complete__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Opportunity.Req_Documentation_Sign_Off_Complete__c</field>
+        <field>Opportunity.Req_Gathering_Sign_Off_Complete__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

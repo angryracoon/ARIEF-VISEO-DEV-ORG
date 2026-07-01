@@ -2,68 +2,6 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <description>Screen Flow to upload a sign-off document, confirm approval, and update Project Sign Off and Opportunity records.</description>
-    <interviewLabel>Upload Sign-Off Document {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Upload Sign-Off Document</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <recordLookups>
-        <name>Get_Parent_Opportunity</name>
-        <label>Get Parent Opportunity</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Screen_Upload_Document</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varSignOff.Opportunity__c</elementReference>
-            </value>
-        </filters>
-        <object>Opportunity</object>
-        <outputReference>varOpportunity</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Name</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Sign_Off_Record</name>
-        <label>Get Sign Off Record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Parent_Opportunity</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <object>Project_Sign_Off__c</object>
-        <outputReference>varSignOff</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Stage__c</queriedFields>
-        <queriedFields>Sign_Off_Status__c</queriedFields>
-        <queriedFields>Opportunity__c</queriedFields>
-    </recordLookups>
     <decisions>
         <name>Route_Sign_Off_Stage</name>
         <label>Route Sign Off Stage</label>
@@ -131,6 +69,68 @@
             <label>User Story Finalization</label>
         </rules>
     </decisions>
+    <description>Screen Flow to upload a sign-off document, confirm approval, and update Project Sign Off and Opportunity records.</description>
+    <interviewLabel>Upload Sign-Off Document {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Upload Sign-Off Document</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Parent_Opportunity</name>
+        <label>Get Parent Opportunity</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Screen_Upload_Document</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varSignOff.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <outputReference>varOpportunity</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Sign_Off_Record</name>
+        <label>Get Sign Off Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Parent_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Project_Sign_Off__c</object>
+        <outputReference>varSignOff</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Stage__c</queriedFields>
+        <queriedFields>Sign_Off_Status__c</queriedFields>
+        <queriedFields>Opportunity__c</queriedFields>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Opportunity_Discovery</name>
         <label>Update Opportunity Discovery Sign Off</label>
